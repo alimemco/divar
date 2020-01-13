@@ -1,0 +1,97 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout2">
+
+    <data>
+
+
+    </data>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="120dp"
+            android:visibility="visible">
+
+
+            <TextView
+                android:id="@+id/loginTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="100dp"
+                android:layout_marginEnd="5dp"
+                android:padding="5dp"
+                android:text="@string/chat__login_title"
+                android:textAlignment="center"
+                android:textColor="@color/text__primary_dark"
+                android:textSize="@dimen/font_title_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:textSize='@{"font_title_size"}' />
+
+            <TextView
+                android:id="@+id/login2TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:padding="5dp"
+                android:text="@string/chat__login_dec"
+                android:textAlignment="center"
+                android:textColor="@color/text__primary_dark"
+                android:textSize="@dimen/font_body_size"
+                android:textStyle="bold"
+                app:font='@{"normal"}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginTextView"
+                app:textSize='@{"font_title_size"}' />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/LogIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_corner_shape_button_for_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login2TextView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/LogIn">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="15dp"
+                        android:text="@string/menu__login"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/font_title_size"
+                        app:font='@{"normal"}'
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

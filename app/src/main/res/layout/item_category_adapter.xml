@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="category"
+            type="com.panaceasoft.psbuyandsell.viewobject.ItemCategory" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/categoryIconImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="false"
+            android:contentDescription="@string/image_default__image"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="6dp"
+            android:tint="@color/md_grey_700"
+            app:imageUrl="@{category.defaultIcon.imgPath}"
+            app:layout_constraintTop_toTopOf="@+id/CategoryName"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@drawable/ic_terms" />
+
+        <TextView
+            android:id="@+id/CategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:textSize="14sp"
+            android:textColor="@color/md_black_1000"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{category.name}"
+            android:textAlignment="viewStart"
+            app:font='@{"normal"}'
+            app:layout_constraintStart_toEndOf="@+id/categoryIconImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Category Name" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/view__primary_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CategoryName" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="14dp"
+            android:contentDescription="@string/image_default__image"
+            android:tint="@color/md_grey_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_to_end_white_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

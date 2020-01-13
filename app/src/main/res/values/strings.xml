@@ -1,0 +1,604 @@
+<resources>
+
+    <!--===============-->
+    <!-- Key to update -->
+    <!--===============-->
+
+    <string name="facebook_app_id" translatable="false">0000000000000000</string>
+
+    <string name="fb_login_protocol_scheme" translatable="false">fb0000000000000000</string>
+
+    <string name="stripe_publish_key" translatable="false">pk_0000_000000000000000000000000</string>
+
+    <string name="admob_ads_api_key" translatable="false">ca-app-pub-0000000000000000~0000000000</string>
+
+    <string name="admob_banner_ads_key" translatable="false">ca-app-pub-0000000000000000/0000000000</string>
+
+
+    <!--===============-->
+    <!-- Key to update -->
+    <!--===============-->
+
+
+
+    <string name="google_map_api_key" translatable="false">AIzaSyDOnWkzTvVgQPJ1ZEG1XMzea3ZaBouQ9Mk</string>
+
+    <string name="deep_link">192.168.1.103</string>
+
+
+    <!-- App General -->
+    <string name="app__app_name">دیوار</string>
+    <string name="app__ok">بله</string>
+    <string name="app__cancel">لغو</string>
+    <string name="app__drawer_open">Drawer Open</string>
+    <string name="app__drawer_close">Drawer Close</string>
+
+
+    <!-- Register -->
+    <string name="register__user_name">نام کاربری</string>
+    <string name="register__email">ایمیل</string>
+    <string name="register__password">رمز عبور</string>
+    <string name="register__password_again">تکرار رمز عبور</string>
+    <string name="register__back_to_login">در حال حاضر حساب کاربری ای دارید؟ ورود</string>
+    <string name="register__register">ثبت نام</string>
+    <string name="register__new_account">ساخت یک حساب جدید</string>
+
+    <!-- Forgot Password -->
+    <string name="forgot_password__title">بازیابی رمز عبور</string>
+    <string name="forgot_password__email">ایمیل</string>
+    <string name="forgot_password__back_to_login">در حال حاضر حساب کاربری ای دارید؟ ورود</string>
+    <string name="forgot_password__password_recovery">بازیابی رمز عبور</string>
+    <string name="forgot_password__save">ذخیره</string>
+    <string name="forgot_password__send">ارسال</string>
+
+    <!-- Password Change -->
+    <string name="password_change__password">رمز عبور</string>
+    <string name="password_change__save">ذخیره</string>
+    <string name="password_change__confirm_password">تایید رمز عبور</string>
+    <string name="password_change__password_change">تغییر رمز عبور</string>
+
+    <!-- Login -->
+    <string name="login__email">ایمیل</string>
+    <string name="login__password">رمز عبور</string>
+    <string name="login__not_a_member_join_now">ساخت حساب جدید</string>
+    <string name="login__forgot_your_password">بازیابی رمز عبور</string>
+    <string name="login__login">ورود</string>
+    <string name="login__welcome_title">به اپلیکیشن دیوار خوش آمدید</string>
+    <string name="login__choice_text">یا</string>
+
+    <!-- Contact Us -->
+    <string name="contact_us__name">نام</string>
+    <string name="contact_us__email">ایمیل</string>
+    <string name="contact_us__message">پیام شما</string>
+    <string name="contact_us__phone">شماره تلفن</string>
+    <string name="contact_us__submit">ارسال</string>
+
+    <!-- Notification Setting -->
+    <string name="notification_setting__on_off">فعال / غیر فعال کردن اعلانات</string>
+    <string name="notification_setting__latest_message_from_system">آخرین پیام ها سیستم</string>
+    <string name="notification__notification">اعلان!</string>
+    <string name="notification_setting__title">تنظیمات اعلان</string>
+    <string name="notification_detail__title">جزئیات اعلان</string>
+    <string name="notification__alert">هشدار</string>
+    <string name="notification__custom_alert">اعلان</string>
+    <string name="notification__custom_open">باز کردن مورد</string>
+
+    <!-- Menu Top -->
+    <string name="notification__title">اعلانات</string>
+
+    <!-- Language -->
+    <string name="language__english">انگلیسی</string>
+    <string name="language__arabic">عربی</string>
+    <string name="language__spanish">اسپانیایی</string>
+    <string name="language__language_change">آیا میخواهید زبان اپلیکیشن را تغییر دهید؟</string>
+    <string name="language__title">زبان</string>
+
+    <!--History -->
+    <string name="history__title">تاریخچه</string>
+    <string name="title__activity_user_history_list">تاریخچه فعالیت کاربر</string>
+
+    <!-- Favourite -->
+    <string name="favourite__title">نشان شده ها</string>
+
+    <!-- FB Register -->
+    <string name="fb_register__welcome">Welcome from %1$s </string>
+    <string name="fb_register__desc">Please login to use all features of application.</string>
+
+    <!-- Gallery -->
+    <string name="gallery__title">گالری</string>
+    <string name="gallery_image__gallery">تصویر گالری</string>
+    <string name="gallery_img__desc">توضیحات تصویر</string>
+
+    <!-- Select pic -->
+    <string name="select__select_title">انتخاب تصویر</string>
+    <string name="gallery__select_title">از گالری</string>
+    <string name="camera__select_title">از دوربین</string>
+
+    <!-- Info item box -->
+    <string name="info__item_title">هشدار پلیس: لطفاً پیش از انجام معامله و هر نوع پرداخت وجه، از صحت کالا یا خدمات ارائه شده، به صورت حضوری اطمینان حاصل فرمایید.</string>
+    <string name="info__item_call">تماس تلفنی با</string>
+    <string name="info__item_sms">ارسال پیامک به</string>
+
+    <!-- Image Related -->
+    <string name="image_default__image">تصویر پیشفرض</string>
+
+    <!-- Comment -->
+    <string name="comment__replies">-- %1$s پاسخ ها</string>
+    <string name="comment__title">لیست نظرات</string>
+    <string name="comment__detail_title">پاسخ ها به نظر</string>
+    <string name="comment__empty_comment">نظری موجود نیست.</string>
+    <string name="comment__comment">نظر</string>
+
+    <!-- Rating -->
+    <string name="rating__list">لیست امتیاز</string>
+    <string name="rating__write_review">نوشتن نظر</string>
+    <string name="rating__total_count">%1$s نظرات مشتری</string>
+    <string name="rating__total_value">%1$s از 5 ستاره</string>
+    <string name="rating__percent">%1$s %%</string>
+    <string name="rating__title">عنوان</string>
+    <string name="rating__message">پیام</string>
+    <string name="rating__user_rating">امتیاز کاربر را وارد نمایید!</string>
+    <string name="rating__your_rating">امتیاز شما</string>
+    <string name="rating__five_star">5 ستاره</string>
+    <string name="rating__four_star">4 ستاره</string>
+    <string name="rating__three_star">3 ستاره</string>
+    <string name="rating__two_star">2 ستاره</string>
+    <string name="rating__one_star">1 ستاره</string>
+    <string name="rating__rating_range">رنج امتیاز دهی</string>
+    <string name="rating__one">1 و بیشتر</string>
+    <string name="rating__two">2 و بیشتر</string>
+    <string name="rating__three">3 و بیشتر</string>
+    <string name="rating__four">4 و بیشتر</string>
+    <string name="rating__five">5 \n</string>
+    <string name="rating__comar">","</string>
+
+    <!--Button Sheet Dialog Messages-->
+    <string name="dialog__title_m_mun">مرتب سازی بر اساس</string>
+    <string name="popular__m_mun">محبوب</string>
+    <string name="recent__m_mun">آخرین ها</string>
+    <string name="char_asc__m_mun">A -> Z</string>
+    <string name="char_desc__m_mun">Z -> A</string>
+
+    <!-- edit setting -->
+    <string name="edit_setting__notification_setting">تنظیمات اعلان</string>
+    <string name="edit_setting__edit_profile">ویرایش پروفایل</string>
+    <string name="edit_setting__logout">خروج از حساب</string>
+    <string name="edit_setting__logout_question">آیا میخواهید از حساب خود خارج شوید؟</string>
+    <string name="edit_setting__terms_and_conditions">شرایط و ضوابط</string>
+    <string name="edit_setting__app_info">درباره اپلیکیشن</string>
+    <string name="edit_setting__title">تنظیمات</string>
+
+    <!-- Message -->
+    <string name="message__register_success">ثبت نام با موفقیت انجام شد.</string>
+    <string name="message__loading">بارگیری …</string>
+    <string name="message__please_wait">لطفا صبر کنید …</string>
+    <string name="message__welcome">به مارکت دیوار خوش آمدید</string>
+    <string name="message__want_to_quit">آیا میخواهید خارج شوید؟</string>
+    <string name="message__ok_close">باشه</string>
+    <string name="message__cancel_close">لغو</string>
+    <string name="message__seller">از فروشندگان</string>
+    <string name="message__buyer">از خریداران</string>
+    <string name="message__login_success">شما با موفقیت وارد شدید.</string>
+
+    <!-- Search -->
+    <string name="search__notSet">وارد نشده</string>
+    <string name="search__by_name">نام</string>
+    <string name="search__by_type">نوع</string>
+    <string name="search__by_sub_type">زیر شاخه</string>
+    <string name="search__by_price">رنج قیمت</string>
+    <string name="search__lowest_price">کمترین</string>
+    <string name="search__highest_price">بیشترین</string>
+    <string name="search__special_check">چک ویژه</string>
+    <string name="search__feature">محصولات ویژه</string>
+    <string name="search__discount_price">قیمت تخفیف دار</string>
+    <string name="search__search">جستجو</string>
+
+    <!--Special_Filtering-->
+    <string name="sf__notSet">وارد نشده</string>
+    <string name="sf__notSet_zg">وارد نشده</string>
+    <string name="sf__ByItemType">عنوان آگهی</string>
+    <string name="sf__ByPrice">Set Price</string>
+    <string name="sf__Filter_Button">فیلتر</string>
+    <string name="sf__Search_Button">جستجو</string>
+    <string name="typefilter">Filtered By Product type</string>
+    <string name="sf__deal_option">نوع معامله</string>
+    <string name="sf__price_type">نوع قیمت</string>
+    <string name="sf__item_conditio">نوع محصول</string>
+    <string name="sf__type">نوع آگهی</string>
+
+    <!-- Error Message -->
+    <string name="error_message__select_location">لطفا موقعیت خود را انتخاب نمایید!</string>
+    <string name="error_message__login_first">لطفا ابتدا وارد شوید!</string>
+    <string name="error_message__rating">لطفا امتیاز را پر کنید.</string>
+    <string name="error_message__blank_email">لطفا ایمیل را وارد نمایید.</string>
+    <string name="error_message__blank_contact_message">لطفاً پیام خود را وارد نمایید.</string>
+    <string name="error_message__blank_password">لطفا رمز عبور را وارد کنید.</string>
+    <string name="error_message__blank_password_agian">رمز عبور مطابقت ندارد.</string>
+    <string name="error_message__blank_name">لطفا نام را وارد نمایید.</string>
+    <string name="error_message__blank_keyword">لطفا کلید واژه ای برای جستجو وارد کنید.</string>
+    <string name="error_message__choose_category">لطفا اول دسته بندی را انتخاب نمایید</string>
+    <string name="error_message__password_not_equal">رمز های عبور مطابقت ندارند!</string>
+    <string name="error_message__no_internet">بدون اتصال به اینترنت.</string>
+    <string name="error_message__email_exists">این ایمیل قبلا ثبت شده است!</string>
+    <string name="error_message__image_cannot_upload">تصویر قابل آپلود نیست</string>
+    <string name="error_message__item_cannot_upload">آگهی قابل ارسال نیست</string>
+    <string name="error_message__code_not_verify">کد تایید شما معتبر نیست!</string>
+    <string name="error_message__already_accept">کالای شما قبلاً فروخته شده است</string>
+
+    <!--FeatureUIButton-->
+    <string name="Feature_UI_Type__Button">دسته بندی</string>
+    <string name="Feature_UI_Tune__Button">فیلتر و مرتب سازی</string>
+    <string name="Feature_UI_Sort__Button" translatable="false">فیلتر از روی نقشه</string>
+    <string name="Feature_UI__item_list_no_item_title">بدون داده</string>
+    <string name="Feature_UI__item_list_no_item_desc">نتیجه ای یافت نشده! لطفاً سعی کنید از فیلترها نیز کمک بگیرید.</string>
+    <string name="Feature_UI__item_list_loading_item_title">ما در حال بارگیری هستیم</string>
+    <string name="Feature_UI__search_alert_cat_title">انتخاب دسته بندی</string>
+    <string name="Feature_UI__search_alert_sub_cat_title">انتخاب زیر شاخه</string>
+    <string name="Feature_UI__search_alert_type_title">انتخاب نوع آگهی</string>
+    <string name="Feature_UI__search_alert_price_type_title">انتخاب نوع قیمت</string>
+    <string name="Feature_UI__search_alert_condition_title">انتخاب نوع محصول</string>
+    <string name="Feature_UI__search_alert_location_title">انتخاب شهر مورد نظر</string>
+    <string name="Feature_UI__search_alert_currency_title">انتخاب واحد پوال</string>
+    <string name="Feature_UI__search_alert_deal_option_title">انتخاب نوع معامله</string>
+
+    <!-- About Us -->
+    <string name="about_us__phone">شماره تلفن</string>
+    <string name="about_us__facebook">فیسبوک</string>
+    <string name="about_us__instagram">اینستاگرام</string>
+    <string name="about_us__youtube">یوتیوب</string>
+    <string name="about_us__twitter">توییتر</string>
+    <string name="about_us__visit_website">وب سایت ما</string>
+    <string name="about_us__telegram">تلگرام</string>
+    <string name="about_us__email">ایمیل</string>
+    <string name="about_us__title">اطلاعات اپلیکیشن</string>
+
+    <string name="about_us__terms">قوانین و مقررات</string>
+
+    <string name="terms_regieter_text1">با کلیک بر روی ثبت نام شما قوانین و مقررات اپلیکیشن را قبول دارید :</string>
+    <string name="terms_regieter_text2">قوانین و مقررات</string>
+
+    <!-- Profile -->
+    <string name="profile__title">دیوار من</string>
+    <string name="profile__name">نام</string>
+    <string name="profile__edit">ویرایش پروفایل</string>
+    <string name="profile__likes">Likes</string>
+    <string name="profile__history">تاریخچه</string>
+    <string name="profile__favourites">نشان شده ها</string>
+    <string name="profile__setting">تنظیمات</string>
+    <string name="profile__joined_on">عضویت از</string>
+    <string name="profile__joined_date">تاریخ عضویت</string>
+    <string name="profile__orders">تاریخچه</string>
+    <string name="profile__see_all">مشاهده همه</string>
+    <string name="profile__verified">تایید شده</string>]
+    <string name="profile__status">وضعیت</string>
+    <string name="profile__notification">اعلان</string>
+    <string name="profile__followers">دنبال کننده</string>
+    <string name="profile__following">دنبال شونده</string>
+    <string name="profile__listing">آگهی ها</string>
+    <string name="profile__my_listing">آگهی های من</string>
+    <string name="profile__follow">دنبال کردن</string>
+    <string name="profile__unfollow">لغودنبال کردن</string>
+    <string name="profile__joined">عضویت از: </string>
+    <string name="profile__deactivate">غیر فعال کردن حساب</string>
+    <string name="profile__confirm_deactivate">آیا میخواهید حساب خود را غیر فعال کنید؟</string>
+    <string name="profile__login">برای استفاده از تمامی امکانات اپلیکیشن مانند مدیریت آگهی ها ، درج آگهی ، نشان کردن ، چت و.. باید وارد حساب کاربری خود شوید. </string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile__title">ویرایش پروفایل</string>
+    <string name="edit_profile__user_name">نام کاربری</string>
+    <string name="edit_profile__about_me">درباره من</string>
+    <string name="edit_profile__email">ایمیل</string>
+    <string name="edit_profile__password">رمز عبور</string>
+    <string name="edit_profile__password_change">تغییر رمز عبور</string>
+    <string name="edit_profile__save">ذخیره</string>
+    <string name="edit_profile__town">شهر</string>
+    <string name="edit_profile__division">بخش</string>
+    <string name="edit_profile__country">کشور</string>
+    <string name="edit_profile__phone">شماره تلفن</string>
+    <string name="edit_profile__address">آدرس حمل و نقل</string>
+    <string name="first_name">نام</string>
+    <string name="last_name">نام خانوادگی</string>
+    <string name="email">ایمیل</string>
+    <string name="phone">شماره تلفن</string>
+    <string name="company">شرکت</string>
+    <string name="address_1">آدرس 1</string>
+    <string name="address_2">آدرس 2</string>
+    <string name="country">کشور</string>
+    <string name="state">استان</string>
+    <string name="city">شهر</string>
+    <string name="postal_code">کد پستی</string>
+    <string name="next">بعدی</string>
+    <string name="verify_email">تایید ایمیل</string>
+
+    <!-- Menu -->
+    <string name="menu__home">خانه</string>
+    <string name="menu__all_cities">مشاهده شهر ها</string>
+    <string name="menu__popular_cities">شهرهای محبوب</string>
+    <string name="menu__recommended_cities">شهرهای پیشنهادی</string>
+    <string name="menu__profile">پروفایل</string>
+    <string name="menu__like">لایک</string>
+    <string name="menu__favourite_items">نشان شده ها</string>
+    <string name="menu__transaction">معامله</string>
+    <string name="menu__user_history">بازدید های اخیر</string>
+    <string name="menu__logout">خروج از حساب</string>
+    <string name="menu__about_app">درباره ما</string>
+    <string name="menu__contact_us">تماس با ما</string>
+    <string name="menu__notification_setting">تنظیمات اعلان</string>
+    <string name="menu__language">زبان</string>
+    <string name="menu__setting">تنظیمات</string>
+    <string name="menu__user">دیوار من</string>
+    <string name="menu__login">ورود / ثبت نام</string>
+    <string name="menu__interest">دسته بندی</string>
+    <string name="menu__app_setting">دیگر</string>
+    <string name="menu__user_info">اطلاعات کاریر</string>
+    <string name="menu__save">ذخیره</string>
+    <string name="menu__search">جستجوی پیشرفته</string>
+    <string name="menu__side_bar_menu">بیشتر</string>
+    <string name="menu__filter">فیلتر</string>
+    <string name="menu__latest_item">آخرین آگهی ها</string>
+    <string name="menu__discount">آگهی های تبلیغاتی</string>
+    <string name="menu__category">دسته بندی</string>
+    <string name="menu__featured_item">بهترین آگهی ها</string>
+    <string name="menu__subcategory">زیر شاخه</string>
+    <string name="menu__trending_item">آگهی های محبوب</string>
+    <string name="menu__home_category_view_All_zg">مشاهده همه</string>
+    <string name="menu__home_category_view_All_un">مشاهده همه</string>
+    <string name="menu__home_category_view_All">مشاهده تمامی آگهی های شهر … </string>
+    <string name="menu__home_category_textView">دسته بندی ها</string>
+    <string name="menu__collections">مجموعه ها</string>
+    <string name="menu__map_filter_apply">اعمال</string>
+    <string name="menu__map_filter_reset">بازنشانی</string>
+    <string name="menu__home_discount_view_all">مشاهده همه محصولات تخفیف دار</string>
+    <string name="menu__rate">امتیاز دادن به اپلیکیشن</string>
+    <string name="menu__message">پیام</string>
+    <string name="menu__chat">چت</string>
+    <string name="menu__report_item">گزارش دادن</string>
+    <string name="menu__share">اشتراک گذاری</string>
+
+
+    <!-- Collection List -->
+    <string name="collection__list_title">لیست مجموعه</string>
+
+    <!--Item detail-->
+    <string name="item_detail__isFeatured">ویژه</string>
+    <string name="item_detail__rating">بدون امتیاز</string>
+    <string name="item_detail__featured">نشان کردن</string>
+    <string name="item_detail__report">گزارش تخلف آگهی</string>
+    <string name="item_detail__view_count">%1$s مشاهده</string>
+    <string name="item_detail__fav_count">%1$s نشان شده</string>
+    <string name="item_detail__time">%1$s - %2$s</string>
+    <string name="item_detail__category">%1$s / %2$s</string>
+    <string name="item_entry_detail__price_top">قیمت</string>
+    <string name="item_detail__city">شهر</string>
+    <string name="item_detail__address">آدرس : </string>
+    <string name="item_detail__info">اطلاعات تماس</string>
+    <string name="item_detail__statistic">آمار</string>
+    <string name="item_detail__tag">برچسب ها</string>
+    <string name="item_detail__category_title">دسته بندی</string>
+    <string name="item_detail__getting_this">آدرس</string>
+    <string name="item_detail__meet_seller">فروشنده</string>
+    <string name="item_detail__cheat">چت</string>
+    <string name="item_detail__edit">ویرایش</string>
+    <string name="item_detail__like">نشان شده</string>
+    <string name="item_detail__sold">فروخته شده</string>
+    <string name="item_detail__photo">تصویر</string>
+    <string name="item_detail__photos">تصاویر</string>
+    <string name="item_detail__mark_sold">تغییر به فروخته شده</string>
+    <string name="item_detail__confirm_report">آیا میخواهید این آگهی را گزارش دهید؟</string>
+    <string name="item_detail__delete">حذف</string>
+    <string name="item_detail__confirm_delete">آیا میخواهید این آگهی را حذف کنید؟</string>
+    <string name="item_detail__confirm_sold_out">یا میخواهید این آگهی را به فروخته شده تغییر دهید؟</string>
+    <string name="item_show">مشاهده این آگهی : </string>
+
+    <string name="item_entry_detail__category_name">دسته بندی</string>
+    <string name="item_entry_detail__subcategory_name">زیر شاخه</string>
+    <string name="item_entry_detail__discount_name">Discount Type</string>
+    <string name="item_entry_detail__search_name">Search Tags/Keyword</string>
+    <string name="item_entry_detail__description">توضیحات</string>
+    <string name="item_entry_detail__is_published">منتشر شده است</string>
+    <string name="item_entry_detail__item_images">Item Images</string>
+    <string name="item_entry_detail__view_all">مشاهده همه ></string>
+    <string name="item_entry_detail__btn_attributes">ویژگی ها</string>
+    <string name="item_entry_detail__btn_upload_image">آپلود تصویر</string>
+    <string name="item_entry_detail__btn_save">ذخیره</string>
+    <string name="item_entry_detail__btn_filter">جستجو</string>
+    <string name="item_entry_detail__price">قیمت (تومان)</string>
+    <string name="item_entry_detail__price_symbol">تومان</string>
+    <string name="item_entry_detail__title">وارد کردن موارد ستاره دار الزامی است.</string>
+    <string name="item_entry_detail__desc">انتخاب تصویر</string>
+    <string name="item_entry_detail__desc2">آگهی های شامل تصویر احتمال دیده شدن بیشتری دارند.</string>
+    <string name="item_entry_detail__index_pic">تصویر اصلی</string>
+    <string name="item_entry_detail__remark">نوشتن ...</string>
+    <string name="item_entry_exmple_number">09xxxxxxxxx</string>
+    <string name="item_entry_detail__shop_setting">محصول فروشگاهی</string>
+    <string name="item_entry_detail__is_shop">محصول فروشگاهی است؟</string>
+    <string name="item_entry_detail__is_shop_desc">( با انتخاب این گزینه کاربران بیشتر از یک محصول سفارش میدهند )</string>
+    <string name="item_entry_detail__highlight">اطلاعات برجسته</string>
+    <string name="item_entry_detail__latitude">عرض جغرافیایی (Latitude)</string>
+    <string name="item_entry_detail__longitude">طول جغرافیایی (Longitude)</string>
+    <string name="item_entry_detail__location">شهر مورد نظر</string>
+    <string name="item_entry_detail__address">آدرس</string>
+    <string name="item_entry_detail__submit">ارسال</string>
+    <string name="item_entry_detail__brand">شماره تماس</string>
+    <string name="item_entry_toolbar">آگهی جدید</string>
+    <string name="item_entry_sold">فروخته شده</string>
+    <string name="item_entry_star">*</string>
+    <string name="item_entry_need_image">لطفا حداقل یک تصویر را انتخاب کنید!</string>
+    <string name="item_entry_need_category">دسته را انتخاب کنید!</string>
+    <string name="item_entry_need_subcategory">زیرشاخه را انتخاب کنید!</string>
+    <string name="item_entry_need_type">نوع آگهی را انتخاب نمایید!</string>
+    <string name="item_entry_need_list_title">لطفا عنوان را درج نمایید!</string>
+    <string name="item_entry_need_item_condition">نوع محصول را انتخاب نمایید!</string>
+    <string name="item_entry_need_item_brand">لطفا شماره تماس را وارد نمایید!</string>
+    <string name="item_entry_need_item_city">لطفا شهر خود را انتخاب نمایید!</string>
+    <string name="item_entry_need_deal_option">نوع معامله را انتخاب نمایید!</string>
+    <string name="item_entry_need_description">برای آگهی خود توضیحاتی وارد نمایید!</string>
+    <string name="item_entry_need_price_type">نوع قیمت را انتخاب نمایید!</string>
+    <string name="item_entry_need_price">قیمت را وارد نمایید!</string>
+    <string name="item_entry_need_price_not_zero">قیمت نمیتواند صفر باشد!</string>
+    <string name="item_entry_need_currency_symbol">انتخاب واحد پول</string>
+    <string name="item_entry_offer_not_zero">Your offer price cannot be zero</string>
+    <string name="item_entry_accept_confirm">Do you really want to accept this price ?</string>
+    <string name="item_entry_reject_confirm">Do you really want to reject this price ?</string>
+    <string name="item_entry_user_not_exit">این کاربری خارج شده است!</string>
+
+    <string name="item_from_follower_toolbar">آگهی های کاربران دنبال شده</string>
+
+
+    <!-- END -->
+
+    <!--Item Condition-->
+    <string name="item_condition__type">( %1$s )</string>
+
+
+    <!--Discount-->
+    <string name="discount__rating5">%1$s rating ( %2$s )</string>
+
+    <!--Map-->
+    <string name="map_filter__map_title">فیلتر نقشه</string>
+    <string name="map_filter__map_title2">نقشه</string>
+    <string name="map_filter__browsing">شعاع فاصله</string>
+    <string name="map_filter__all">همه</string>
+
+    <!--Warning-->
+    <string name="no_internet_error">بدون اتصال به اینترنت.</string>
+
+    <!--SUCCESS-->
+    <string name="message_sent">پیام شما ارسال شد.</string>
+
+    <!--NOTIFICATION-->
+
+    <string name="update_noti">لطفا صبر کنید! هنوز اعلان تنظیم نشده است.</string>
+
+    <string name="success">موفق</string>
+    <string name="confirm">تایید</string>
+    <string name="info">اطلاعات</string>
+    <string name="error">خطا</string>
+    <string name="warning">هشدار</string>
+    <string name="version_update">بروزرسانی نسخه</string>
+    <string name="update">بروزرسانی</string>
+
+    <!--CATEGORY LIST -->
+    <string name="category__list_title">دسته بندی ها</string>
+
+    <!--SUB CATEGORY LIST -->
+    <string name="sub_category__list_title">لیست زیر شاخه</string>
+
+    <!--BlogList-->
+    <string name="blog_list__title">لیست مطالب</string>
+
+    <!--BlogDetail-->
+    <string name="blog_detail__error_message">مطلبی با این شناسه وجود ندارد</string>
+    <string name="blog_detail__title">جزئیات مطلب</string>
+
+    <!--ShopTag-->
+    <!--<string name="shop_category__title">Shop Tag List</string>-->
+
+    <!--City Menu-->
+    <string name="city_menu__title">لیست شهر ها</string>
+    <!--<string name="shop">Shop</string>-->
+    <!--<string name="copy_clipboard">Copied to Clipboard</string>-->
+
+    <!-- Selected shop -->
+    <string name="city__sure_to_exit">آیا میخواهید خارج شوید؟</string>
+
+    <!--item list-->
+    <string name="item_list_title">لیست آگهی ها</string>
+
+    <!--force update-->
+    <string name="force_update_true">بروزرسانی جدیدی در دسترس است</string>
+    <string name="force_update__button_update"> بروزرسانی </string>
+
+    <!--Email-->
+    <string name="hello">سلام</string>
+    <string name="send_email">در حال ارسال ایمیل …</string>
+    <string name="invalid_url">لینک نامعتبر</string>
+
+
+    <string name="dashboard_keyword">جستجوی آگهی</string>
+
+
+    <string name="dashboard_best_things">Best things to do in the city</string>
+    <string name="dashboard_popular_cities">Popular cities around the world</string>
+    <string name="dashboard_best_cities">Best cities to visit around the world</string>
+    <string name="dashboard_new_cities">New Cities</string>
+    <string name="dashboard_blog">وبلاگ</string>
+    <string name="dashboard_popular_places">Popular Places</string>
+    <string name="dashboard_new_places">New Places</string>
+    <string name="dashboard_promo_list">Promo List</string>
+    <string name="dashboard_best_things_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="dashboard_popular_cities_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="dashboard_best_cities_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="dashboard_new_cities_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="dashboard_popular_places_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="dashboard_new_places_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="dashboard_promo_list_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+
+
+    <!--Dashboard-->
+    <string name="selected_city_popular_item">آگهی های محبوب</string>
+    <string name="selected_city_recent">آخرین آگهی ها</string>
+    <string name="selected_city_item_follower">آگهی های کاربران دنبال شده</string>
+    <string name="selected_city_category">دسته بندی</string>
+    <string name="selected_city_add"> درج آگهی رایگان </string>
+    <!--Dashboard-->
+
+    <!--City List-->
+    <string name="city_list_title">لیست شهر ها</string>
+    <!--City List-->
+
+    <!--Location-->
+    <string name="location_title">شهر انتخابی شما</string>
+    <string name="location_change_later">شما میتوانید بعداً هم تغییر دهید!</string>
+    <string name="location_see_all">کل شهر ها</string>
+
+    <!--Setting -->
+    <string name="setting__clear_cache_confirm">آیا میخواهید کش تصاویر را پاک کنید؟</string>
+    <string name="setting__clear_image_cache">پاک کردن حافظه کش</string>
+    <string name="setting__image_cache_size">مقدار کش تصاویر</string>
+    <string name="setting__camera">دوربین</string>
+    <string name="setting__change_gdpr">Change GDPR setting</string>
+    <!--<string name="setting__image_cache_size">Image Cache Size</string>-->
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+
+    <!--Chat-->
+    <string name="chat__retry_message">ورود به چت انجام نشد ، آیا می خواهید دوباره امتحان کنید؟</string>
+    <string name="chat__retry_retry">دوباره</string>
+    <string name="chat__retry_no">خیر</string>
+    <string name="chat__mark_as_sold">علامت گذاری به عنوان فروخته شده</string>
+    <string name="chat__accept">پذیرفتن</string>
+    <string name="chat__reject">ردکردن</string>
+    <string name="chat__make_offer_title">Make Offer For This Item</string>
+    <string name="chat__offer">Make \nOffer</string>
+    <string name="chat__make_offer_sender">Make Offer</string>
+    <string name="chat__make_offer_receiver">Offer Received</string>
+    <string name="chat__accept_text">Offer Accepted</string>
+    <string name="chat__reject_text">Offer Rejected</string>
+    <string name="chat__sold">فروخته شده</string>
+    <string name="chat__give_review">Give Review</string>
+    <string name="chat__item_is_sold">فروخته شده است</string>
+    <string name="chat__item_space_error">Your price cannot be blank</string>
+    <string name="chat__login_title">ارتباط آسان و سریع با فروشنده</string>
+    <string name="chat__login_dec">برای شروع مکالمه جدید و یا دسترسی به مکالمات قبلی ، لازم است ابتدا وارد حساب خود شوید.</string>
+
+    <!-- Verify Email -->
+    <string name="verify_email__informateion">شما ایمیلی را دریافت کرده اید که حاوی کد تایید است</string>
+    <string name="verify_email__enter_code">کد تایید را وارد نمایید</string>
+    <string name="verify_email__change_email">تغییر ایمیل</string>
+    <string name="verify_email__resent_code">ارسال مجدد</string>
+    <string name="verify_email__submit">ارسال</string>
+
+    <!--  User -->
+    <string name="user_follower_list_toolbar_name">لیست دنبال کنندگان</string>
+    <string name="user_following_list_toolbar_name">لیست دنبال شوندگان</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
+
+
+
+
