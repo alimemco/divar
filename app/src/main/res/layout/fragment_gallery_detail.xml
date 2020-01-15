@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.panaceasoft.psbuyandsell.ui.gallery.detail.GalleryDetailFragment">
+        tools:context="com.panaceasoft.firoozboard.ui.gallery.detail.GalleryDetailFragment">
 
         <com.duolingo.open.rtlviewpager.RtlViewPager
             android:id="@+id/view_pager"

@@ -4,7 +4,8 @@
 
     <data>
         <variable
-            name="itemSpecs" type="com.panaceasoft.psbuyandsell.viewobject.ItemSpecs" />
+            name="itemSpecs"
+            type="com.panaceasoft.firoozboard.viewobject.ItemSpecs" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

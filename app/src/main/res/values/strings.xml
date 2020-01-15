@@ -27,7 +27,7 @@
 
 
     <!-- App General -->
-    <string name="app__app_name">دیوار</string>
+    <string name="app__app_name">فیروز بورد</string>
     <string name="app__ok">بله</string>
     <string name="app__cancel">لغو</string>
     <string name="app__drawer_open">Drawer Open</string>
@@ -63,7 +63,7 @@
     <string name="login__not_a_member_join_now">ساخت حساب جدید</string>
     <string name="login__forgot_your_password">بازیابی رمز عبور</string>
     <string name="login__login">ورود</string>
-    <string name="login__welcome_title">به اپلیکیشن دیوار خوش آمدید</string>
+    <string name="login__welcome_title">به اپلیکیشن فیروزبورد خوش آمدید</string>
     <string name="login__choice_text">یا</string>
 
     <!-- Contact Us -->
@@ -172,7 +172,7 @@
     <string name="message__register_success">ثبت نام با موفقیت انجام شد.</string>
     <string name="message__loading">بارگیری …</string>
     <string name="message__please_wait">لطفا صبر کنید …</string>
-    <string name="message__welcome">به مارکت دیوار خوش آمدید</string>
+    <string name="message__welcome">به مارکت فیروزبورد خوش آمدید</string>
     <string name="message__want_to_quit">آیا میخواهید خارج شوید؟</string>
     <string name="message__ok_close">باشه</string>
     <string name="message__cancel_close">لغو</string>
@@ -238,7 +238,7 @@
     <string name="Feature_UI__search_alert_price_type_title">انتخاب نوع قیمت</string>
     <string name="Feature_UI__search_alert_condition_title">انتخاب نوع محصول</string>
     <string name="Feature_UI__search_alert_location_title">انتخاب شهر مورد نظر</string>
-    <string name="Feature_UI__search_alert_currency_title">انتخاب واحد پوال</string>
+    <string name="Feature_UI__search_alert_currency_title">انتخاب واحد پول</string>
     <string name="Feature_UI__search_alert_deal_option_title">انتخاب نوع معامله</string>
 
     <!-- About Us -->
@@ -408,7 +408,7 @@
     <string name="item_entry_detail__desc">انتخاب تصویر</string>
     <string name="item_entry_detail__desc2">آگهی های شامل تصویر احتمال دیده شدن بیشتری دارند.</string>
     <string name="item_entry_detail__index_pic">تصویر اصلی</string>
-    <string name="item_entry_detail__remark">نوشتن ...</string>
+    <string name="item_entry_detail__remark">نوشتن …</string>
     <string name="item_entry_exmple_number">09xxxxxxxxx</string>
     <string name="item_entry_detail__shop_setting">محصول فروشگاهی</string>
     <string name="item_entry_detail__is_shop">محصول فروشگاهی است؟</string>

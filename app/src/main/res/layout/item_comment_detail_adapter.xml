@@ -6,7 +6,7 @@
 
         <variable
             name="commentDetail"
-            type="com.panaceasoft.psbuyandsell.viewobject.CommentDetail" />
+            type="com.panaceasoft.firoozboard.viewobject.CommentDetail" />
 
     </data>
 

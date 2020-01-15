@@ -8,7 +8,7 @@
 
         <variable
             name="itemLocation"
-            type="com.panaceasoft.psbuyandsell.viewobject.ItemLocation" />
+            type="com.panaceasoft.firoozboard.viewobject.ItemLocation" />
 
     </data>
 

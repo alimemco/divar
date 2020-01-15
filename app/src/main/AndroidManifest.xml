@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.panaceasoft.psbuyandsell">
+    package="com.panaceasoft.firoozboard">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -28,25 +28,25 @@
         android:required="false" />
 
     <application
-        android:name=".PsApp"
+        android:name="com.panaceasoft.firoozboard.PsApp"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_firoozboard"
         android:label="@string/app__app_name"
         android:largeHeap="true"
         android:theme="@style/Base.PSTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.item.itemfromfollower.ItemFromFollowerListActivity" />
-        <activity android:name=".ui.location.LocationActivity" />
-        <activity android:name=".ui.customcamera.setting.CameraSettingActivity" />
-        <activity android:name=".ui.customcamera.CameraActivity" />
-        <activity android:name=".ui.item.itemtype.SearchViewActivity" />
+        <activity android:name="com.panaceasoft.firoozboard.ui.item.itemfromfollower.ItemFromFollowerListActivity" />
+        <activity android:name="com.panaceasoft.firoozboard.ui.location.LocationActivity" />
+        <activity android:name="com.panaceasoft.firoozboard.ui.customcamera.setting.CameraSettingActivity" />
+        <activity android:name="com.panaceasoft.firoozboard.ui.customcamera.CameraActivity" />
+        <activity android:name="com.panaceasoft.firoozboard.ui.item.itemtype.SearchViewActivity" />
 
         <activity
-            android:name=".ui.item.entry.ItemEntryActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.entry.ItemEntryActivity"
             android:screenOrientation="portrait" />
 
         <uses-library
@@ -60,7 +60,7 @@
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
         <meta-data
-            android:name="com.panaceasoft.psbuyandsell.utils.CustomCachingGlideModule"
+            android:name="com.panaceasoft.firoozboard.utils.CustomCachingGlideModule"
             android:value="AppGlideModule" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
@@ -70,7 +70,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".ui.apploading.AppLoadingActivity"
+            android:name="com.panaceasoft.firoozboard.ui.apploading.AppLoadingActivity"
             android:label="@string/app__app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -98,7 +98,7 @@
         </activity>
 
         <activity
-            android:name=".ui.share.LoadActivity"
+            android:name="com.panaceasoft.firoozboard.ui.share.LoadActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -118,18 +118,18 @@
 
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.panaceasoft.firoozboard.MainActivity"
             android:label="@string/app__app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.item.rating.RatingListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.rating.RatingListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.city.selectedcity.SelectedCityActivity"
+            android:name="com.panaceasoft.firoozboard.ui.city.selectedcity.SelectedCityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
@@ -137,19 +137,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.subcategory.SubCategoryActivity"
+            android:name="com.panaceasoft.firoozboard.ui.subcategory.SubCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.dashboard.DashBoardSearchActivity"
+            android:name="com.panaceasoft.firoozboard.ui.dashboard.DashBoardSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.map.MapActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.map.MapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.detail.ItemActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.detail.ItemActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme"
             android:launchMode="singleTop">
@@ -160,63 +160,63 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.category.list.CategoryListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.category.list.CategoryListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.ProfileEditActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.ProfileEditActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.UserRegisterActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.UserRegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.UserFBRegisterActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.UserFBRegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.UserLoginActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.UserLoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.UserForgotPasswordActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.UserForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.PasswordChangeActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.PasswordChangeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.contactus.ContactUsActivity"
+            android:name="com.panaceasoft.firoozboard.ui.contactus.ContactUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.search.specialfilterbyattributes.FilteringActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.search.specialfilterbyattributes.FilteringActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.notification.detail.NotificationActivity"
+            android:name="com.panaceasoft.firoozboard.ui.notification.detail.NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.setting.SettingActivity"
+            android:name="com.panaceasoft.firoozboard.ui.setting.SettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.notification.setting.NotificationSettingActivity"
+            android:name="com.panaceasoft.firoozboard.ui.notification.setting.NotificationSettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.setting.appinfo.AppInfoActivity"
+            android:name="com.panaceasoft.firoozboard.ui.setting.appinfo.AppInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.terms.TermsActivity"
+            android:name="com.panaceasoft.firoozboard.ui.terms.TermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.favourite.FavouriteListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.favourite.FavouriteListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
@@ -224,67 +224,67 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
-        <service android:name=".utils.FirebaseMessagingService">
+        <service android:name="com.panaceasoft.firoozboard.utils.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <activity
-            android:name=".ui.comment.detail.CommentDetailActivity"
+            android:name="com.panaceasoft.firoozboard.ui.comment.detail.CommentDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.notification.list.NotificationListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.notification.list.NotificationListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.search.searchlist.SearchListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.search.searchlist.SearchListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.comment.list.CommentListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.comment.list.CommentListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.gallery.GalleryActivity"
+            android:name="com.panaceasoft.firoozboard.ui.gallery.GalleryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.readmore.ReadMoreActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.readmore.ReadMoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.gallery.detail.GalleryDetailActivity"
+            android:name="com.panaceasoft.firoozboard.ui.gallery.detail.GalleryDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.dashboard.DashboardSearchByCategoryActivity"
+            android:name="com.panaceasoft.firoozboard.ui.dashboard.DashboardSearchByCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.history.UserHistoryListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.history.UserHistoryListActivity"
             android:label="@string/title__activity_user_history_list"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.loginUserItem.LoginUserItemListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.loginUserItem.LoginUserItemListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.myitem.MyItemListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.myitem.MyItemListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.userlist.UserListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.userlist.UserListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.verifyemail.VerifyEmailActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.verifyemail.VerifyEmailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.user.userlist.detail.UserDetailActivity"
+            android:name="com.panaceasoft.firoozboard.ui.user.userlist.detail.UserDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
@@ -292,15 +292,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.blog.list.BlogListActivity"
+            android:name="com.panaceasoft.firoozboard.ui.blog.list.BlogListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.blog.detail.BlogDetailActivity"
+            android:name="com.panaceasoft.firoozboard.ui.blog.detail.BlogDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.forceupdate.ForceUpdateActivity"
+            android:name="com.panaceasoft.firoozboard.ui.forceupdate.ForceUpdateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
@@ -308,15 +308,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.item.map.mapFilter.MapFilteringActivity"
+            android:name="com.panaceasoft.firoozboard.ui.item.map.mapFilter.MapFilteringActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.chat.chat.ChatActivity"
+            android:name="com.panaceasoft.firoozboard.ui.chat.chat.ChatActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
-            android:name=".ui.chat.chatimage.ChatImageFullScreenActivity"
+            android:name="com.panaceasoft.firoozboard.ui.chat.chatimage.ChatImageFullScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
     </application>

@@ -8,7 +8,7 @@
 
         <variable
             name="itemCurrency"
-            type="com.panaceasoft.psbuyandsell.viewobject.ItemCurrency" />
+            type="com.panaceasoft.firoozboard.viewobject.ItemCurrency" />
 
     </data>
 

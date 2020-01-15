@@ -8,7 +8,7 @@
 
         <variable
             name="chatHistory"
-            type="com.panaceasoft.psbuyandsell.viewobject.ChatHistory" />
+            type="com.panaceasoft.firoozboard.viewobject.ChatHistory" />
 
     </data>
 

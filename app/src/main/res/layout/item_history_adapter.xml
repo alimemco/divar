@@ -7,7 +7,7 @@
 
         <variable
             name="history"
-            type="com.panaceasoft.psbuyandsell.viewobject.ItemHistory" />
+            type="com.panaceasoft.firoozboard.viewobject.ItemHistory" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
