@@ -567,7 +567,7 @@
                                 android:textSize="15sp"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toEndOf="@+id/imageView23"
-                                app:layout_constraintStart_toStartOf="parent"
+
                                 app:layout_constraintTop_toTopOf="@+id/line2" />
 
                             <View
@@ -624,7 +624,6 @@
                                 android:textSize="15sp"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toEndOf="@+id/imageView27"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/imageView27" />
 
                             <View
@@ -679,7 +678,7 @@
                                 android:textSize="15sp"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toEndOf="@+id/imageView17"
-                                app:layout_constraintStart_toStartOf="parent"
+
                                 app:layout_constraintTop_toTopOf="@+id/imageView17" />
 
 
@@ -720,7 +719,7 @@
                                 android:textSize="@dimen/font_body_size"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.0"
-                                app:layout_constraintStart_toEndOf="@+id/addressTextView2"
+                                app:layout_constraintStart_toEndOf="@+id/cityTextView2"
                                 app:layout_constraintTop_toTopOf="@+id/imageViewCity"
                                 tools:text="شهر" />
 
@@ -735,7 +734,6 @@
                                 android:textSize="16sp"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toEndOf="@+id/imageViewCity"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/imageViewCity" />
 
 
@@ -789,7 +787,6 @@
                                 android:textSize="15sp"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toEndOf="@+id/imageView22"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/imageView22" />
 
                             <View

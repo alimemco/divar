@@ -258,7 +258,7 @@
     <string name="terms_regieter_text2">قوانین و مقررات</string>
 
     <!-- Profile -->
-    <string name="profile__title">دیوار من</string>
+    <string name="profile__title">آگهی من</string>
     <string name="profile__name">نام</string>
     <string name="profile__edit">ویرایش پروفایل</string>
     <string name="profile__likes">Likes</string>
@@ -326,7 +326,7 @@
     <string name="menu__notification_setting">تنظیمات اعلان</string>
     <string name="menu__language">زبان</string>
     <string name="menu__setting">تنظیمات</string>
-    <string name="menu__user">دیوار من</string>
+    <string name="menu__user">آگهی من</string>
     <string name="menu__login">ورود / ثبت نام</string>
     <string name="menu__interest">دسته بندی</string>
     <string name="menu__app_setting">دیگر</string>
@@ -370,7 +370,7 @@
     <string name="item_detail__category">%1$s / %2$s</string>
     <string name="item_entry_detail__price_top">قیمت</string>
     <string name="item_detail__city">شهر</string>
-    <string name="item_detail__address">آدرس : </string>
+    <string name="item_detail__address">آدرس </string>
     <string name="item_detail__info">اطلاعات تماس</string>
     <string name="item_detail__statistic">آمار</string>
     <string name="item_detail__tag">برچسب ها</string>
@@ -593,7 +593,6 @@
     <string name="user_follower_list_toolbar_name">لیست دنبال کنندگان</string>
     <string name="user_following_list_toolbar_name">لیست دنبال شوندگان</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 

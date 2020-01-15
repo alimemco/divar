@@ -28,8 +28,8 @@ import com.panaceasoft.firoozboard.utils.Constants;
  */
 public class MapFragment extends PSFragment {
 
-    private String latValue = "48.856452647178386";
-    private String lngValue = "2.3523519560694695";
+    private String latValue = "28.855941";
+    private String lngValue = "52.5449723";
 
     private final androidx.databinding.DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
     private GoogleMap map;
