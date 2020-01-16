@@ -441,9 +441,9 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         binding.get().locationCardView.setOnClickListener(view -> navigationController.navigateToSearchViewActivity(this.getActivity(), Constants.ITEM_LOCATION_TYPE, typeId, priceTypeId, conditionId, dealOptionId, locationId));
 
         binding.get().mapViewButton.setOnClickListener(v -> {
-            if (itemViewModel.lngValue.toString().isEmpty() && itemViewModel.latValue.toString().isEmpty()) {
-                String latValue = "48.856452647178386";
-                String lngValue = "2.3523519560694695";
+            if (itemViewModel.lngValue.isEmpty() && itemViewModel.latValue.toString().isEmpty()) {
+                String latValue = "28.841507";
+                String lngValue = "52.563298";
 
                 map.clear();
                 navigationController.navigateToMapActivity(ItemEntryFragment.this.getActivity(), lngValue, latValue, Constants.MAP_PICK);

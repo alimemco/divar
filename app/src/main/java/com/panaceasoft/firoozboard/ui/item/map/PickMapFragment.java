@@ -32,8 +32,8 @@ import com.panaceasoft.firoozboard.utils.Utils;
  */
 public class PickMapFragment extends PSFragment {
 
-    private String latValue = "28.855941";
-    private String lngValue = "52.5449723";
+    private String latValue = "28.841507";
+    private String lngValue = "52.563298";
 
     private final androidx.databinding.DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
     private GoogleMap map;
@@ -72,7 +72,7 @@ public class PickMapFragment extends PSFragment {
 
         binding.get().mapView.getMapAsync(googleMap -> {
             map = googleMap;
-
+            map.getUiSettings().setMyLocationButtonEnabled(true);
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.valueOf(latValue), Double.valueOf(lngValue)))
                     .title("City Name"));

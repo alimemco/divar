@@ -28,8 +28,8 @@ import com.panaceasoft.firoozboard.utils.Constants;
  */
 public class MapFragment extends PSFragment {
 
-    private String latValue = "28.855941";
-    private String lngValue = "52.5449723";
+    private String latValue = "28.841507";
+    private String lngValue = "52.563298";
 
     private final androidx.databinding.DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
     private GoogleMap map;
@@ -65,6 +65,7 @@ public class MapFragment extends PSFragment {
 
         binding.get().mapView.getMapAsync(googleMap -> {
             map = googleMap;
+            map.getUiSettings().setMyLocationButtonEnabled(true);
 
 //            map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(Double.valueOf(latValue), Double.valueOf(lngValue))).zoom(1).bearing(10).tilt(10).build()));
 
