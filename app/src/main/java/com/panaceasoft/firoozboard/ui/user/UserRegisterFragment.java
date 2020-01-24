@@ -147,6 +147,7 @@ public class UserRegisterFragment extends PSFragment {
                             if (getActivity() != null) {
                                 pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
                                 pref.edit().putString(Constants.USER_NAME, listResource.data.userName).apply();
+                                //TODO ali put email
                                 pref.edit().putString(Constants.USER_EMAIL, listResource.data.userEmail).apply();
                                 pref.edit().putString(Constants.USER_PASSWORD, binding.get().passwordEditText.getText().toString()).apply();
 
@@ -197,6 +198,7 @@ public class UserRegisterFragment extends PSFragment {
                     case ERROR:
                         // Error State
 
+                        //TODO ali error
                         psDialogMsg.showWarningDialog(getString(R.string.error_message__email_exists), getString(R.string.app__ok));
                         binding.get().registerButton.setText(getResources().getString(R.string.register__register));
                         psDialogMsg.show();
@@ -261,6 +263,8 @@ public class UserRegisterFragment extends PSFragment {
             return;
         }
 
+
+        //TODO ali phone
         String userEmail = binding.get().emailEditText.getText().toString().trim();
         if (userEmail.equals("")) {
 
@@ -293,6 +297,7 @@ public class UserRegisterFragment extends PSFragment {
 
         String token = pref.getString(Constants.NOTI_TOKEN, Constants.USER_NO_DEVICE_TOKEN);
 
+        //TODO ali Edit Phone
         userViewModel.setRegisterUser(new User(
                 "",
                 "",
@@ -308,7 +313,8 @@ public class UserRegisterFragment extends PSFragment {
                 "",
                 "",
                 "",
-                "", token,
+                "",
+                token,
                 "",
                 "",
                 "",

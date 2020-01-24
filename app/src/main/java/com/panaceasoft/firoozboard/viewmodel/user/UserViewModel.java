@@ -1,5 +1,6 @@
 package com.panaceasoft.firoozboard.viewmodel.user;
 
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -135,14 +136,17 @@ public class UserViewModel extends PSViewModel {
             return repository.doLogin(Config.API_KEY, obj.userEmail, obj.userPassword, obj.deviceToken);
         });
 
+
         // Register User
         registerUserData = Transformations.switchMap(registerUserObj, obj -> {
             if (obj == null) {
                 return AbsentLiveData.create();
             }
             Utils.psLog("UserViewModel : registerUserData");
+            //TODO ali email
             return repository.registerUser(Config.API_KEY, obj.user.userName, obj.user.userEmail, obj.user.userPassword, obj.user.deviceToken);
         });
+
 
         // Register FB User
         registerFBUserData = Transformations.switchMap(registerFBUserObj, obj -> {
