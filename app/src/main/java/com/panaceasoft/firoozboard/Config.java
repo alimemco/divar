@@ -12,7 +12,7 @@ public class Config {
     public static String APP_VERSION = "1.0";
 
     /* APP Setting */
-    public static boolean IS_DEVELOPMENT = false; // set false, your app is production
+    public static boolean IS_DEVELOPMENT = true; // set false, your app is production
 
     /* API Related */
 

@@ -60,10 +60,10 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
     @Override
     protected void initUIAndActions() {
 
-        if(getActivity() instanceof MainActivity)  {
+        if (getActivity() instanceof MainActivity) {
             ((MainActivity) this.getActivity()).binding.toolbar.setBackgroundColor(getResources().getColor(R.color.global__primary));
-           // ((MainActivity)getActivity()).updateMenuIconWhite();
-            ((MainActivity)getActivity()).updateToolbarIconColor(Color.WHITE);
+            // ((MainActivity)getActivity()).updateMenuIconWhite();
+            ((MainActivity) getActivity()).updateToolbarIconColor(Color.WHITE);
         }
 
         psDialogMsg = new PSDialogMsg(getActivity(), false);
@@ -123,9 +123,11 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
                                     if (getActivity() != null) {
                                         pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
                                         pref.edit().putString(Constants.USER_NAME, listResource.data.user.userName).apply();
+                                        pref.edit().putString(Constants.USER_PHONE, listResource.data.user.userPhone).apply();
                                         pref.edit().putString(Constants.USER_EMAIL, listResource.data.user.userEmail).apply();
                                         pref.edit().putString(Constants.USER_PASSWORD, listResource.data.user.userPassword).apply();
-
+                                        //TODO ali put email
+                                        pref.edit().putString(Constants.USER_OLD_PHONE, Constants.EMPTY_STRING).apply();
                                         pref.edit().putString(Constants.USER_OLD_EMAIL, Constants.EMPTY_STRING).apply();
                                         pref.edit().putString(Constants.USER_OLD_PASSWORD, Constants.EMPTY_STRING).apply();
                                         pref.edit().putString(Constants.USER_OLD_NAME, Constants.EMPTY_STRING).apply();
@@ -155,7 +157,6 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
                                 }
 
 
-
 //                                psDialogMsg.showSuccessDialog("Success Success", getString(R.string.app__ok));
 //                                psDialogMsg.show();
 //                                psDialogMsg.okButton.setOnClickListener(view -> {
@@ -175,7 +176,7 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
 
                         case ERROR:
                             // Error State
-                            psDialogMsg.showErrorDialog(getString(R.string.error_message__code_not_verify),getString(R.string.app__ok));
+                            psDialogMsg.showErrorDialog(getString(R.string.error_message__code_not_verify), getString(R.string.app__ok));
                             psDialogMsg.show();
 
                             break;
@@ -191,14 +192,11 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
         }
 
 
-
         //For resent code
         userViewModel.getResentVerifyCodeData().observe(this, result -> {
 
-            if(result != null)
-            {
-                switch (result.status)
-                {
+            if (result != null) {
+                switch (result.status) {
                     case SUCCESS:
 
                         //add offer text

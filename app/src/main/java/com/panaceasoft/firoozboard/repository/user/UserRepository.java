@@ -134,6 +134,7 @@ public class UserRepository extends PSRepository {
             @Override
             protected LiveData<ApiResponse<User>> createCall() {
                 Utils.psLog("Call API Service to do user login.");
+                Utils.psLog("apiKey = " + apiKey + "\temail = " + email + "\tpassword = " + password + "\ttoken = " + deviceToken);
                 return psApiService.postUserLogin(apiKey, email, password, deviceToken);
             }
 

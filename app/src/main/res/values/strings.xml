@@ -36,7 +36,8 @@
 
     <!-- Register -->
     <string name="register__user_name">نام کاربری</string>
-    <string name="register__email">ایمیل</string>
+    //TODO changed
+    <string name="register__email">شماره تلفن</string>
     <string name="register__password">رمز عبور</string>
     <string name="register__password_again">تکرار رمز عبور</string>
     <string name="register__back_to_login">در حال حاضر حساب کاربری ای دارید؟ ورود</string>
@@ -44,8 +45,9 @@
     <string name="register__new_account">ساخت یک حساب جدید</string>
 
     <!-- Forgot Password -->
+    <!-- TODO changed -->
     <string name="forgot_password__title">بازیابی رمز عبور</string>
-    <string name="forgot_password__email">ایمیل</string>
+    <string name="forgot_password__email">شماره تلفن</string>
     <string name="forgot_password__back_to_login">در حال حاضر حساب کاربری ای دارید؟ ورود</string>
     <string name="forgot_password__password_recovery">بازیابی رمز عبور</string>
     <string name="forgot_password__save">ذخیره</string>
@@ -58,7 +60,8 @@
     <string name="password_change__password_change">تغییر رمز عبور</string>
 
     <!-- Login -->
-    <string name="login__email">ایمیل</string>
+    <!-- TODO changed -->
+    <string name="login__email">شماره تلفن</string>
     <string name="login__password">رمز عبور</string>
     <string name="login__not_a_member_join_now">ساخت حساب جدید</string>
     <string name="login__forgot_your_password">بازیابی رمز عبور</string>
@@ -219,7 +222,8 @@
     <string name="error_message__choose_category">لطفا اول دسته بندی را انتخاب نمایید</string>
     <string name="error_message__password_not_equal">رمز های عبور مطابقت ندارند!</string>
     <string name="error_message__no_internet">بدون اتصال به اینترنت.</string>
-    <string name="error_message__email_exists">این ایمیل قبلا ثبت شده است!</string>
+    <!-- TODO changed-->
+    <string name="error_message__email_exists">این شماره تلفن قبلا ثبت شده است!</string>
     <string name="error_message__image_cannot_upload">تصویر قابل آپلود نیست</string>
     <string name="error_message__item_cannot_upload">آگهی قابل ارسال نیست</string>
     <string name="error_message__code_not_verify">کد تایید شما معتبر نیست!</string>
@@ -284,10 +288,11 @@
     <string name="profile__login">برای استفاده از تمامی امکانات اپلیکیشن مانند مدیریت آگهی ها ، درج آگهی ، نشان کردن ، چت و.. باید وارد حساب کاربری خود شوید. </string>
 
     <!-- Edit Profile -->
+    <!-- TODO changed -->
     <string name="edit_profile__title">ویرایش پروفایل</string>
     <string name="edit_profile__user_name">نام کاربری</string>
     <string name="edit_profile__about_me">درباره من</string>
-    <string name="edit_profile__email">ایمیل</string>
+    <string name="edit_profile__email">شماره تلفن</string>
     <string name="edit_profile__password">رمز عبور</string>
     <string name="edit_profile__password_change">تغییر رمز عبور</string>
     <string name="edit_profile__save">ذخیره</string>
@@ -308,7 +313,7 @@
     <string name="city">شهر</string>
     <string name="postal_code">کد پستی</string>
     <string name="next">بعدی</string>
-    <string name="verify_email">تایید ایمیل</string>
+    <string name="verify_email">تایید شماره تلفن</string>
 
     <!-- Menu -->
     <string name="menu__home">خانه</string>

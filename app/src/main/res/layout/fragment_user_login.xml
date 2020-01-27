@@ -54,7 +54,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_launcher" />
+                app:srcCompat="@drawable/div" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
@@ -70,16 +70,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <EditText
+                <!-- TODO changed -->
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/emailEditText"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:drawableStart="@drawable/baseline_mail"
+                    android:inputType="phone"
                     android:drawablePadding="@dimen/space_16"
                     android:hint="@string/login__email"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    app:drawableStartCompat="@drawable/ic_phone"
                     android:isScrollContainer="true"
                     android:lines="1"
                     android:maxLines="1"

@@ -221,7 +221,11 @@ public interface PSApiService {
     //region POST User for Login
     @FormUrlEncoded
     @POST("rest/users/login/api_key/{API_KEY}")
-    LiveData<ApiResponse<User>> postUserLogin(@Path("API_KEY") String apiKey, @Field("user_email") String userEmail, @Field("user_password") String userPassword, @Field("device_token") String deviceToken);
+    LiveData<ApiResponse<User>> postUserLogin(
+            @Path("API_KEY") String apiKey,
+            @Field("user_email") String userEmail,
+            @Field("user_password") String userPassword,
+            @Field("device_token") String deviceToken);
     //endregion
 
     //region POST User for Register

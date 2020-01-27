@@ -72,7 +72,7 @@ public abstract class PSFragment extends Fragment implements Injectable {
 
     protected String selected_location_id, selected_location_name;
 
-    protected String userOldEmail, userOldPassword, userOldName, userOldId;
+    protected String userOldPhone, userOldEmail, userOldPassword, userOldName, userOldId;
 
     protected String profileType;
 
@@ -106,6 +106,7 @@ public abstract class PSFragment extends Fragment implements Injectable {
             if(getActivity() != null && getActivity().getBaseContext() != null) {
 
                 loginUserId = pref.getString(Constants.USER_ID, Constants.EMPTY_STRING);
+                loginUserEmail = pref.getString(Constants.USER_PHONE, Constants.EMPTY_STRING);
                 loginUserEmail = pref.getString(Constants.USER_EMAIL, Constants.EMPTY_STRING);
                 loginUserPwd = pref.getString(Constants.USER_PASSWORD, Constants.EMPTY_STRING);
                 loginUserName = pref.getString(Constants.USER_NAME, Constants.EMPTY_STRING);
@@ -122,6 +123,8 @@ public abstract class PSFragment extends Fragment implements Injectable {
                 force_update_title = pref.getString(Constants.APPINFO_FORCE_UPDATE_TITLE, Constants.EMPTY_STRING);
                 selected_location_id = pref.getString(Constants.SELECTED_LOCATION_ID, Constants.EMPTY_STRING);
                 selected_location_name = pref.getString(Constants.SELECTED_LOCATION_NAME, Constants.EMPTY_STRING);
+                //TODO ali
+                userOldPhone = pref.getString(Constants.USER_PHONE, Constants.EMPTY_STRING);
                 userOldEmail = pref.getString(Constants.USER_OLD_EMAIL, Constants.EMPTY_STRING);
                 userOldPassword = pref.getString(Constants.USER_OLD_PASSWORD, Constants.EMPTY_STRING);
                 userOldName = pref.getString(Constants.USER_OLD_NAME, Constants.EMPTY_STRING);

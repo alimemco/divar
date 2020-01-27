@@ -125,7 +125,7 @@ public class UserRegisterFragment extends PSFragment {
         bindingData();
 
         userViewModel.getRegisterUser().observe(this, listResource -> {
-
+            //TODO ali register received data
             if (listResource != null) {
 
                 Utils.psLog("Got Data" + listResource.message + listResource.toString());
@@ -147,10 +147,13 @@ public class UserRegisterFragment extends PSFragment {
                             if (getActivity() != null) {
                                 pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
                                 pref.edit().putString(Constants.USER_NAME, listResource.data.userName).apply();
-                                //TODO ali put email
+                                //TODO ali
+                                pref.edit().putString(Constants.USER_PHONE, listResource.data.userPhone).apply();
                                 pref.edit().putString(Constants.USER_EMAIL, listResource.data.userEmail).apply();
                                 pref.edit().putString(Constants.USER_PASSWORD, binding.get().passwordEditText.getText().toString()).apply();
 
+                                //TODO ali
+                                pref.edit().putString(Constants.USER_OLD_PHONE, listResource.data.userPhone).apply();
                                 pref.edit().putString(Constants.USER_OLD_EMAIL, listResource.data.userEmail).apply();
                                 pref.edit().putString(Constants.USER_OLD_PASSWORD, binding.get().passwordEditText.getText().toString()).apply();
                                 pref.edit().putString(Constants.USER_OLD_NAME, listResource.data.userName).apply();
@@ -251,6 +254,8 @@ public class UserRegisterFragment extends PSFragment {
 
     private void registerUser() {
 
+        //TODO ali start registering
+
         Utils.hideKeyboard(getActivity());
 
         String userName = binding.get().nameEditText.getText().toString().trim();
@@ -305,7 +310,7 @@ public class UserRegisterFragment extends PSFragment {
                 "",
                 userName,
                 userEmail,
-                "",
+                "0916",
                 userPassword,
                 "",
                 "",

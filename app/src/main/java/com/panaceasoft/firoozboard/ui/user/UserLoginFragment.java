@@ -277,6 +277,7 @@ public class UserLoginFragment extends PSFragment {
                                 if (getActivity() != null) {
                                     pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
                                     pref.edit().putString(Constants.USER_NAME, listResource.data.user.userName).apply();
+                                    pref.edit().putString(Constants.USER_PHONE, listResource.data.user.userPhone).apply();
                                     pref.edit().putString(Constants.USER_EMAIL, listResource.data.user.userEmail).apply();
                                     pref.edit().putString(Constants.USER_PASSWORD, binding.get().passwordEditText.getText().toString()).apply();
                                 }

@@ -185,6 +185,7 @@ public interface Constants {
     String OTHER_USER_ID = "OTHER_USER_ID";
     String OTHER_USER_NAME = "OTHER_USER_NAME";
     String USER_NAME = "USER_NAME";
+    String USER_PHONE = "USER_PHONE";
     String USER_EMAIL = "USER_EMAIL";
     String USER_NO_USER = "nologinuser"; // Don't Change
     String USER_NO_DEVICE_TOKEN = "nodevicetoken"; // Don't Change
@@ -192,6 +193,7 @@ public interface Constants {
     String RECEIVE_USER_ID = "RECEIVE_USER_ID";
     String RECEIVE_USER_NAME = "RECEIVE_USER_NAME";
     String RECEIVE_USER_IMG_URL = "RECEIVE_USER_IMG_URL";
+    String USER_OLD_PHONE = "USER_OLD_PHONE";
     String USER_OLD_EMAIL = "USER_OLD_EMAIL";
     String USER_OLD_PASSWORD = "USER_OLD_PASSWORD";
     String USER_OLD_NAME = "USER_OLD_NAME";

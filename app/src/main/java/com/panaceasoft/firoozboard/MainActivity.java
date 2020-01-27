@@ -529,6 +529,7 @@ public class MainActivity extends PSAppCompactActivity {
 
                     pref.edit().putString(Constants.USER_ID, user.userId).apply();
                     pref.edit().putString(Constants.USER_NAME, user.userName).apply();
+                    pref.edit().putString(Constants.USER_PHONE, user.userPhone).apply();
                     pref.edit().putString(Constants.USER_EMAIL, user.userEmail).apply();
                     pref.edit().putString(Constants.USER_PASSWORD, user.userPassword).apply();
 
@@ -537,6 +538,7 @@ public class MainActivity extends PSAppCompactActivity {
 
                     pref.edit().remove(Constants.USER_ID).apply();
                     pref.edit().remove(Constants.USER_NAME).apply();
+                    pref.edit().remove(Constants.USER_PHONE).apply();
                     pref.edit().remove(Constants.USER_EMAIL).apply();
                     pref.edit().remove(Constants.USER_PASSWORD).apply();
                 }
@@ -546,6 +548,7 @@ public class MainActivity extends PSAppCompactActivity {
                 user = null;
                 pref.edit().remove(Constants.USER_ID).apply();
                 pref.edit().remove(Constants.USER_NAME).apply();
+                pref.edit().remove(Constants.USER_PHONE).apply();
                 pref.edit().remove(Constants.USER_EMAIL).apply();
                 pref.edit().remove(Constants.USER_PASSWORD).apply();
 
