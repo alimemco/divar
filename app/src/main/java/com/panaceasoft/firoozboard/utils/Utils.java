@@ -62,6 +62,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.NavigableMap;
+import java.util.Random;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -131,6 +132,22 @@ public class Utils {
 
     /*PayPal*/
 //    public static int REQUEST_CODE__PAYPAL = 1444;
+
+    private static final String TAG = "UtilsLog";
+
+    public static void log(Class cls, String... texts) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < texts.length; i++) {
+            sb.append(texts[i]).append(" | ");
+        }
+        Log.i(TAG, String.format("%s | %s", cls, sb.toString()));
+    }
+
+    public static int randInt(int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
+    }
+
 
     public static void addToolbarScrollFlag(Toolbar toolbar) {
         AppBarLayout.LayoutParams params =

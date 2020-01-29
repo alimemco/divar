@@ -17,6 +17,7 @@ public class Config {
     /* API Related */
 
     public static final String APP_API_URL = "http://firoozboard.ir/index.php/";
+    public static final String APP_BASE_URL = "http://firoozboard.ir/";
 
     public static final String APP_IMAGES_URL = "http://firoozboard.ir/uploads/";
 

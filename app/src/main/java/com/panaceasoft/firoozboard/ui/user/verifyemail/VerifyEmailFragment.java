@@ -1,5 +1,6 @@
 package com.panaceasoft.firoozboard.ui.user.verifyemail;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
@@ -24,6 +26,7 @@ import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
+import com.panaceasoft.firoozboard.viewobject.User;
 import com.panaceasoft.firoozboard.viewobject.UserLogin;
 import com.panaceasoft.firoozboard.viewobject.common.Resource;
 
@@ -38,7 +41,39 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
     @VisibleForTesting
     private AutoClearedValue<FragmentVerifyEmailBinding> binding;
 
-//endregion
+    private String code;
+    private String userName;
+    private String userEmail;
+    private String userPass;
+
+    private AutoClearedValue<ProgressDialog> prgDialog;
+
+    public static VerifyEmailFragment newInstance(String userName, String userEmail, String userPassword, String code) {
+
+        Bundle args = new Bundle();
+        args.putString(Constants.VALIDATION_CODE, code);
+        args.putString(Constants.USER_NAME, userName);
+        args.putString(Constants.USER_EMAIL, userEmail);
+        args.putString(Constants.USER_PASSWORD, userPassword);
+
+        VerifyEmailFragment fragment = new VerifyEmailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            code = getArguments().getString(Constants.VALIDATION_CODE);
+            userName = getArguments().getString(Constants.USER_NAME);
+            userEmail = getArguments().getString(Constants.USER_EMAIL);
+            userPass = getArguments().getString(Constants.USER_PASSWORD);
+        }
+
+    }
+
+    //endregion
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -68,13 +103,179 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
 
         psDialogMsg = new PSDialogMsg(getActivity(), false);
 
-        binding.get().emailTextView.setText(userOldEmail);
+        //TODO add dialog
+        observeViewModel();
+        prgDialog = new AutoClearedValue<>(this, new ProgressDialog(getActivity()));
+        prgDialog.get().setMessage((Utils.getSpannableString(getContext(), getString(R.string.message__please_wait), Utils.Fonts.MM_FONT)));
+        prgDialog.get().setCancelable(false);
 
-        binding.get().submitButton.setOnClickListener(v -> userViewModel.setEmailVerificationUser(Utils.checkUserId(userOldId), binding.get().enterCodeEditText.getText().toString()));
+
+        binding.get().emailTextView.setText(userOldEmail);
+        binding.get().enterCodeEditText.setText(code);
+
+        binding.get().submitButton.setOnClickListener(v -> {
+            //userViewModel.setEmailVerificationUser(Utils.checkUserId(userOldId), binding.get().enterCodeEditText.getText().toString());
+
+            String enteredCode = binding.get().enterCodeEditText.getText().toString();
+            if (enteredCode.equals(code)) {
+
+                String token = pref.getString(Constants.NOTI_TOKEN, Constants.USER_NO_DEVICE_TOKEN);
+                registerUser(userName, userEmail, userPass, token);
+                //Toast.makeText(getContext(), "Try To Register", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getContext(), R.string.invalid_code, Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
 
         binding.get().resentCodeButton.setOnClickListener(v -> userViewModel.setResentVerifyCodeObj(userOldEmail));
 
         binding.get().changeEmailButton.setOnClickListener(v -> navigationController.navigateToUserRegister((MainActivity) getActivity()));
+    }
+
+    private void observeViewModel() {
+        userViewModel.getRegisterUser().observe(this, listResource -> {
+            //TODO ali register received data
+            if (listResource != null) {
+
+                Utils.psLog("Got Data" + listResource.message + listResource.toString());
+
+                switch (listResource.status) {
+                    case LOADING:
+                        // Loading State
+                        // Data are from Local DB
+
+                        prgDialog.get().show();
+
+                        break;
+                    case SUCCESS:
+                        // Success State
+                        // Data are from Server
+
+                        if (listResource.data != null) {
+
+                            if (getActivity() != null) {
+                                pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
+                                pref.edit().putString(Constants.USER_NAME, listResource.data.userName).apply();
+                                //TODO ali
+                                pref.edit().putString(Constants.USER_PHONE, listResource.data.userPhone).apply();
+                                pref.edit().putString(Constants.USER_EMAIL, listResource.data.userEmail).apply();
+                                pref.edit().putString(Constants.USER_PASSWORD, listResource.data.userPassword).apply();
+
+                                //TODO ali
+                                pref.edit().putString(Constants.USER_OLD_PHONE, listResource.data.userPhone).apply();
+                                pref.edit().putString(Constants.USER_OLD_EMAIL, listResource.data.userEmail).apply();
+                                pref.edit().putString(Constants.USER_OLD_PASSWORD, listResource.data.userPassword).apply();
+                                pref.edit().putString(Constants.USER_OLD_NAME, listResource.data.userName).apply();
+                                //  pref.edit().putString(Constants.USER_OLD_ID, listResource.data.userId).apply();
+                                pref.edit().putString(Constants.USER_OLD_ID, Constants.EMPTY_STRING).apply();
+                            }
+
+                            userViewModel.isLoading = false;
+                            prgDialog.get().cancel();
+                            updateRegisterBtnStatus();
+
+
+                            updateRegisterBtnStatus();
+                            psDialogMsg.showSuccessDialog(getString(R.string.message__register_success), getString(R.string.login__login));
+
+                            psDialogMsg.show();
+                            psDialogMsg.okButton.setOnClickListener(v -> {
+
+                                psDialogMsg.cancel();
+                                if (getActivity() instanceof MainActivity) {
+
+                                    navigationController.navigateToUserLogin((MainActivity) getActivity());
+
+                                    // ((MainActivity) getActivity()).setToolbarText(((MainActivity) getActivity()).binding.toolbar, getString(R.string.verify_email));
+                                    //   navigationController.navigateToVerifyEmail((MainActivity) getActivity());
+
+                                } else {
+
+                                    navigationController.navigateToUserLoginActivity(getActivity());
+                                    try {
+                                        if (getActivity() != null) {
+                                            getActivity().finish();
+                                        }
+                                    } catch (Exception e) {
+                                        Utils.psErrorLog("Error in closing parent activity.", e);
+                                    }
+                                }
+
+                            });
+
+
+                        }
+
+                        break;
+                    case ERROR:
+                        // Error State
+
+                        //TODO ali error
+                        psDialogMsg.showWarningDialog(getString(R.string.error_message__email_exists), getString(R.string.app__ok));
+                        // binding.get().registerButton.setText(getResources().getString(R.string.register__register));
+                        psDialogMsg.show();
+
+                        userViewModel.isLoading = false;
+                        prgDialog.get().cancel();
+
+                        break;
+                    default:
+                        // Default
+                        userViewModel.isLoading = false;
+                        prgDialog.get().cancel();
+                        break;
+                }
+
+            } else {
+
+                // Init Object or Empty Data
+                Utils.psLog("Empty Data");
+
+            }
+        });
+    }
+
+    private void updateRegisterBtnStatus() {
+        if (userViewModel.isLoading) {
+            binding.get().submitButton.setText(getResources().getString(R.string.message__loading));
+        } else {
+            binding.get().submitButton.setText(getResources().getString(R.string.send));
+        }
+    }
+
+    private void registerUser(String userName, String userEmail, String userPassword, String token) {
+        userViewModel.setRegisterUser(new User(
+                "",
+                "",
+                "",
+                "",
+                userName,
+                userEmail,
+                "0916",
+                userPassword,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                token,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null));
     }
 
     @Override

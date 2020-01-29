@@ -103,6 +103,9 @@
     <!-- Favourite -->
     <string name="favourite__title">نشان شده ها</string>
 
+    <!-- TODO ali -->
+    <string name="verify_phone">تایید شماره تلفن</string>
+
     <!-- FB Register -->
     <string name="fb_register__welcome">Welcome from %1$s </string>
     <string name="fb_register__desc">Please login to use all features of application.</string>
@@ -213,7 +216,7 @@
     <string name="error_message__select_location">لطفا موقعیت خود را انتخاب نمایید!</string>
     <string name="error_message__login_first">لطفا ابتدا وارد شوید!</string>
     <string name="error_message__rating">لطفا امتیاز را پر کنید.</string>
-    <string name="error_message__blank_email">لطفا ایمیل را وارد نمایید.</string>
+    <string name="error_message__blank_email">لطفا شماره موبایل را وارد نمایید.</string>
     <string name="error_message__blank_contact_message">لطفاً پیام خود را وارد نمایید.</string>
     <string name="error_message__blank_password">لطفا رمز عبور را وارد کنید.</string>
     <string name="error_message__blank_password_agian">رمز عبور مطابقت ندارد.</string>
@@ -517,7 +520,9 @@
     <!--Email-->
     <string name="hello">سلام</string>
     <string name="send_email">در حال ارسال ایمیل …</string>
+    <string name="send">ارسال</string>
     <string name="invalid_url">لینک نامعتبر</string>
+    <string name="invalid_code">کد نامعتبر</string>
 
 
     <string name="dashboard_keyword">جستجوی آگهی</string>

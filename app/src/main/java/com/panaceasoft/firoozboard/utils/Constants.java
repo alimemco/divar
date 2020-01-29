@@ -199,6 +199,9 @@ public interface Constants {
     String USER_OLD_NAME = "USER_OLD_NAME";
     String USER_OLD_ID = "USER_OLD_ID";
 
+    //TODO ali add
+    String VALIDATION_CODE = "VAL_CODE";
+
     String USER_PARAM_HOLDER_KEY = "USER_PARAM_HOLDER_KEY";
 
 

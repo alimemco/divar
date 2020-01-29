@@ -5,12 +5,18 @@ import android.content.Context;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.panaceasoft.firoozboard.api.ApiService;
 import com.panaceasoft.firoozboard.di.AppInjector;
 
 import javax.inject.Inject;
 
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -25,15 +31,35 @@ public class PsApp extends MultiDexApplication implements HasActivityInjector {
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
+    private static ApiService api;
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         AppInjector.init(this);
     }
 
+    public static ApiService getApi() {
+        return api;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Config.APP_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(new OkHttpClient.Builder().build())
+                .build();
+
+
+        api = retrofit.create(ApiService.class);
+
 
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //            // This process is dedicated to LeakCanary for heap analysis.

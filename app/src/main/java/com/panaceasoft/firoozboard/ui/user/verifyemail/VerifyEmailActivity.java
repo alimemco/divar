@@ -8,10 +8,18 @@ import androidx.databinding.DataBindingUtil;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.databinding.ActivityVerifyEmailBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
+import com.panaceasoft.firoozboard.utils.Constants;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class VerifyEmailActivity extends PSAppCompactActivity {
+
+    private String code;
+    private String userName;
+    private String userEmail;
+    private String userPass;
+
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -22,12 +30,18 @@ public class VerifyEmailActivity extends PSAppCompactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getIntent().getExtras() != null) {
+
+            code = getIntent().getStringExtra(Constants.VALIDATION_CODE);
+            userName = getIntent().getStringExtra(Constants.USER_NAME);
+            userEmail = getIntent().getStringExtra(Constants.USER_EMAIL);
+            userPass = getIntent().getStringExtra(Constants.USER_PASSWORD);
+        }
         ActivityVerifyEmailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_verify_email);
         // Init all UI
         initUI(binding);
-        
-    }
 
+    }
 
 
     //endregion
@@ -38,10 +52,10 @@ public class VerifyEmailActivity extends PSAppCompactActivity {
     private void initUI(ActivityVerifyEmailBinding binding) {
 
         // Toolbar
-        initToolbar(binding.toolbar, getString(R.string.history__title));
+        initToolbar(binding.toolbar, getString(R.string.verify_phone));
 
         // setup Fragment
-        setupFragment(new VerifyEmailFragment());
+        setupFragment(VerifyEmailFragment.newInstance(userName, userEmail, userPass, code));
 
     }
 

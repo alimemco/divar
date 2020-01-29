@@ -1,10 +1,12 @@
 package com.panaceasoft.firoozboard.ui.user;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -12,16 +14,24 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.panaceasoft.firoozboard.MainActivity;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserRegisterBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
+import com.panaceasoft.firoozboard.ui.user.verifyemail.VerifyEmailActivity;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
-import com.panaceasoft.firoozboard.viewobject.User;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * UserRegisterFragment
@@ -41,6 +51,8 @@ public class UserRegisterFragment extends PSFragment {
     private AutoClearedValue<FragmentUserRegisterBinding> binding;
 
     private AutoClearedValue<ProgressDialog> prgDialog;
+
+    private String code;
 
     //endregion
 
@@ -124,6 +136,8 @@ public class UserRegisterFragment extends PSFragment {
 
         bindingData();
 
+        // TODO ali diabled
+/*
         userViewModel.getRegisterUser().observe(this, listResource -> {
             //TODO ali register received data
             if (listResource != null) {
@@ -157,7 +171,7 @@ public class UserRegisterFragment extends PSFragment {
                                 pref.edit().putString(Constants.USER_OLD_EMAIL, listResource.data.userEmail).apply();
                                 pref.edit().putString(Constants.USER_OLD_PASSWORD, binding.get().passwordEditText.getText().toString()).apply();
                                 pref.edit().putString(Constants.USER_OLD_NAME, listResource.data.userName).apply();
-                              //  pref.edit().putString(Constants.USER_OLD_ID, listResource.data.userId).apply();
+                                //  pref.edit().putString(Constants.USER_OLD_ID, listResource.data.userId).apply();
                                 pref.edit().putString(Constants.USER_OLD_ID, Constants.EMPTY_STRING).apply();
                             }
 
@@ -224,6 +238,8 @@ public class UserRegisterFragment extends PSFragment {
 
             }
         });
+
+        */
     }
 
     private void bindingData() {
@@ -300,9 +316,49 @@ public class UserRegisterFragment extends PSFragment {
         userViewModel.isLoading = true;
         updateRegisterBtnStatus();
 
-        String token = pref.getString(Constants.NOTI_TOKEN, Constants.USER_NO_DEVICE_TOKEN);
+        //  String token = pref.getString(Constants.NOTI_TOKEN, Constants.USER_NO_DEVICE_TOKEN);
 
-        //TODO ali Edit Phone
+        code = String.valueOf(Utils.randInt(111111, 999999));
+
+        //TODO ali send sms
+        PsApp.getApi().sendSms(userEmail, code).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        try {
+
+                            Toast.makeText(getContext(), response.body().string(), Toast.LENGTH_LONG).show();
+                            Utils.log(getClass(), response.body().string());
+
+                            Intent intent = new Intent(getActivity(), VerifyEmailActivity.class);
+                            intent.putExtra(Constants.VALIDATION_CODE, code);
+                            intent.putExtra(Constants.USER_NAME, userName);
+                            intent.putExtra(Constants.USER_EMAIL, userEmail);
+                            intent.putExtra(Constants.USER_PASSWORD, userPassword);
+                            //TODO ali Enable it :)
+                            // if (response.body().string().equalsIgnoreCase("sent") || response.body().string().equalsIgnoreCase(""))
+                            startActivity(intent);
+
+                        } catch (IOException e) {
+                            Utils.log(getClass(), e.toString());
+                        }
+                    } else {
+                        Utils.log(getClass(), "response.body() is empty");
+                    }
+                } else {
+                    Utils.log(getClass(), "response is not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Utils.log(getClass(), t.getMessage());
+            }
+        });
+
+/*
+        //TODO Register user *important*
         userViewModel.setRegisterUser(new User(
                 "",
                 "",
@@ -330,7 +386,7 @@ public class UserRegisterFragment extends PSFragment {
                 "",
                 "",
                 "",
-                null));
+                null));*/
     }
 
     //endregion
