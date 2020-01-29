@@ -605,6 +605,9 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- TODO ali changed -->
+    <string name="verify_phone_code">کد تایید برای شما ارسال شد</string>
+
 
 </resources>
 

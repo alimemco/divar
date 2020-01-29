@@ -25,7 +25,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="@string/verify_email__informateion"
+                android:text="@string/verify_phone_code"
                 android:textAlignment="center"
                 android:textColor="@color/md_white_1000"
                 android:textSize="@dimen/font_title_size"
@@ -43,6 +43,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/md_white_1000"
                 android:textSize="@dimen/font_title_size"
+                android:visibility="gone"
                 app:font='@{"normal"}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +108,7 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:textColor="@color/global__primary"
             android:textSize="@dimen/font_body_size"
+            android:visibility="gone"
             app:font='@{"normal"}'
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view19" />
@@ -126,6 +128,7 @@
             android:textSize="@dimen/font_body_size"
             app:font='@{"normal"}'
             android:textAllCaps="false"
+            android:visibility="gone"
             style="@style/Widget.AppCompat.Button.Borderless"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view19" />
