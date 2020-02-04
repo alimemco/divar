@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,6 +104,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private AutoClearedValue<BottomSheetDialog> mBottomSheetDialog;
     private AutoClearedValue<ItemEntryBottomBoxBinding> bottomBoxLayoutBinding;
 
+    private static final String TAG = "ItemEntryFragment";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -159,13 +162,14 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_CATEGORY) {
 
+            String categoryName = data.getStringExtra(Constants.CATEGORY_NAME);
             this.catId = data.getStringExtra(Constants.CATEGORY_ID);
-            binding.get().categoryTextView.setText(data.getStringExtra(Constants.CATEGORY_NAME));
+            binding.get().categoryTextView.setText(categoryName);
             itemViewModel.holder.cat_id = this.catId;
             this.subCatId = "";
             itemViewModel.holder.sub_cat_id = this.subCatId;
             binding.get().subCategoryTextView.setText("");
-            if(!this.catId.toString().isEmpty()){
+            if (!this.catId.isEmpty()) {
                 binding.get().subProductTypeTextView.setVisibility(View.VISIBLE);
                 binding.get().subCategorySelectionView.setVisibility(View.VISIBLE);
 
@@ -173,6 +177,15 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 binding.get().subProductTypeTextView.setVisibility(View.GONE);
                 binding.get().subCategorySelectionView.setVisibility(View.GONE);
             }
+
+            //TODO changed
+            if (categoryName != null)
+                if (categoryName.contains("رایگان")) {
+                    Log.i(TAG, "onActivityResult: PRICE");
+                } else {
+                    Log.i(TAG, "onActivityResult: FREE");
+                }
+
 
         } else if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_SUBCATEGORY) {
 

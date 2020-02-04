@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class DashBoardSearchFragment extends PSFragment implements DataBoundList
     private PSDialogMsg psDialogMsg;
     private ItemViewModel itemViewModel;
 
+    private static final String TAG = "DashBoardSearchFragment";
+
 
     @VisibleForTesting
     private AutoClearedValue<FragmentDashboardSearchBinding> binding;
@@ -61,14 +64,22 @@ public class DashBoardSearchFragment extends PSFragment implements DataBoundList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Log.i(TAG, "onActivityResult: ");
         if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_CATEGORY) {
 
+            //TODO ali price for it
             this.catId = data.getStringExtra(Constants.CATEGORY_ID);
             binding.get().categoryTextView.setText(data.getStringExtra(Constants.CATEGORY_NAME));
             itemViewModel.holder.cat_id = this.catId;
             this.subCatId ="";
             itemViewModel.holder.sub_cat_id = this.subCatId;
             binding.get().subCategoryTextView.setText("");
+
+            if (catId.equals("cat0d84b4ff98634e22f5a37d310a20fb0f")) {
+                Log.i(TAG, "onActivityResult: PRICE");
+            } else {
+                Log.i(TAG, "onActivityResult: FREE");
+            }
 
         } else if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_SUBCATEGORY) {
 

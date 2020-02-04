@@ -107,6 +107,7 @@ public class DashBoardSearchCategoryFragment extends PSFragment {
     @Override
     protected void initAdapters() {
 
+
         SearchCategoryAdapter nvadapter = new SearchCategoryAdapter(dataBindingComponent,
                 (category, id) -> {
 
