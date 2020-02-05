@@ -791,6 +791,16 @@ public class NavigationController {
         fragmentActivity.startActivityForResult(intent, Constants.REQUEST_CODE__SEARCH_FRAGMENT);
     }
 
+    public void navigateToPaymentActivity(Activity activity, Intent intent, String itemId, String locationId, String locationName) {
+
+        intent.putExtra(Constants.ITEM_ID, itemId);
+        intent.putExtra(Constants.SELECTED_LOCATION_ID, locationId);
+        intent.putExtra(Constants.SELECTED_LOCATION_NAME, locationName);
+
+        activity.startActivityForResult(intent, Constants.REQUEST_CODE__SEARCH_FRAGMENT);
+
+    }
+
     public void navigateToSearchViewActivity(FragmentActivity fragmentActivity, String fragName, String typeId, String priceTypeId, String conditionId, String dealOptionId, String locationId) {
         Intent intent = new Intent(fragmentActivity, SearchViewActivity.class);
         intent.putExtra(Constants.ITEM_TYPE_FLAG, fragName);

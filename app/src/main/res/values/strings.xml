@@ -20,7 +20,6 @@
     <!--===============-->
 
 
-
     <string name="google_map_api_key" translatable="false">AIzaSyDOnWkzTvVgQPJ1ZEG1XMzea3ZaBouQ9Mk</string>
 
     <string name="deep_link">192.168.1.103</string>

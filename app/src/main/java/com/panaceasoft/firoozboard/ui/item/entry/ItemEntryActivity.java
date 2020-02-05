@@ -27,6 +27,7 @@ public class ItemEntryActivity extends PSAppCompactActivity {
 
         ActivityItemEntryBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_item_entry);
 
+
         // Init all UI
         initUI(binding);
 
@@ -48,6 +49,7 @@ public class ItemEntryActivity extends PSAppCompactActivity {
         setupFragment(new ItemEntryFragment());
         // Or you can call like this
         //setupFragment(new NewsListFragment(), R.id.content_frame);
+
 
     }
 
