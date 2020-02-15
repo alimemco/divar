@@ -1039,7 +1039,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
     private void getIntentData() {
         try {
-            //TODO ali check it
+            //TODO ali changed
             if (getActivity() != null) {
                 if (getActivity().getIntent().getExtras() != null) {
 

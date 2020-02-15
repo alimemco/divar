@@ -13,6 +13,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
 import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
@@ -321,7 +322,7 @@ public class UserRegisterFragment extends PSFragment {
         code = String.valueOf(Utils.randInt(111111, 999999));
 
         //TODO ali send sms
-        PsApp.getApi().sendSms(userEmail, code).enqueue(new Callback<ResponseBody>() {
+        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_SMS).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
@@ -336,8 +337,7 @@ public class UserRegisterFragment extends PSFragment {
                             intent.putExtra(Constants.USER_NAME, userName);
                             intent.putExtra(Constants.USER_EMAIL, userEmail);
                             intent.putExtra(Constants.USER_PASSWORD, userPassword);
-                            //TODO ali Enable it :)
-                            // if (response.body().string().equalsIgnoreCase("sent") || response.body().string().equalsIgnoreCase(""))
+
                             startActivity(intent);
 
                         } catch (IOException e) {
