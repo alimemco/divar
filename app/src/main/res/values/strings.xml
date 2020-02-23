@@ -606,6 +606,8 @@
 
     <!-- TODO ali changed -->
     <string name="verify_phone_code">کد تایید برای شما ارسال شد</string>
+    <string name="need_payment">برای قرار دادن آگهی در این دسته بندی نیاز به پرداخت دارید</string>
+    <string name="pay">پرداخت</string>
 
 
 </resources>

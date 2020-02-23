@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.zarinpal:purchase:0.0.10@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1dd8d1ef9f58c338bd02d8fa395688c7/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1dd8d1ef9f58c338bd02d8fa395688c7/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2756690fecafd86d007d047cb7f8606e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2756690fecafd86d007d047cb7f8606e/res" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zarinpal/purchase/0.0.10/a3c878792b8cceff43c50379b8f5f29e8cdf5411/purchase-0.0.10-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zarinpal/purchase/0.0.10/4e4e0f5234712a22c00381c3917123b05bbfb517/purchase-0.0.10-sources.jar!/" />
     </SOURCES>

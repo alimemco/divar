@@ -111,7 +111,7 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
 
 
         binding.get().emailTextView.setText(userOldEmail);
-        binding.get().enterCodeEditText.setText(code);
+        // binding.get().enterCodeEditText.setText(code);
 
         binding.get().submitButton.setOnClickListener(v -> {
             //userViewModel.setEmailVerificationUser(Utils.checkUserId(userOldId), binding.get().enterCodeEditText.getText().toString());

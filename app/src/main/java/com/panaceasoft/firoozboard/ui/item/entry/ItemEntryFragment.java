@@ -259,7 +259,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             //TODO changed
             if (categoryName != null)
-                if (categoryName.contains("غیر")) {
+                if (categoryName.contains("غیر رایگان")) {
                     Log.i(TAG, "onActivityResult: PRICE");
                     mNeedToPay = true;
                 } else {
@@ -566,7 +566,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         binding.get().submitButton.setOnClickListener(view -> {
             //TODO pay validation
-            if (!mPaid) {
+
+            if (mNeedToPay && !mPaid) {
 
                 pay();
 
