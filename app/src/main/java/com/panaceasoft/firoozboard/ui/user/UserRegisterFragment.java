@@ -20,6 +20,7 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserRegisterBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
+import com.panaceasoft.firoozboard.ui.user.smsModel.SmsModel;
 import com.panaceasoft.firoozboard.ui.user.verifyemail.VerifyEmailActivity;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
@@ -27,9 +28,6 @@ import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -322,37 +320,43 @@ public class UserRegisterFragment extends PSFragment {
         code = String.valueOf(Utils.randInt(111111, 999999));
 
         //TODO ali send sms
-        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_SMS).enqueue(new Callback<ResponseBody>() {
+        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_SMS).enqueue(new Callback<SmsModel>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<SmsModel> call, Response<SmsModel> response) {
+
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        try {
 
-                            Toast.makeText(getContext(), response.body().string(), Toast.LENGTH_LONG).show();
-                            Utils.log(getClass(), response.body().string());
+                        // Toast.makeText(getContext(), response.body().string(), Toast.LENGTH_LONG).show();
+                        Utils.log(getClass(), response.body().toString());
 
+
+                        if (response.body().getReturn().getStatus() == 200) {
                             Intent intent = new Intent(getActivity(), VerifyEmailActivity.class);
                             intent.putExtra(Constants.VALIDATION_CODE, code);
                             intent.putExtra(Constants.USER_NAME, userName);
                             intent.putExtra(Constants.USER_EMAIL, userEmail);
                             intent.putExtra(Constants.USER_PASSWORD, userPassword);
-
                             startActivity(intent);
-
-                        } catch (IOException e) {
-                            Utils.log(getClass(), e.toString());
+                            Utils.log(getClass(), "sent");
+                        } else {
+                            Toast.makeText(getContext(), response.body().getReturn().getMessage(), Toast.LENGTH_SHORT).show();
+                            Utils.log(getClass(), response.body().getReturn().getMessage());
                         }
+
+
                     } else {
                         Utils.log(getClass(), "response.body() is empty");
                     }
                 } else {
-                    Utils.log(getClass(), "response is not successful");
+                    Utils.log(getClass(), "response.isSuccessful() == false");
                 }
+
+
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<SmsModel> call, Throwable t) {
                 Utils.log(getClass(), t.getMessage());
             }
         });
