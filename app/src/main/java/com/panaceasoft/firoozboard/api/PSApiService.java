@@ -2,6 +2,7 @@ package com.panaceasoft.firoozboard.api;
 
 import androidx.lifecycle.LiveData;
 
+import com.panaceasoft.firoozboard.ui.user.sms.Sms;
 import com.panaceasoft.firoozboard.viewobject.AboutUs;
 import com.panaceasoft.firoozboard.viewobject.ApiStatus;
 import com.panaceasoft.firoozboard.viewobject.Blog;
@@ -690,4 +691,13 @@ public interface PSApiService {
             @Path("API_KEY") String API_KEY,
             @Field("user_email") String user_email
     );
+
+
+    @FormUrlEncoded
+    @POST("https://api.kavenegar.com/v1/{API-KEY}/verify/lookup.json")
+    Call<Sms> sendSms(
+            @Field("receptor") String phone,
+            @Field("token") String code,
+            @Field("template") String template,
+            @Path("API-KEY") String api_key);
 }

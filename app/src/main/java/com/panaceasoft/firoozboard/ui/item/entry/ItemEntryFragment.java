@@ -57,8 +57,6 @@ import com.panaceasoft.firoozboard.viewmodel.item.ItemViewModel;
 import com.panaceasoft.firoozboard.viewobject.Image;
 import com.panaceasoft.firoozboard.viewobject.Item;
 import com.panaceasoft.firoozboard.viewobject.common.Resource;
-import com.zarinpal.ewallets.purchase.OnCallbackRequestPaymentListener;
-import com.zarinpal.ewallets.purchase.OnCallbackVerificationPaymentListener;
 import com.zarinpal.ewallets.purchase.PaymentRequest;
 import com.zarinpal.ewallets.purchase.ZarinPal;
 
@@ -123,9 +121,9 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         if (savedInstanceState == null) return;
 
-        itemId =  savedInstanceState.getString(Constants.ITEM_ID);
-        locationId =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
-        locationName =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
+        itemId = savedInstanceState.getString(Constants.ITEM_ID);
+        locationId = savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
+        locationName = savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
 
         getIntentData();
         getItemDetail();
@@ -148,7 +146,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                 String message = "Your Payment is Success :) " + refID;
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                mPaid = true ;
+                mPaid = true;
             } else {
                 String message = "Your Payment is Failure :(";
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -192,9 +190,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                 if (getFragmentManager() == null) return;
 
-                PaymentFragment paymentFragment = new PaymentFragment( intent, itemId, locationId, locationName);
-                paymentFragment.show(getFragmentManager(),"PaymentFragment");
-
+                PaymentFragment paymentFragment = new PaymentFragment(intent, itemId, locationId, locationName);
+                paymentFragment.show(getFragmentManager(), "PaymentFragment");
 
 
                 //  navigationController.navigateToPaymentActivity(getActivity(), intent, itemId, locationId, locationName);
@@ -330,10 +327,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             changeCamera();
 
             bindingLatLng(itemViewModel.latValue, itemViewModel.lngValue);
-        }else if (requestCode == Constants.REQUEST_CODE__PAYMENT){
+        } else if (requestCode == Constants.REQUEST_CODE__PAYMENT) {
             //TODO ali payment
             Toast.makeText(mContext, "OnResultPay", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "onActivityResult: "+Constants.REQUEST_CODE__PAYMENT);
+            Log.i(TAG, "onActivityResult: " + Constants.REQUEST_CODE__PAYMENT);
         }
 
         //image  gallery upload
@@ -1134,13 +1131,12 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(Constants.ITEM_ID,itemId);
-        outState.putString(Constants.ITEM_LOCATION_TYPE_ID,locationId);
-        outState.putString(Constants.ITEM_LOCATION_TYPE_NAME,locationName);
+        outState.putString(Constants.ITEM_ID, itemId);
+        outState.putString(Constants.ITEM_LOCATION_TYPE_ID, locationId);
+        outState.putString(Constants.ITEM_LOCATION_TYPE_NAME, locationName);
 
         itemViewModel.setItemDetailFromDBById(itemId);
     }
-
 
 
     @Override
@@ -1148,8 +1144,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState == null) return;
 
-        itemId =  savedInstanceState.getString(Constants.ITEM_ID);
-        locationId =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
-        locationName =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
+        itemId = savedInstanceState.getString(Constants.ITEM_ID);
+        locationId = savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
+        locationName = savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
     }
 }

@@ -12,7 +12,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.ui.common.NavigationController;
-import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.utils.Constants;
 
 import javax.inject.Inject;
@@ -20,22 +19,20 @@ import javax.inject.Inject;
 
 public class PaymentFragment extends DialogFragment {
 
-    private View mView ;
-    private Button mButtonPay;
-
-    private Intent intent;
-    private String itemId;
-    private  String locationId;
-    private String locationName;
-
     @Inject
     protected NavigationController navigationController;
+    private View mView;
+    private Button mButtonPay;
+    private Intent intent;
+    private String itemId;
+    private String locationId;
+    private String locationName;
 
 
     public PaymentFragment(Intent intent, String itemId, String locationId, String locationName) {
         this.intent = intent;
-        this.itemId = itemId ;
-        this.locationId = locationId ;
+        this.itemId = itemId;
+        this.locationId = locationId;
         this.locationName = locationName;
     }
 
@@ -44,14 +41,14 @@ public class PaymentFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mView =  inflater.inflate(R.layout.fragment_payment, container, false);
+        mView = inflater.inflate(R.layout.fragment_payment, container, false);
         findViews();
         return mView;
     }
 
     private void findViews() {
         mButtonPay = mView.findViewById(R.id.fragment_payment_button);
-        mButtonPay.setOnClickListener(view ->  {
+        mButtonPay.setOnClickListener(view -> {
           /*  intent.putExtra(Constants.ITEM_ID, itemId);
             intent.putExtra(Constants.SELECTED_LOCATION_ID, locationId);
             intent.putExtra(Constants.SELECTED_LOCATION_NAME, locationName);*/
