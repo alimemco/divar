@@ -20,7 +20,7 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserRegisterBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
-import com.panaceasoft.firoozboard.ui.user.smsModel.SmsModel;
+import com.panaceasoft.firoozboard.ui.user.sms.Sms;
 import com.panaceasoft.firoozboard.ui.user.verifyemail.VerifyEmailActivity;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
@@ -320,43 +320,62 @@ public class UserRegisterFragment extends PSFragment {
         code = String.valueOf(Utils.randInt(111111, 999999));
 
         //TODO ali send sms
-        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_SMS).enqueue(new Callback<SmsModel>() {
+
+        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_SMS).enqueue(new Callback<Sms>() {
             @Override
-            public void onResponse(Call<SmsModel> call, Response<SmsModel> response) {
+            public void onResponse(Call<Sms> call, Response<Sms> response) {
+
+                userViewModel.isLoading = false;
+                updateRegisterBtnStatus();
+
 
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
 
-                        // Toast.makeText(getContext(), response.body().string(), Toast.LENGTH_LONG).show();
-                        Utils.log(getClass(), response.body().toString());
+
+                        if (response.body().getReturn() != null) {
+                            int status = response.body().getReturn().getStatus();
+                            if (status == 200) {
+                                Utils.log(getClass(), response.body().toString());
+
+                                Intent intent = new Intent(getActivity(), VerifyEmailActivity.class);
+                                intent.putExtra(Constants.VALIDATION_CODE, code);
+                                intent.putExtra(Constants.USER_NAME, userName);
+                                intent.putExtra(Constants.USER_EMAIL, userEmail);
+                                intent.putExtra(Constants.USER_PASSWORD, userPassword);
+
+                                startActivity(intent);
+                            } else {
+                                String message = response.body().getReturn().getMessage();
+                                Utils.log(getClass(), message);
+                                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                            }
 
 
-                        if (response.body().getReturn().getStatus() == 200) {
-                            Intent intent = new Intent(getActivity(), VerifyEmailActivity.class);
-                            intent.putExtra(Constants.VALIDATION_CODE, code);
-                            intent.putExtra(Constants.USER_NAME, userName);
-                            intent.putExtra(Constants.USER_EMAIL, userEmail);
-                            intent.putExtra(Constants.USER_PASSWORD, userPassword);
-                            startActivity(intent);
-                            Utils.log(getClass(), "sent");
                         } else {
-                            Toast.makeText(getContext(), response.body().getReturn().getMessage(), Toast.LENGTH_SHORT).show();
-                            Utils.log(getClass(), response.body().getReturn().getMessage());
+                            Utils.log(getClass(), "getReturn() is empty");
+                            Toast.makeText(getContext(), "getReturn() is empty", Toast.LENGTH_SHORT).show();
+
                         }
 
 
                     } else {
                         Utils.log(getClass(), "response.body() is empty");
+                        Toast.makeText(getContext(), "response.body() is empty", Toast.LENGTH_SHORT).show();
+
                     }
                 } else {
-                    Utils.log(getClass(), "response.isSuccessful() == false");
+
+                    Toast.makeText(getContext(), "response is not successful", Toast.LENGTH_SHORT).show();
+
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<SmsModel> call, Throwable t) {
+
+            public void onFailure(Call<Sms> call, Throwable t) {
                 Utils.log(getClass(), t.getMessage());
             }
         });

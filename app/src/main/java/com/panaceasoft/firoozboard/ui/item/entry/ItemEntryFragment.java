@@ -47,6 +47,7 @@ import com.panaceasoft.firoozboard.databinding.FragmentItemEntryBinding;
 import com.panaceasoft.firoozboard.databinding.ItemEntryBottomBoxBinding;
 import com.panaceasoft.firoozboard.ui.common.DataBoundListAdapter;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
+import com.panaceasoft.firoozboard.ui.payment.PaymentFragment;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
@@ -116,6 +117,20 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private boolean mPaid;
     private Context mContext;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (savedInstanceState == null) return;
+
+        itemId =  savedInstanceState.getString(Constants.ITEM_ID);
+        locationId =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
+        locationName =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
+
+        getIntentData();
+        getItemDetail();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -127,27 +142,20 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
 
         Uri data = getActivity().getIntent().getData();
-        ZarinPal.getPurchase(mContext).verificationPayment(data, new OnCallbackVerificationPaymentListener() {
-            @Override
-            public void onCallbackResultVerificationPayment(boolean isPaymentSuccess, String refID, PaymentRequest paymentRequest) {
+        ZarinPal.getPurchase(mContext).verificationPayment(data, (isPaymentSuccess, refID, paymentRequest) -> {
 
+            if (isPaymentSuccess) {
 
-                if (isPaymentSuccess) {
-
-                    String message = "Your Payment is Success :) " + refID;
-                    Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                } else {
-                    String message = "Your Payment is Failure :(";
-                    Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                }
-
-
+                String message = "Your Payment is Success :) " + refID;
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                mPaid = true ;
+            } else {
+                String message = "Your Payment is Failure :(";
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             }
+
+
         });
-
-
-
-
 
 
         return binding.get().getRoot();
@@ -176,22 +184,24 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         payment.setEmail("imannamix@gmail.com");     /* Optional Parameters */
 
 
-        purchase.startPayment(payment, new OnCallbackRequestPaymentListener() {
-            @Override
-            public void onCallbackResultPaymentRequest(int status, String authority, Uri paymentGatewayUri, Intent intent) {
+        purchase.startPayment(payment, (status, authority, paymentGatewayUri, intent) -> {
+
+            if (status == 100) {
+
+                // startActivity(intent);
+
+                if (getFragmentManager() == null) return;
+
+                PaymentFragment paymentFragment = new PaymentFragment( intent, itemId, locationId, locationName);
+                paymentFragment.show(getFragmentManager(),"PaymentFragment");
 
 
-                if (status == 100) {
-                   /*
-                   When Status is 100 Open Zarinpal PG on Browser
-                   */
-                    // startActivity(intent);
-                    navigationController.navigateToPaymentActivity(getActivity(), intent, itemId, locationId, locationName);
-                } else {
-                    Toast.makeText(mContext, "Your Payment Failure :(", Toast.LENGTH_LONG).show();
-                }
 
+                //  navigationController.navigateToPaymentActivity(getActivity(), intent, itemId, locationId, locationName);
+            } else {
+                Toast.makeText(mContext, "!! Your Payment Failure :(", Toast.LENGTH_LONG).show();
             }
+
         });
     }
 
@@ -259,7 +269,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             //TODO changed
             if (categoryName != null)
-                if (categoryName.contains("غیر")) {
+                if (categoryName.contains("غیر رایگان")) {
                     Log.i(TAG, "onActivityResult: PRICE");
                     mNeedToPay = true;
                 } else {
@@ -320,6 +330,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             changeCamera();
 
             bindingLatLng(itemViewModel.latValue, itemViewModel.lngValue);
+        }else if (requestCode == Constants.REQUEST_CODE__PAYMENT){
+            //TODO ali payment
+            Toast.makeText(mContext, "OnResultPay", Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "onActivityResult: "+Constants.REQUEST_CODE__PAYMENT);
         }
 
         //image  gallery upload
@@ -566,7 +580,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         binding.get().submitButton.setOnClickListener(view -> {
             //TODO pay validation
-            if (!mPaid) {
+
+            if (mNeedToPay && !mPaid) {
 
                 pay();
 
@@ -1115,4 +1130,26 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 .title("نام"));
     }
 
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(Constants.ITEM_ID,itemId);
+        outState.putString(Constants.ITEM_LOCATION_TYPE_ID,locationId);
+        outState.putString(Constants.ITEM_LOCATION_TYPE_NAME,locationName);
+
+        itemViewModel.setItemDetailFromDBById(itemId);
+    }
+
+
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState == null) return;
+
+        itemId =  savedInstanceState.getString(Constants.ITEM_ID);
+        locationId =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
+        locationName =  savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
+    }
 }

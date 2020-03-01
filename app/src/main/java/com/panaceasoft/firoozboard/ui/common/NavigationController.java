@@ -797,7 +797,7 @@ public class NavigationController {
         intent.putExtra(Constants.SELECTED_LOCATION_ID, locationId);
         intent.putExtra(Constants.SELECTED_LOCATION_NAME, locationName);
 
-        activity.startActivityForResult(intent, Constants.REQUEST_CODE__SEARCH_FRAGMENT);
+        activity.startActivityForResult(intent, Constants.REQUEST_CODE__PAYMENT);
 
     }
 
