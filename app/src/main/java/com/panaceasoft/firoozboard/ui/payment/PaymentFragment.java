@@ -49,9 +49,6 @@ public class PaymentFragment extends DialogFragment {
     private void findViews() {
         mButtonPay = mView.findViewById(R.id.fragment_payment_button);
         mButtonPay.setOnClickListener(view -> {
-          /*  intent.putExtra(Constants.ITEM_ID, itemId);
-            intent.putExtra(Constants.SELECTED_LOCATION_ID, locationId);
-            intent.putExtra(Constants.SELECTED_LOCATION_NAME, locationName);*/
 
             if (getActivity() == null) return;
             getActivity().startActivityForResult(intent, Constants.REQUEST_CODE__PAYMENT);

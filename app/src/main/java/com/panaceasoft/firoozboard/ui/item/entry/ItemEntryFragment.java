@@ -42,9 +42,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
 import com.panaceasoft.firoozboard.R;
+import com.panaceasoft.firoozboard.SharedPrefManager;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentItemEntryBinding;
 import com.panaceasoft.firoozboard.databinding.ItemEntryBottomBoxBinding;
+import com.panaceasoft.firoozboard.edit.Detail;
 import com.panaceasoft.firoozboard.ui.common.DataBoundListAdapter;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.ui.payment.PaymentFragment;
@@ -69,6 +71,7 @@ import java.util.List;
  */
 public class ItemEntryFragment extends PSFragment implements DataBoundListAdapter.DiffUtilDispatchedInterface {
 
+    private static final String TAG = "ItemEntryFragmentLog";
     private final androidx.databinding.DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
     private String catId = Constants.EMPTY_STRING;
     private String subCatId = Constants.EMPTY_STRING;
@@ -78,7 +81,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private String conditionId = Constants.EMPTY_STRING;
     private String locationId = Constants.EMPTY_STRING;
     private String businessMode = Constants.EMPTY_STRING;
-    private static final String TAG = "ItemEntryFragmentLog";
     private String itemId;
 
     private String firstImageId = Constants.EMPTY_STRING;
@@ -114,10 +116,13 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private AutoClearedValue<ItemEntryBottomBoxBinding> bottomBoxLayoutBinding;
     private boolean mPaid;
     private Context mContext;
+    private SharedPrefManager sharedPreferences;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i(TAG, "onCreate: ");
 
         if (savedInstanceState == null) return;
 
@@ -127,12 +132,17 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         getIntentData();
         getItemDetail();
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView: ");
+
         FragmentItemEntryBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_entry, container, false, dataBindingComponent);
+
+        sharedPreferences = new SharedPrefManager(mContext);
 
         binding = new AutoClearedValue<>(this, dataBinding);
         setHasOptionsMenu(true);
@@ -142,27 +152,33 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         Uri data = getActivity().getIntent().getData();
         ZarinPal.getPurchase(mContext).verificationPayment(data, (isPaymentSuccess, refID, paymentRequest) -> {
 
-            if (isPaymentSuccess) {
 
+            if (isPaymentSuccess) {
+                mPaid = true;
                 String message = "Your Payment is Success :) " + refID;
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                mPaid = true;
+
+                sendDetail();
+
             } else {
+                mPaid = false;
                 String message = "Your Payment is Failure :(";
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             }
 
-
+            sharedPreferences.empty();
         });
 
 
         return binding.get().getRoot();
     }
 
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.mContext = context;
+        Log.i(TAG, "onAttach: ");
     }
 
 
@@ -186,13 +202,11 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             if (status == 100) {
 
-                // startActivity(intent);
-
                 if (getFragmentManager() == null) return;
 
+                intent.putExtra(Constants.ITEM_LOCATION_TYPE_NAME, locationName);
                 PaymentFragment paymentFragment = new PaymentFragment(intent, itemId, locationId, locationName);
                 paymentFragment.show(getFragmentManager(), "PaymentFragment");
-
 
                 //  navigationController.navigateToPaymentActivity(getActivity(), intent, itemId, locationId, locationName);
             } else {
@@ -202,6 +216,25 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         });
     }
 
+    private void setDataToSharedPref() {
+
+        if (!itemViewModel.itemId.equals(Constants.ADD_NEW_ITEM)) {//edit
+            sharedPreferences.save(new Detail(this.catId, this.subCatId, this.typeId, this.priceTypeId, this.conditionId, this.locationId,
+                    binding.get().remarkEditText.getText().toString(), binding.get().descEditText.getText().toString(),
+                    binding.get().highlightInfoEditText.getText().toString(), binding.get().priceEditText.getText().toString(), this.dealOptionId,
+                    binding.get().brandEditText.getText().toString(), businessMode, itemViewModel.is_sold_out, binding.get().titleEditText.getText().toString(), binding.get().addressEditText.getText().toString(),
+                    itemViewModel.latValue, itemViewModel.lngValue, itemViewModel.itemId, loginUserId));
+
+        } else {//add new item
+
+            sharedPreferences.save(new Detail(this.catId, this.subCatId, this.typeId, this.priceTypeId, this.conditionId, this.locationId,
+                    binding.get().remarkEditText.getText().toString(), binding.get().descEditText.getText().toString(),
+                    binding.get().highlightInfoEditText.getText().toString(), binding.get().priceEditText.getText().toString(), this.dealOptionId,
+                    binding.get().brandEditText.getText().toString(), businessMode, "", binding.get().titleEditText.getText().toString(), binding.get().addressEditText.getText().toString(),
+                    itemViewModel.latValue, itemViewModel.lngValue, "", loginUserId));
+        }
+
+    }
 
 
     private void initializeMap(Bundle savedInstanceState) {
@@ -245,12 +278,15 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "onActivityResult: ");
 
         if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_CATEGORY) {
 
             String categoryName = data.getStringExtra(Constants.CATEGORY_NAME);
             this.catId = data.getStringExtra(Constants.CATEGORY_ID);
+
             binding.get().categoryTextView.setText(categoryName);
+
             itemViewModel.holder.cat_id = this.catId;
             this.subCatId = "";
             itemViewModel.holder.sub_cat_id = this.subCatId;
@@ -259,7 +295,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 binding.get().subProductTypeTextView.setVisibility(View.VISIBLE);
                 binding.get().subCategorySelectionView.setVisibility(View.VISIBLE);
 
-            }else{
+            } else {
                 binding.get().subProductTypeTextView.setVisibility(View.GONE);
                 binding.get().subCategorySelectionView.setVisibility(View.GONE);
             }
@@ -292,12 +328,12 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             if (this.priceTypeId.toString().equals("7") || this.priceTypeId.toString().equals("1") || this.priceTypeId.toString().equals("8")) {
                 binding.get().priceTitleTextView.setVisibility(View.VISIBLE);
-               // binding.get().starTextView8.setVisibility(View.VISIBLE);
+                // binding.get().starTextView8.setVisibility(View.VISIBLE);
                 binding.get().priceEditText.setVisibility(View.VISIBLE);
                 binding.get().priceEditText.setText("");
             } else {
                 binding.get().priceTitleTextView.setVisibility(View.GONE);
-               // binding.get().starTextView8.setVisibility(View.GONE);
+                // binding.get().starTextView8.setVisibility(View.GONE);
                 binding.get().priceEditText.setVisibility(View.GONE);
                 binding.get().priceEditText.setText("0");
             }
@@ -510,7 +546,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         }
 
         binding.get().titleEditText.setHint(R.string.search__notSet);
-        binding.get().categoryTextView.setHint(R.string.search__notSet);
+
         binding.get().subCategoryTextView.setHint(R.string.search__notSet);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
@@ -518,6 +554,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         alertDialog.get().setTitle(getResources().getString(R.string.Feature_UI__search_alert_cat_title));
 
         binding.get().categoryTextView.setText("");
+
         binding.get().subCategoryTextView.setText("");
 
         binding.get().categorySelectionView.setOnClickListener(view -> navigationController.navigateToSearchActivityCategoryFragment(this.getActivity(), Constants.CATEGORY, catId, subCatId));
@@ -578,77 +615,49 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         binding.get().submitButton.setOnClickListener(view -> {
             //TODO pay validation
 
-            if (mNeedToPay && !mPaid) {
 
+            if (itemViewModel.firstImagePath == null && itemViewModel.secImagePath == null && itemViewModel.thirdImagePath == null && itemViewModel.fouthImagePath == null && itemViewModel.fifthImagePath == null) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_image), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().titleEditText.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_list_title), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().categoryTextView.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_category), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().subCategoryTextView.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_subcategory), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().typeTextView.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_type), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().brandEditText.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_item_brand), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().priceTypeTextView.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_price_type), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().priceEditText.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_price), getString(R.string.app__ok));
+                psDialogMsg.show();
+                //           } else if (binding.get().priceEditText.getText().toString().equals("0")) {
+                //             psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_price_not_zero), getString(R.string.app__ok));
+                //             psDialogMsg.show();
+            } else if (binding.get().descEditText.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_description), getString(R.string.app__ok));
+                psDialogMsg.show();
+            } else if (binding.get().locationTextView.getText().toString().isEmpty()) {
+                psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_item_city), getString(R.string.app__ok));
+                psDialogMsg.show();
+
+            } else if (mNeedToPay && !mPaid) {
+                setDataToSharedPref();
                 pay();
 
             } else {
-                if (itemViewModel.firstImagePath == null && itemViewModel.secImagePath == null && itemViewModel.thirdImagePath == null && itemViewModel.fouthImagePath == null && itemViewModel.fifthImagePath == null) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_image), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().titleEditText.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_list_title), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().categoryTextView.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_category), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().subCategoryTextView.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_subcategory), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().typeTextView.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_type), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().brandEditText.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_item_brand), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().priceTypeTextView.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_price_type), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().priceEditText.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_price), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                    //           } else if (binding.get().priceEditText.getText().toString().equals("0")) {
-                    //             psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_price_not_zero), getString(R.string.app__ok));
-                    //             psDialogMsg.show();
-                } else if (binding.get().descEditText.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_description), getString(R.string.app__ok));
-                    psDialogMsg.show();
-                } else if (binding.get().locationTextView.getText().toString().isEmpty()) {
-                    psDialogMsg.showWarningDialog(getString(R.string.item_entry_need_item_city), getString(R.string.app__ok));
-                    psDialogMsg.show();
-
-                } else {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
-                    getImagePathList();
-
-                    //   checkIsShop();
-                    businessMode = Constants.ZERO;
-
-                    if (itemViewModel.itemId != null) {
-                        if (!itemViewModel.itemId.equals(Constants.ADD_NEW_ITEM)) {//edit
-                            itemViewModel.setUploadItemObj(this.catId, this.subCatId, this.typeId, this.priceTypeId, this.conditionId, this.locationId,
-                                    binding.get().remarkEditText.getText().toString(), binding.get().descEditText.getText().toString(),
-                                    binding.get().highlightInfoEditText.getText().toString(), binding.get().priceEditText.getText().toString(), this.dealOptionId,
-                                    binding.get().brandEditText.getText().toString(), businessMode, itemViewModel.is_sold_out, binding.get().titleEditText.getText().toString(), binding.get().addressEditText.getText().toString(),
-                                    itemViewModel.latValue, itemViewModel.lngValue, itemViewModel.itemId, loginUserId);
-                        } else {//add new item
-                            itemViewModel.setUploadItemObj(this.catId, this.subCatId, this.typeId, this.priceTypeId, this.conditionId, this.locationId,
-                                    binding.get().remarkEditText.getText().toString(), binding.get().descEditText.getText().toString(),
-                                    binding.get().highlightInfoEditText.getText().toString(), binding.get().priceEditText.getText().toString(), this.dealOptionId,
-                                    binding.get().brandEditText.getText().toString(), businessMode, "", binding.get().titleEditText.getText().toString(), binding.get().addressEditText.getText().toString(),
-                                    itemViewModel.latValue, itemViewModel.lngValue, "", loginUserId);
-                        }
-
-                    }
-
-                    progressDialog.show();
-                }
+                setDataToSharedPref();
+                sendDetail();
             }
-
 
 
         });
@@ -679,6 +688,51 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         });
 
 
+    }
+
+    private void sendDetail() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1500)
+            return;
+
+        mLastClickTime = SystemClock.elapsedRealtime();
+
+        getImagePathList();
+
+        //   checkIsShop();
+        businessMode = Constants.ZERO;
+
+        if (itemViewModel.itemId != null) {
+
+            Detail detail = sharedPreferences.get();
+
+            itemViewModel.setUploadItemObj(
+                    detail.getCatId(),
+                    detail.getSubCatId(),
+                    detail.getItemTypeId(),
+                    detail.getItemPriceTypeId(),
+                    detail.getConditionId(),
+                    detail.getLocationId(),
+                    detail.getRemark(),
+                    detail.getDescription(),
+                    detail.getHighlightInfo(),
+                    detail.getPrice(),
+                    detail.getDealOptionId(),
+                    detail.getBrand(),
+                    detail.getBusinessMode(),
+                    detail.getIsSoldOut(),
+                    detail.getTitle(),
+                    detail.getAddress(),
+                    detail.getLat(),
+                    detail.getLng(),
+                    detail.getItemId(),
+                    detail.getUserId()
+            );
+
+            sharedPreferences.empty();
+
+        }
+
+        progressDialog.show();
     }
 
     private void getImagePathList() {
@@ -791,15 +845,19 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         itemViewModel = ViewModelProviders.of(this, viewModelFactory).get(ItemViewModel.class);
         imageViewModel = ViewModelProviders.of(this, viewModelFactory).get(ImageViewModel.class);
 
+        Log.i(TAG, "initViewModels: ");
+
     }
 
     @Override
     protected void initAdapters() {
-
+        Log.i(TAG, "initAdapters: ");
     }
 
     @Override
     protected void initData() {
+
+        Log.i(TAG, "initData: ");
 
         getIntentData();
 
@@ -848,9 +906,9 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                                 Toast.makeText(getActivity(), "آگهی با موفقیت ارسال شد", Toast.LENGTH_SHORT).show();
                                 progressDialog.cancel();
 
-                                if(getActivity() != null) {
+                                if (getActivity() != null) {
                                     getActivity().finish();
-                               }
+                                }
 
                             }
 
@@ -882,7 +940,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                             ItemEntryFragment.this.callImageUpload(imageCount);//first is one
                         }
 
-                        if(getActivity() != null) {
+                        if (getActivity() != null) {
                             getActivity().finish();
                         }
 
@@ -983,10 +1041,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             historyItemList.observe(this, listResource -> {
                 if (listResource != null) {
                     bindingItemDetailData(listResource);
-
                 }
 
             });
+
         }
     }
 
@@ -1023,7 +1081,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         this.locationId = item.itemLocation.id;
         this.dealOptionId = item.dealOptionId;
         binding.get().dealOptionTextView.setText(item.itemDealOption.name);
+
         binding.get().categoryTextView.setText(item.category.name);
+
+
         binding.get().subCategoryTextView.setText(item.subCategory.name);
         binding.get().typeTextView.setText(item.itemType.name);
         binding.get().itemConditionTextView.setText(item.itemCondition.name);
@@ -1131,21 +1192,30 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState: ");
+
         outState.putString(Constants.ITEM_ID, itemId);
         outState.putString(Constants.ITEM_LOCATION_TYPE_ID, locationId);
         outState.putString(Constants.ITEM_LOCATION_TYPE_NAME, locationName);
 
         itemViewModel.setItemDetailFromDBById(itemId);
+
+
     }
 
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
+        Log.i(TAG, "onViewStateRestored: ");
         if (savedInstanceState == null) return;
 
         itemId = savedInstanceState.getString(Constants.ITEM_ID);
         locationId = savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_ID);
         locationName = savedInstanceState.getString(Constants.ITEM_LOCATION_TYPE_NAME);
+
+        //   getDataFromSharedPef();
+
     }
+
 }

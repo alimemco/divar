@@ -387,5 +387,6 @@ public interface Constants {
     String IMAGE = "IMAGE";
     String IMAGE_PATH = "IMAGE_PATH";
 
+    String ADDRESS = "address";
 }
 

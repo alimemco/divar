@@ -152,6 +152,7 @@ public class ItemViewModel extends PSViewModel {
             return repository.getItemDetailFromDBById(obj.itemId);
         });
 
+
         uploadItemImageData = Transformations.switchMap(uploadItemImageObj, obj -> {
             if (obj == null) {
                 return AbsentLiveData.create();
@@ -193,6 +194,7 @@ public class ItemViewModel extends PSViewModel {
     public void setUploadItemObj(String catId, String subCatId, String itemTypeId, String itemPriceTypeId,String conditionId, String locationId,
                                  String remark, String description, String highlightInfo, String price, String dealOptionId, String brand, String businessMode,
                                  String isSoldOut, String title, String address, String lat, String lng, String itemId, String userId) {
+
         UploadItemTmpDataHolder tmpDataHolder = new UploadItemTmpDataHolder(catId, subCatId, itemTypeId, itemPriceTypeId, conditionId,locationId,remark,
                 description, highlightInfo, price, dealOptionId, brand, businessMode,
                 isSoldOut, title, address, lat, lng, itemId, userId);

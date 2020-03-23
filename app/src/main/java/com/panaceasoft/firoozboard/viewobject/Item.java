@@ -186,4 +186,174 @@ public class Item {
         this.isOwner = isOwner;
         this.isFavourited = isFavourited;
     }
+
+
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public String getCatId() {
+        return catId;
+    }
+
+    public String getSubCatId() {
+        return subCatId;
+    }
+
+    public String getItemTypeId() {
+        return itemTypeId;
+    }
+
+    public String getItemPriceTypeId() {
+        return itemPriceTypeId;
+    }
+
+    public String getItemCurrencyId() {
+        return itemCurrencyId;
+    }
+
+    public String getConditionOfItem() {
+        return conditionOfItem;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getHighlightInfo() {
+        return highlightInfo;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getDealOptionId() {
+        return dealOptionId;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getBusinessMode() {
+        return businessMode;
+    }
+
+    public String getIsSoldOut() {
+        return isSoldOut;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public String getAddedUserId() {
+        return addedUserId;
+    }
+
+    public String getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public String getUpdatedUserId() {
+        return updatedUserId;
+    }
+
+    public String getUpdatedFlag() {
+        return updatedFlag;
+    }
+
+    public String getTouchCount() {
+        return touchCount;
+    }
+
+    public String getFavouriteCount() {
+        return favouriteCount;
+    }
+
+    public String getAddedDateStr() {
+        return addedDateStr;
+    }
+
+    public String getPhotoCount() {
+        return photoCount;
+    }
+
+    public String getDealOptionRemark() {
+        return dealOptionRemark;
+    }
+
+    public Image getDefaultPhoto() {
+        return defaultPhoto;
+    }
+
+    public void setDefaultPhoto(Image defaultPhoto) {
+        this.defaultPhoto = defaultPhoto;
+    }
+
+    public ItemCategory getCategory() {
+        return category;
+    }
+
+    public ItemSubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public ItemPriceType getItemPriceType() {
+        return itemPriceType;
+    }
+
+    public ItemCurrency getItemCurrency() {
+        return itemCurrency;
+    }
+
+    public ItemLocation getItemLocation() {
+        return itemLocation;
+    }
+
+    public ItemCondition getItemCondition() {
+        return itemCondition;
+    }
+
+    public ItemDealOption getItemDealOption() {
+        return itemDealOption;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getIsOwner() {
+        return isOwner;
+    }
+
+    public String getIsFavourited() {
+        return isFavourited;
+    }
 }
