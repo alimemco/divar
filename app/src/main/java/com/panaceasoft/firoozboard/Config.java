@@ -24,6 +24,8 @@ public class Config {
 
     public static final String APP_IMAGES_THUMB_URL = "http://firoozboard.ir/ApiService/uploads/thumbnail/";
 
+    public static final String MerchantID = "a99cc3fc-6502-11ea-9a38-000c295eb8fc";
+
 //    public static final String APP_API_URL = "http://192.168.100.198/buysell-admin/index.php/";
 //
 //    public static final String APP_IMAGES_URL = "http://192.168.100.198/buysell-admin/uploads/";

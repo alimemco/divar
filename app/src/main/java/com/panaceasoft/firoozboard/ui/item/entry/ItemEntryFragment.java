@@ -155,14 +155,14 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             if (isPaymentSuccess) {
                 mPaid = true;
-                String message = "Your Payment is Success :) " + refID;
-                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                // String message = "Your Payment is Success :) " + refID;
+                // Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                 sendDetail();
 
             } else {
                 mPaid = false;
-                String message = "Your Payment is Failure :(";
+                String message = "پرداخت انجام نشد";
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             }
 
@@ -186,16 +186,17 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         ZarinPal purchase = ZarinPal.getPurchase(mContext);
         //TODO pay SandBox
 
-        // PaymentRequest payment  = ZarinPal.getPaymentRequest();
-        PaymentRequest payment = ZarinPal.getSandboxPaymentRequest();
+        PaymentRequest payment = ZarinPal.getPaymentRequest();
+        // PaymentRequest payment = ZarinPal.getSandboxPaymentRequest();
 
-        payment.setMerchantID("71c705f8-bd37-11e6-aa0c-000c295eb8fc");
+        payment.setMerchantID(Config.MerchantID);
+        // payment.setMerchantID("71c705f8-bd37-11e6-aa0c-000c295eb8fc");
         payment.setAmount(101);
         payment.isZarinGateEnable(true);  // If you actived `ZarinGate`, can handle payment by `ZarinGate`
-        payment.setDescription("In App Purchase Test SDK");
+        payment.setDescription("پرداخت برای آگهی غیر رایگان");
         payment.setCallbackURL("divar://app");     /* Your App Scheme */
-        payment.setMobile("09355106005");            /* Optional Parameters */
-        payment.setEmail("imannamix@gmail.com");     /* Optional Parameters */
+        //  payment.setMobile("09355106005");            /* Optional Parameters */
+        // payment.setEmail("imannamix@gmail.com");     /* Optional Parameters */
 
 
         purchase.startPayment(payment, (status, authority, paymentGatewayUri, intent) -> {
