@@ -183,6 +183,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
 
     private void pay() {
+
         ZarinPal purchase = ZarinPal.getPurchase(mContext);
         //TODO pay SandBox
 
