@@ -57,7 +57,7 @@ dependencies {
     implementation "androidx.browser:browser:1.0.0"
 
     // Constraint Layout
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
 
     // Google GMS
     implementation "com.google.android.gms:play-services-maps:16.1.0"

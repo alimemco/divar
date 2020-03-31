@@ -1,13 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.makeramen:roundedimageview:2.3.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/54c4f142cb2dff1c67146b659b289d4c/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7541c39b0738d04efd91210cf39cf00e/jetified-roundedimageview-2.3.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/54c4f142cb2dff1c67146b659b289d4c/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/54c4f142cb2dff1c67146b659b289d4c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7541c39b0738d04efd91210cf39cf00e/jetified-roundedimageview-2.3.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7541c39b0738d04efd91210cf39cf00e/jetified-roundedimageview-2.3.0/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.makeramen/roundedimageview/2.3.0/30a0f5d140791f4ade3ac418dddaf0d59ca694cc/roundedimageview-2.3.0-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.makeramen/roundedimageview/2.3.0/a74d35b08232b1e1fe0c50eeb4a27d43d6a53e1b/roundedimageview-2.3.0-sources.jar!/" />
     </SOURCES>

@@ -69,10 +69,9 @@ public class ItemCategoryRepository extends PSRepository {
 
                 try {
                     db.beginTransaction();
-
                     for (int i = 0; i < item.size(); i++) {
                         itemCategoryDao.insert(new ItemCategory(i + 1, item.get(i).id, item.get(i).name, item.get(i).ordering, item.get(i).status, item.get(i).addedDate, item.get(i).updatedDate,
-                                item.get(i).addedUserId, item.get(i).cityId, item.get(i).updatedUserId, item.get(i).updatedFlag, item.get(i).addedDateStr, item.get(i).defaultPhoto, item.get(i).defaultIcon));
+                                item.get(i).addedUserId, item.get(i).cityId, item.get(i).updatedUserId, item.get(i).updatedFlag, item.get(i).addedDateStr, item.get(i).defaultPhoto, item.get(i).defaultIcon,item.get(i).price));
                     }
 
                     db.setTransactionSuccessful();
@@ -142,7 +141,7 @@ public class ItemCategoryRepository extends PSRepository {
 
                             for (int i = 0; i < response.body.size(); i++) {
                                 itemCategoryDao.insert(new ItemCategory(startIndex + i, response.body.get(i).id, response.body.get(i).name, response.body.get(i).ordering, response.body.get(i).status, response.body.get(i).addedDate, response.body.get(i).updatedDate,
-                                        response.body.get(i).addedUserId, response.body.get(i).cityId, response.body.get(i).updatedUserId, response.body.get(i).updatedFlag, response.body.get(i).addedDateStr, response.body.get(i).defaultPhoto, response.body.get(i).defaultIcon));
+                                        response.body.get(i).addedUserId, response.body.get(i).cityId, response.body.get(i).updatedUserId, response.body.get(i).updatedFlag, response.body.get(i).addedDateStr, response.body.get(i).defaultPhoto, response.body.get(i).defaultIcon, response.body.get(i).price));
                             }
 
                             //db.trendingCategoryDao().insertAll(new TrendingCategory(apiResponse.body.));

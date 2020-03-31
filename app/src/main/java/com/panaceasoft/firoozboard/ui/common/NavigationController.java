@@ -816,10 +816,11 @@ public class NavigationController {
         fragmentActivity.startActivityForResult(intent, Constants.REQUEST_CODE__SEARCH_VIEW_FRAGMENT);
     }
 
-    public void navigateBackToSearchFragment(FragmentActivity fragmentActivity, String catId, String cat_Name) {
+    public void navigateBackToSearchFragment(FragmentActivity fragmentActivity, String catId, String cat_Name,int price) {
         Intent intent = new Intent();
         intent.putExtra(Constants.CATEGORY_NAME, cat_Name);
         intent.putExtra(Constants.CATEGORY_ID, catId);
+        intent.putExtra(Constants.ITEM_PRICE, price);
 
         fragmentActivity.setResult(Constants.RESULT_CODE__SEARCH_WITH_CATEGORY, intent);
     }

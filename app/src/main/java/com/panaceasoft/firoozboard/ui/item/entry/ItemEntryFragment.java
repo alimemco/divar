@@ -303,6 +303,17 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             }
 
             //TODO changed
+            int price =  data.getIntExtra(Constants.ITEM_PRICE,0);
+
+            if (price > 0 ){
+                Log.i(TAG, "onActivityResult: PRICE");
+                mNeedToPay = true;
+            }else {
+                Log.i(TAG, "onActivityResult: FREE");
+                mNeedToPay = false;
+            }
+            /*
+
             if (categoryName != null)
                 if (categoryName.contains("غیر رایگان")) {
                     Log.i(TAG, "onActivityResult: PRICE");
@@ -311,7 +322,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     Log.i(TAG, "onActivityResult: FREE");
                     mNeedToPay = false;
                 }
-
+*/
 
         } else if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_SUBCATEGORY) {
 

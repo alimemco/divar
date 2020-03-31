@@ -53,7 +53,10 @@ public class ItemCategory {
     @SerializedName("default_icon")
     public Image defaultIcon;
 
-    public ItemCategory(int sorting,@NonNull String id, String name, String ordering, String status, String addedDate, String updatedDate, String addedUserId, String cityId, String updatedUserId, String updatedFlag, String addedDateStr, Image defaultPhoto, Image defaultIcon) {
+    @SerializedName("price")
+    public int price;
+
+    public ItemCategory(int sorting,@NonNull String id, String name, String ordering, String status, String addedDate, String updatedDate, String addedUserId, String cityId, String updatedUserId, String updatedFlag, String addedDateStr, Image defaultPhoto, Image defaultIcon,int price) {
 
         this.sorting = sorting;
         this.id = id;
@@ -69,5 +72,6 @@ public class ItemCategory {
         this.addedDateStr = addedDateStr;
         this.defaultPhoto = defaultPhoto;
         this.defaultIcon = defaultIcon;
+        this.price = price ;
     }
 }
