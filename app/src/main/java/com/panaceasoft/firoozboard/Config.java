@@ -106,6 +106,6 @@ public class Config {
     public static String CONSENTSTATUS_CURRENT_STATUS = "UNKNOWN";
     public static String CONSENTSTATUS_IS_READY_KEY = "CONSENTSTATUS_IS_READY";
 
-    public static String POLICY_URL = "http://www.panacea-soft.com/policy/policy.html";
+    public static String POLICY_URL = "http://firoozboard.ir/policy/policy.html";
 
 }

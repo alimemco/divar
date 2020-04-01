@@ -1,0 +1,58 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.panaceasoft.firoozboard.edit.SuggestFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_suggest_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        android:tint="@color/md_black_1000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/space_20"/>
+
+    <TextView
+        android:id="@+id/fragment_suggest_textView_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/space_20"
+        android:padding="20dp"
+        android:text="@string/suggest"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_suggest_close" />
+
+
+    <Button
+        android:id="@+id/fragment_suggest_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="درج آگهی"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/fragment_suggest_show"
+        android:textColor="@color/text__white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/space_20"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_suggest_textView_message"/>
+
+
+    <Button
+        android:id="@+id/fragment_suggest_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="نمایش آگهی ها"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/fragment_suggest_insert"
+        android:textColor="@color/text__white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/space_20"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_suggest_textView_message"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

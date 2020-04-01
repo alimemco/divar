@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,8 @@ import com.google.ads.consent.DebugGeography;
 import com.google.android.material.internal.BaselineLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.panaceasoft.firoozboard.databinding.ActivityMainBinding;
+import com.panaceasoft.firoozboard.edit.AlertModel;
+import com.panaceasoft.firoozboard.edit.SuggestFragment;
 import com.panaceasoft.firoozboard.ui.common.NavigationController;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 import com.panaceasoft.firoozboard.utils.AppLanguage;
@@ -48,11 +51,19 @@ import com.panaceasoft.firoozboard.viewmodel.item.ItemViewModel;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
 import com.panaceasoft.firoozboard.viewobject.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.inject.Inject;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -140,7 +151,52 @@ public class MainActivity extends PSAppCompactActivity {
 
         // checkConsentStatus();
 
+        getAlertFromServer();
+
     }
+
+    private void getAlertFromServer() {
+
+        if (!Utils.isNetworkAvailable(this)) return;
+
+        PsApp.getApi().getAlert()
+                .enqueue(new Callback<AlertModel>() {
+                    @Override
+                    public void onResponse(Call<AlertModel> call, Response<AlertModel> response) {
+
+                        String message = "";
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+
+
+                                    if ( response.body().getShow()) {
+                                        SuggestFragment dialog = SuggestFragment.newInstance(response.body().getMessage());
+                                        dialog.show(getSupportFragmentManager(), "SuggestFragment");
+                                        return;
+                                    }
+
+
+                            } else {
+                                message = "response body is null";
+                            }
+                        } else {
+                            message = "response is Not Successful";
+                        }
+
+                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<AlertModel> call, Throwable t) {
+
+                        Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
+    }
+
 
 
     @Override
