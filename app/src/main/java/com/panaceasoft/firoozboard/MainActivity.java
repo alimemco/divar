@@ -171,6 +171,20 @@ public class MainActivity extends PSAppCompactActivity {
 
                                     if ( response.body().getShow()) {
                                         SuggestFragment dialog = SuggestFragment.newInstance(response.body().getMessage());
+
+                                        dialog.seOnButtonClickListener(view -> {
+                                            switch (view.getId()){
+                                                case R.id.fragment_suggest_insert:
+//todo Arch
+                                                  //  navigationController.navigateToImageFullScreen() ;
+                                                    break;
+
+                                                    case R.id.fragment_suggest_show:
+
+                                                    break;
+                                            }
+                                        });
+
                                         dialog.show(getSupportFragmentManager(), "SuggestFragment");
                                         return;
                                     }
