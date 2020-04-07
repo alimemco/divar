@@ -540,30 +540,7 @@ public class ItemRepository extends PSRepository {
             try {
                 // Call the API Service
                 Response<List<Item>> response;
-/*
-                response = psApiService.itemUpload(Config.API_KEY,
-                        catId,
-                        subCatId,
-                        itemTypeId,
-                        itemPriceTypeId,
-                        "1",  // conditionId,
-                        locationId,
-                        "1",//    remark,
-                        description,
-                        "1",//  highlightInfo,
-                        price,
-                        "1",// dealOptionId,
-                        brand,
-                        "1",// businessMode,
-                        isSoldOut,
-                        title,
-                        address,
-                        lat,
-                        lng,
-                        itemId,
-                        userId
-                ).execute();
-*/
+
                 response = psApiService.itemUpload(Config.API_KEY,
                         catId,
                         subCatId,
@@ -583,7 +560,7 @@ public class ItemRepository extends PSRepository {
                         address,
                         lat,
                         lng,
-                        "-1",
+                        itemId,
                         userId
                 ).execute();
                 // Wrap with APIResponse Class

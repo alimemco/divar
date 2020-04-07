@@ -719,25 +719,25 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             Detail detail = sharedPreferences.get();
 
             itemViewModel.setUploadItemObj(
-                    detail.getCatId(),
-                    detail.getSubCatId(),
-                    detail.getItemTypeId(),
-                    detail.getItemPriceTypeId(),
-                    detail.getConditionId(),
+                    catId,
+                    subCatId,
+                    typeId,
+                    priceTypeId,
+                    conditionId,
                     detail.getLocationId(),
                     detail.getRemark(),
                     detail.getDescription(),
                     detail.getHighlightInfo(),
                     detail.getPrice(),
-                    detail.getDealOptionId(),
+                    dealOptionId,
                     detail.getBrand(),
-                    detail.getBusinessMode(),
+                    conditionId,
                     detail.getIsSoldOut(),
                     detail.getTitle(),
                     detail.getAddress(),
                     detail.getLat(),
                     detail.getLng(),
-                    detail.getItemId(),
+                    itemId,
                     detail.getUserId()
             );
 
@@ -932,7 +932,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     case ERROR:
                         progressDialog.cancel();
                       //  psDialogMsg.showErrorDialog(getString(R.string.error_message__item_cannot_upload), getString(R.string.app__ok));
-                        psDialogMsg.showErrorDialog(result.status+ " | message = "+ result.message, getString(R.string.app__ok));
+                        psDialogMsg.showErrorDialog( result.message, getString(R.string.app__ok));
                         psDialogMsg.show();
                         break;
                 }
