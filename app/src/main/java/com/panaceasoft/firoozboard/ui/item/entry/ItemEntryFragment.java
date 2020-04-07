@@ -931,7 +931,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                     case ERROR:
                         progressDialog.cancel();
-                        psDialogMsg.showErrorDialog(getString(R.string.error_message__item_cannot_upload), getString(R.string.app__ok));
+                      //  psDialogMsg.showErrorDialog(getString(R.string.error_message__item_cannot_upload), getString(R.string.app__ok));
+                        psDialogMsg.showErrorDialog(result.status+ " | message = "+ result.message, getString(R.string.app__ok));
                         psDialogMsg.show();
                         break;
                 }

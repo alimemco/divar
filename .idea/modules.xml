@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="divar/app" />
-      <module fileurl="file://$PROJECT_DIR$/divar.iml" filepath="$PROJECT_DIR$/divar.iml" group="divar" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="firoozboard/app" />
+      <module fileurl="file://$PROJECT_DIR$/firoozboard.iml" filepath="$PROJECT_DIR$/firoozboard.iml" group="firoozboard" />
     </modules>
   </component>
 </project>

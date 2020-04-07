@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import okhttp3.internal.Util;
+
 
 public class AppLoadingFragment extends PSFragment {
 
@@ -77,8 +79,8 @@ public class AppLoadingFragment extends PSFragment {
 
     @Override
     protected void initData() {
-
-        if (connectivity.isConnected()) {
+//todo important ! this is connectivity.isConnected()
+        if (!connectivity.isConnected()) {
             if (startDate.equals(Constants.ZERO)) {
 
                 startDate = getDateTime();
@@ -119,6 +121,8 @@ public class AppLoadingFragment extends PSFragment {
 
                         break;
                 }
+            }else {
+                Utils.psLog("result == null");
             }
 
         });
