@@ -26,7 +26,7 @@ public interface ItemLocationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ItemLocation> itemLocationList);
 
-    @Query("SELECT * FROM ItemLocation ORDER BY name")
+    @Query("SELECT * FROM ItemLocation ORDER BY addedDate")
     LiveData<List<ItemLocation>> getAllItemLocation();
 
 //    @Query("SELECT * FROM ItemLocation WHERE catId=:catId")
