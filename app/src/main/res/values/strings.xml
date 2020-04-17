@@ -608,6 +608,7 @@
     <string name="verify_phone_code">کد تایید برای شما ارسال شد</string>
     <string name="need_payment">برای قرار دادن آگهی در این دسته بندی نیاز به پرداخت دارید</string>
     <string name="pay">پرداخت</string>
+    <string name="suggest">همشهریان گرامی ! با توجه به تعطیلی بازار و فشار اقتصادی کسبه ، میتوانید از بخش زیر به صورت آنلاین با مشتریان خود در تماس باشید</string>
 
 
 </resources>

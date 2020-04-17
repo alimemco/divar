@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,8 @@ import com.google.ads.consent.DebugGeography;
 import com.google.android.material.internal.BaselineLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.panaceasoft.firoozboard.databinding.ActivityMainBinding;
+import com.panaceasoft.firoozboard.edit.AlertModel;
+import com.panaceasoft.firoozboard.edit.SuggestFragment;
 import com.panaceasoft.firoozboard.ui.common.NavigationController;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 import com.panaceasoft.firoozboard.utils.AppLanguage;
@@ -53,6 +56,9 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -140,6 +146,95 @@ public class MainActivity extends PSAppCompactActivity {
 
         // checkConsentStatus();
 
+        getAlertFromServer();
+
+    }
+
+    private void getAlertFromServer() {
+
+        if (!Utils.isNetworkAvailable(this)) return;
+
+        PsApp.getApi().getAlert()
+                .enqueue(new Callback<AlertModel>() {
+                    @Override
+                    public void onResponse(Call<AlertModel> call, Response<AlertModel> response) {
+
+                        String message = "";
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+
+
+                                if ( response.body().getShow()) {
+                                    SuggestFragment dialog = SuggestFragment.newInstance(response.body().getMessage());
+
+                                    dialog.seOnButtonClickListener(view -> {
+                                        switch (view.getId()){
+                                            case R.id.fragment_suggest_insert:
+//todo Arch
+                                               insertItem();
+                                                break;
+
+                                            case R.id.fragment_suggest_show:
+
+                                                break;
+                                        }
+                                    });
+
+                                    dialog.show(getSupportFragmentManager(), "SuggestFragment");
+                                    return;
+                                }
+
+
+                            } else {
+                                message = "response body is null";
+                            }
+                        } else {
+                            message = "response is Not Successful";
+                        }
+
+                     //   Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                        Utils.log(getClass() , message);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<AlertModel> call, Throwable t) {
+
+                       // Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Utils.log(getClass() , t.getMessage());
+
+                    }
+                });
+    }
+
+    private void insertItem() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+        if (loginUserId.isEmpty()) {
+
+            psDialogMsg.showInfoDialog(getString(R.string.error_message__login_first), getString(R.string.app__ok));
+            psDialogMsg.show();
+            psDialogMsg.okButton.setOnClickListener(v1 -> {
+                psDialogMsg.cancel();
+                navigationController.navigateToUserLoginActivity(this);
+            });
+
+        } else {
+
+            try {
+                locationId = pref.getString(Constants.SELECTED_LOCATION_ID, Constants.EMPTY_STRING);
+                locationName = pref.getString(Constants.SELECTED_LOCATION_NAME, Constants.EMPTY_STRING);
+
+            } catch (Exception e) {
+                Utils.psErrorLog("", e);
+            }
+
+
+            navigationController.navigateToItemEntryActivity(this, Constants.ADD_NEW_ITEM, locationId, locationName);
+
+        }
     }
 
 
