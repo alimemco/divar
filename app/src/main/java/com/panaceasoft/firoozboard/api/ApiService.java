@@ -1,6 +1,6 @@
 package com.panaceasoft.firoozboard.api;
 
-import com.panaceasoft.firoozboard.edit.AlertModel;
+import com.panaceasoft.firoozboard.edit.model.AlertModel;
 import com.panaceasoft.firoozboard.ui.user.sms.Sms;
 
 import retrofit2.Call;

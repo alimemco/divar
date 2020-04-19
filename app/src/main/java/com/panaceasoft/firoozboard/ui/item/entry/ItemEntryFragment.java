@@ -46,7 +46,7 @@ import com.panaceasoft.firoozboard.SharedPrefManager;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentItemEntryBinding;
 import com.panaceasoft.firoozboard.databinding.ItemEntryBottomBoxBinding;
-import com.panaceasoft.firoozboard.edit.Detail;
+import com.panaceasoft.firoozboard.edit.model.Detail;
 import com.panaceasoft.firoozboard.ui.common.DataBoundListAdapter;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.ui.payment.PaymentFragment;

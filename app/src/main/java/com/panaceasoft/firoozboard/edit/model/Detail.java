@@ -1,4 +1,4 @@
-package com.panaceasoft.firoozboard.edit;
+package com.panaceasoft.firoozboard.edit.model;
 
 public class Detail {
     /*

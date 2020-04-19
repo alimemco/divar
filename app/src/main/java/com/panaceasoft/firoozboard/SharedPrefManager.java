@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.panaceasoft.firoozboard.edit.Detail;
+import com.panaceasoft.firoozboard.edit.model.Detail;
 
 
 public class SharedPrefManager {

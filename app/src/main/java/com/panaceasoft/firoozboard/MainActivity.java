@@ -20,7 +20,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,7 +37,8 @@ import com.google.ads.consent.DebugGeography;
 import com.google.android.material.internal.BaselineLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.panaceasoft.firoozboard.databinding.ActivityMainBinding;
-import com.panaceasoft.firoozboard.edit.AlertModel;
+import com.panaceasoft.firoozboard.edit.SuggestItemFragment;
+import com.panaceasoft.firoozboard.edit.model.AlertModel;
 import com.panaceasoft.firoozboard.edit.SuggestFragment;
 import com.panaceasoft.firoozboard.ui.common.NavigationController;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
@@ -163,21 +163,27 @@ public class MainActivity extends PSAppCompactActivity {
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
 
-
-                                if ( response.body().getShow()) {
+                                if (response.body().getShow()) {
                                     SuggestFragment dialog = SuggestFragment.newInstance(response.body().getMessage());
 
                                     dialog.seOnButtonClickListener(view -> {
-                                        switch (view.getId()){
+                                        switch (view.getId()) {
                                             case R.id.fragment_suggest_insert:
-//todo Arch
-                                               insertItem();
+
+                                                insertItem();
+
                                                 break;
 
                                             case R.id.fragment_suggest_show:
 
+                                                SuggestItemFragment suggestItemFragment = new SuggestItemFragment(response.body().getCategories());
+                                                suggestItemFragment.setOnItemClickListener((id, name) -> navigationController.navigateToSubCategoryActivity(MainActivity.this,id,name));
+                                                suggestItemFragment.show(getSupportFragmentManager(),"SuggestItemFragment");
+
                                                 break;
                                         }
+
+                                        dialog.dismiss();
                                     });
 
                                     dialog.show(getSupportFragmentManager(), "SuggestFragment");
@@ -192,16 +198,16 @@ public class MainActivity extends PSAppCompactActivity {
                             message = "response is Not Successful";
                         }
 
-                     //   Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                        Utils.log(getClass() , message);
+                        //   Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                        Utils.log(getClass(), message);
 
                     }
 
                     @Override
                     public void onFailure(Call<AlertModel> call, Throwable t) {
 
-                       // Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        Utils.log(getClass() , t.getMessage());
+                        // Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Utils.log(getClass(), t.getMessage());
 
                     }
                 });
