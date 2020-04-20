@@ -95,9 +95,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private boolean isFouthImageSelected = false;
     private boolean isFifthImageSelected = false;
     private String locationName;
-    //TODO ali
-    private boolean mNeedToPay = false;
-
     private PSDialogMsg psDialogMsg;
     private ItemViewModel itemViewModel;
     private ImageViewModel imageViewModel;
@@ -119,16 +116,16 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private SharedPrefManager sharedPreferences;
 
     private int priceCategory;
+    private boolean mNeedToPay = false;
     /**
      * test api purchase
      */
-    private boolean virtualPay = true;
+    private boolean virtualPay = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.i(TAG, "onCreate: ");
 
         if (savedInstanceState == null) return;
 
@@ -144,7 +141,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView: ");
 
         FragmentItemEntryBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_entry, container, false, dataBindingComponent);
 
@@ -184,7 +180,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.mContext = context;
-        Log.i(TAG, "onAttach: ");
+
     }
 
 
@@ -292,7 +288,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.i(TAG, "onActivityResult: ");
 
         if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_CATEGORY) {
 
