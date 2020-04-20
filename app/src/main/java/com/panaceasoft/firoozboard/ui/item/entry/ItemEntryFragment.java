@@ -118,6 +118,12 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private Context mContext;
     private SharedPrefManager sharedPreferences;
 
+    private int priceCategory;
+    /**
+     * test api purchase
+     */
+    private boolean virtualPay = true;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,12 +193,18 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         ZarinPal purchase = ZarinPal.getPurchase(mContext);
         //TODO pay SandBox
 
-        PaymentRequest payment = ZarinPal.getPaymentRequest();
-        // PaymentRequest payment = ZarinPal.getSandboxPaymentRequest();
+        PaymentRequest payment;
 
-        payment.setMerchantID(Config.MerchantID);
-        // payment.setMerchantID("71c705f8-bd37-11e6-aa0c-000c295eb8fc");
-        payment.setAmount(101);
+        if (!virtualPay) { // original pay
+            payment = ZarinPal.getPaymentRequest();
+            payment.setMerchantID(Config.MerchantID);
+
+        } else { // test pay
+            payment = ZarinPal.getSandboxPaymentRequest();
+            payment.setMerchantID("71c705f8-bd37-11e6-aa0c-000c295eb8fc");
+        }
+
+        payment.setAmount(priceCategory);
         payment.isZarinGateEnable(true);  // If you actived `ZarinGate`, can handle payment by `ZarinGate`
         payment.setDescription("پرداخت برای آگهی غیر رایگان");
         payment.setCallbackURL("divar://app");     /* Your App Scheme */
@@ -304,23 +316,19 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 binding.get().subCategorySelectionView.setVisibility(View.GONE);
             }
 
-            //TODO changed
-            String categoryPrice = data.getStringExtra(Constants.CATEGORY_PRICE);
-
-            int price;
             try {
-                price = Integer.parseInt(categoryPrice);
+                priceCategory = Integer.parseInt(data.getStringExtra(Constants.CATEGORY_PRICE));
             } catch (Exception e) {
-                price = 0;
+                priceCategory = 0;
             }
-            if (categoryName != null)
-                if (price > 0) {
-                    Log.i(TAG, "onActivityResult: PRICE");
-                    mNeedToPay = true;
-                } else {
-                    Log.i(TAG, "onActivityResult: FREE");
-                    mNeedToPay = false;
-                }
+
+            if (priceCategory > 0) {
+                Log.i(TAG, "onActivityResult: PRICE");
+                mNeedToPay = true;
+            } else {
+                Log.i(TAG, "onActivityResult: FREE");
+                mNeedToPay = false;
+            }
 
 
         } else if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_SUBCATEGORY) {
@@ -377,7 +385,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             bindingLatLng(itemViewModel.latValue, itemViewModel.lngValue);
         } else if (requestCode == Constants.REQUEST_CODE__PAYMENT) {
             //TODO ali payment
-            Toast.makeText(mContext, "OnResultPay", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(mContext, "OnResultPay", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "onActivityResult: " + Constants.REQUEST_CODE__PAYMENT);
         }
 
