@@ -285,6 +285,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_CATEGORY) {
 
             String categoryName = data.getStringExtra(Constants.CATEGORY_NAME);
+
+
             this.catId = data.getStringExtra(Constants.CATEGORY_ID);
 
             binding.get().categoryTextView.setText(categoryName);
@@ -303,8 +305,16 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             }
 
             //TODO changed
+            String categoryPrice = data.getStringExtra(Constants.CATEGORY_PRICE);
+
+            int price;
+            try {
+                price = Integer.parseInt(categoryPrice);
+            } catch (Exception e) {
+                price = 0;
+            }
             if (categoryName != null)
-                if (categoryName.contains("غیر رایگان")) {
+                if (price > 0) {
                     Log.i(TAG, "onActivityResult: PRICE");
                     mNeedToPay = true;
                 } else {

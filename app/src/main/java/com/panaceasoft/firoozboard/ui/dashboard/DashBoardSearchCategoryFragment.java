@@ -92,7 +92,8 @@ public class DashBoardSearchCategoryFragment extends PSFragment {
 
             initData();
 
-            navigationController.navigateBackToSearchFragment(this.getActivity(), this.catId, "");
+            //todo ali change price
+            navigationController.navigateBackToSearchFragment(this.getActivity(), this.catId, "", "0");
         }
 
         return super.onOptionsItemSelected(item);
@@ -111,7 +112,7 @@ public class DashBoardSearchCategoryFragment extends PSFragment {
         SearchCategoryAdapter nvadapter = new SearchCategoryAdapter(dataBindingComponent,
                 (category, id) -> {
 
-                    navigationController.navigateBackToSearchFragment(this.getActivity(), category.id, category.name);
+                    navigationController.navigateBackToSearchFragment(this.getActivity(), category.id, category.name, category.price);
 
                     if (getActivity() != null) {
                         this.getActivity().finish();

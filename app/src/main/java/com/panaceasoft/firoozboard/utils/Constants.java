@@ -258,6 +258,7 @@ public interface Constants {
     String CATEGORY = "CATEGORY";
     String CATEGORY_ALL = "ALL";
     String CATEGORY_FLAG = "CATEGORY_FLAG";
+    String CATEGORY_PRICE = "CATEGORY_PRICE";
 
     //endregion
 
