@@ -27,7 +27,7 @@ public abstract class PSRepository {
 
     //region Variables
 
-    protected final PSApiService psApiService;
+    protected PSApiService psApiService;
     protected final AppExecutors appExecutors;
     protected final PSCoreDb db;
     @Inject
@@ -51,6 +51,7 @@ public abstract class PSRepository {
         this.appExecutors = appExecutors;
         this.db = db;
     }
+
 
     //endregion
 

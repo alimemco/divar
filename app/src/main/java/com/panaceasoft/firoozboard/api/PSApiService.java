@@ -2,7 +2,7 @@ package com.panaceasoft.firoozboard.api;
 
 import androidx.lifecycle.LiveData;
 
-import com.panaceasoft.firoozboard.ui.user.sms.Sms;
+import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 import com.panaceasoft.firoozboard.viewobject.AboutUs;
 import com.panaceasoft.firoozboard.viewobject.ApiStatus;
 import com.panaceasoft.firoozboard.viewobject.Blog;
@@ -695,7 +695,7 @@ public interface PSApiService {
 
     @FormUrlEncoded
     @POST("https://api.kavenegar.com/v1/{API-KEY}/verify/lookup.json")
-    Call<Sms> sendSms(
+    Call<KavehNegar> sendSms(
             @Field("receptor") String phone,
             @Field("token") String code,
             @Field("template") String template,

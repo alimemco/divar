@@ -20,7 +20,7 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserRegisterBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
-import com.panaceasoft.firoozboard.ui.user.sms.Sms;
+import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 import com.panaceasoft.firoozboard.ui.user.verifyemail.VerifyEmailActivity;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
@@ -321,9 +321,9 @@ public class UserRegisterFragment extends PSFragment {
 
         //TODO ali send sms
 
-        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_SMS).enqueue(new Callback<Sms>() {
+        PsApp.getApi().sendSms(userEmail, code, "Verify", Config.API_KEY_KAVEH_NEGAR).enqueue(new Callback<KavehNegar>() {
             @Override
-            public void onResponse(Call<Sms> call, Response<Sms> response) {
+            public void onResponse(Call<KavehNegar> call, Response<KavehNegar> response) {
 
                 userViewModel.isLoading = false;
                 updateRegisterBtnStatus();
@@ -375,7 +375,7 @@ public class UserRegisterFragment extends PSFragment {
 
             @Override
 
-            public void onFailure(Call<Sms> call, Throwable t) {
+            public void onFailure(Call<KavehNegar> call, Throwable t) {
                 Utils.log(getClass(), t.getMessage());
             }
         });

@@ -18,7 +18,7 @@ public class Config {
 
     public static final String APP_API_URL = "http://firoozboard.ir/ApiService/index.php/";
     public static final String APP_BASE_URL = "http://firoozboard.ir/";
-    public static final String API_KEY_SMS = "5765435537442F4831356656704A7776546672584448592F695A586772756532466555332B3252576E71303D";
+    public static final String API_KEY_KAVEH_NEGAR = "5765435537442F4831356656704A7776546672584448592F695A586772756532466555332B3252576E71303D";
 
     public static final String APP_IMAGES_URL = "http://firoozboard.ir/ApiService/uploads/";
 

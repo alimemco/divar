@@ -12,15 +12,22 @@ import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserForgotPasswordBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
+import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * UserForgotPasswordFragment
@@ -135,17 +142,82 @@ public class UserForgotPasswordFragment extends PSFragment {
 
         Utils.hideKeyboard(getActivity());
 
-        String email = binding.get().emailEditText.getText().toString().trim();
-        if (email.equals("")) {
+        String phone = binding.get().emailEditText.getText().toString().trim();
+        if (phone.equals("")) {
 
             psDialogMsg.showWarningDialog(getString(R.string.error_message__blank_email), getString(R.string.app__ok));
             psDialogMsg.show();
             return;
         }
 
-        userViewModel.isLoading = true;
+        if (!phone.matches("(\\+98|0)?9\\d{9}")) {
+            psDialogMsg.showWarningDialog("شماره موبایل نامعتبر هست", getString(R.string.app__ok));
+            psDialogMsg.show();
+            return;
+        }
 
-        userViewModel.forgotPassword(email).observe(this, listResource -> {
+        userViewModel.isLoading = true;
+        prgDialog.get().show();
+        updateForgotBtnStatus();
+
+        String token = "app:url";
+        PsApp.getApi().sendForgetPassword(phone, token, "forget", Config.API_KEY_KAVEH_NEGAR).enqueue(new Callback<KavehNegar>() {
+            @Override
+            public void onResponse(Call<KavehNegar> call, Response<KavehNegar> response) {
+
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+
+
+                        if (response.body().getReturn() != null) {
+                            int status = response.body().getReturn().getStatus();
+                            if (status == 200) {
+                                Utils.log(getClass(), response.body().toString());
+
+                                psDialogMsg.showSuccessDialog("کد بازیابی ارسال شد", getString(R.string.app__ok));
+                                psDialogMsg.show();
+
+                                userViewModel.isLoading = false;
+                                prgDialog.get().cancel();
+
+                                updateForgotBtnStatus();
+
+
+                            } else {
+                                String message = response.body().getReturn().getMessage();
+                                showError(message);
+                            }
+
+
+                        } else {
+                            showError("getReturn() is empty");
+
+                        }
+
+                    } else {
+                        showError("response.body() is empty");
+
+                    }
+                } else {
+
+                    showError("response is not successful");
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<KavehNegar> call, Throwable t) {
+
+                showError(t.getMessage());
+            }
+        });
+
+
+        /*
+
+        userViewModel.forgotPassword(phone).observe(this, listResource -> {
 
             if (listResource != null) {
 
@@ -203,6 +275,16 @@ public class UserForgotPasswordFragment extends PSFragment {
 
 
         });
+        */
+    }
+
+    private void showError(String message) {
+        psDialogMsg.showErrorDialog(message, getString(R.string.app__ok));
+        psDialogMsg.show();
+
+        binding.get().forgotPasswordButton.setText(getResources().getString(R.string.forgot_password__title));
+        userViewModel.isLoading = false;
+        prgDialog.get().cancel();
     }
 
     //endregion

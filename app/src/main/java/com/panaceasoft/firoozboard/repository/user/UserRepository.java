@@ -530,7 +530,6 @@ public class UserRepository extends PSRepository {
             protected void saveCallResult(@NonNull ApiStatus apiStatus) {
 
                 Utils.psLog("SaveCallResult of forgotPassword");
-
                 resultsDb = apiStatus;
 
             }

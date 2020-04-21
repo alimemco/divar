@@ -3,7 +3,7 @@ package com.panaceasoft.firoozboard.ui.user.sms;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Sms {
+public class KavehNegar {
 
     @SerializedName("return")
     @Expose
