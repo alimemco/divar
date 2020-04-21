@@ -13,11 +13,14 @@ import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserForgotPasswordBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
+import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
@@ -25,6 +28,10 @@ import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
 
 import java.security.SecureRandom;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * UserForgotPasswordFragment
@@ -161,10 +168,6 @@ public class UserForgotPasswordFragment extends PSFragment {
 
         String code = String.valueOf(Utils.randInt(111111, 999999));
 
-        Intent intent = new Intent(getActivity(), PasswordChangeActivity.class);
-        intent.putExtra(Constants.VALIDATION_CODE, code);
-        startActivity(intent);
-/*
         PsApp.getApi().sendForgetPassword(phone, code, "forget", Config.API_KEY_KAVEH_NEGAR).enqueue(new Callback<KavehNegar>() {
             @Override
             public void onResponse(Call<KavehNegar> call, Response<KavehNegar> response) {
@@ -187,6 +190,7 @@ public class UserForgotPasswordFragment extends PSFragment {
 
                                 Intent intent = new Intent(getActivity() , PasswordChangeActivity.class);
                                 intent.putExtra(Constants.VALIDATION_CODE, code);
+                                intent.putExtra(Constants.USER_PHONE, phone);
                                 startActivity(intent);
 
 
@@ -220,7 +224,7 @@ public class UserForgotPasswordFragment extends PSFragment {
                 showError(t.getMessage());
             }
         });
-*/
+
     }
 
 
@@ -231,6 +235,7 @@ public class UserForgotPasswordFragment extends PSFragment {
         binding.get().forgotPasswordButton.setText(getResources().getString(R.string.forgot_password__title));
         userViewModel.isLoading = false;
         prgDialog.get().cancel();
+        prgDialog.get().dismiss();
     }
 
     //endregion

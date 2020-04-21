@@ -265,7 +265,7 @@ public interface PSApiService {
     //region PUT for Password Update
     @FormUrlEncoded
     @POST("rest/users/password_update/api_key/{API_KEY}")
-    LiveData<ApiResponse<ApiStatus>> postPasswordUpdate(@Path("API_KEY") String apiKey, @Field("user_id") String loginUserId, @Field("user_password") String password);
+    LiveData<ApiResponse<ApiStatus>> postPasswordUpdate(@Path("API_KEY") String apiKey, @Field("user_email") String loginUserId, @Field("user_password") String password);
     //endregion
 
     //endregion

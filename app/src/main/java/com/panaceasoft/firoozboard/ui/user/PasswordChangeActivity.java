@@ -23,6 +23,7 @@ public class PasswordChangeActivity extends PSAppCompactActivity {
 
     //region Override Methods
     private String code;
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class PasswordChangeActivity extends PSAppCompactActivity {
         ActivityPasswordChangeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_password_change);
 
         code = getIntent().getStringExtra(Constants.VALIDATION_CODE);
+        phone = getIntent().getStringExtra(Constants.USER_PHONE);
 
         // Init all UI
         initUI(binding);
@@ -50,7 +52,7 @@ public class PasswordChangeActivity extends PSAppCompactActivity {
         initToolbar(binding.toolbar, getResources().getString(R.string.password_change__password_change));
 
         // setup Fragment
-        setupFragment(PasswordChangeFragment.newInstance(code));
+        setupFragment(PasswordChangeFragment.newInstance(phone, code));
         // Or you can call like this
         //setupFragment(new NewsListFragment(), R.id.content_frame);
 

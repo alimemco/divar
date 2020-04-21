@@ -3,6 +3,7 @@ package com.panaceasoft.firoozboard.ui.user;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,12 @@ import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.panaceasoft.firoozboard.Config;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentPasswordChangeBinding;
+import com.panaceasoft.firoozboard.edit.model.Forget;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
@@ -23,11 +27,17 @@ import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * PasswordChangeFragment
  */
 public class PasswordChangeFragment extends PSFragment {
+
+    private static final String TAG = "PasswordChangeLog";
 
 
     //region Variables
@@ -44,12 +54,15 @@ public class PasswordChangeFragment extends PSFragment {
     private AutoClearedValue<ProgressDialog> prgDialog;
 
     private String code;
+    private String phone;
 
 
-    public static PasswordChangeFragment newInstance(String code) {
+    public static PasswordChangeFragment newInstance(String phone, String code) {
 
         Bundle args = new Bundle();
+        args.putString(Constants.USER_PHONE, phone);
         args.putString(Constants.VALIDATION_CODE, code);
+
         PasswordChangeFragment fragment = new PasswordChangeFragment();
         fragment.setArguments(args);
         return fragment;
@@ -59,6 +72,8 @@ public class PasswordChangeFragment extends PSFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         code = getArguments().getString(Constants.VALIDATION_CODE, "-1");
+        phone = getArguments().getString(Constants.USER_PHONE, "-1");
+        Log.i(TAG, "onCreate: " + code);
 
     }
 
@@ -167,8 +182,52 @@ public class PasswordChangeFragment extends PSFragment {
 
 
         userViewModel.isLoading = true;
+        prgDialog.get().show();
+        updateForgotBtnStatus();
+
+        PsApp.getApi().updatePassword(Config.API_KEY, phone, password).enqueue(new Callback<Forget>() {
+            @Override
+            public void onResponse(Call<Forget> call, Response<Forget> response) {
+
+                if (response.isSuccessful()) {
+
+                    if (response.body() != null) {
+
+                        boolean success = Boolean.parseBoolean(response.body().getSuccess());
+                        if (success) {
+                            psDialogMsg.showSuccessDialog("با موفقیت تغییر کرد", getString(R.string.app__ok));
+                            psDialogMsg.show();
+                            prgDialog.get().cancel();
+
+                            userViewModel.isLoading = false;
+
+                            updateForgotBtnStatus();
+
+                            if (getActivity() != null)
+                                getActivity().finish();
+
+                        } else {
+                            showError(response.body().getMessage());
+                        }
+                    } else {
+                        showError("response body empty");
+                    }
+
+                } else {
+                    showError("response is un Successful");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Forget> call, Throwable t) {
+                showError(t.getMessage());
+            }
+        });
 
 
+
+/*
         userViewModel.passwordUpdate(loginUserId, password).observe(this, listResource -> {
 
             if (listResource != null) {
@@ -225,10 +284,18 @@ public class PasswordChangeFragment extends PSFragment {
             }
 
         });
-
+*/
 
     }
 
     //endregion
+    private void showError(String message) {
+        psDialogMsg.showErrorDialog(message, getString(R.string.app__ok));
+        psDialogMsg.show();
 
+        binding.get().saveButton.setText(getResources().getString(R.string.password_change__save));
+        userViewModel.isLoading = false;
+        updateForgotBtnStatus();
+        prgDialog.get().dismiss();
+    }
 }
