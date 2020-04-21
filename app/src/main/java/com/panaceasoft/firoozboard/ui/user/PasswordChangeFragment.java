@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,6 +18,7 @@ import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentPasswordChangeBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
+import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
@@ -40,6 +42,25 @@ public class PasswordChangeFragment extends PSFragment {
     private AutoClearedValue<FragmentPasswordChangeBinding> binding;
 
     private AutoClearedValue<ProgressDialog> prgDialog;
+
+    private String code;
+
+
+    public static PasswordChangeFragment newInstance(String code) {
+
+        Bundle args = new Bundle();
+        args.putString(Constants.VALIDATION_CODE, code);
+        PasswordChangeFragment fragment = new PasswordChangeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        code = getArguments().getString(Constants.VALIDATION_CODE, "-1");
+
+    }
 
     //endregion
 
@@ -121,6 +142,15 @@ public class PasswordChangeFragment extends PSFragment {
 
         String password = binding.get().passwordEditText.getText().toString().trim();
         String confirmPassword = binding.get().confirmPasswordEditText.getText().toString().trim();
+        String codeEditText = binding.get().tokenEditText.getText().toString().trim();
+
+        if (!code.equals(codeEditText)) {
+            psDialogMsg.showWarningDialog("کد اعتبار سنجی غلط است", getString(R.string.app__ok));
+            psDialogMsg.show();
+            return;
+        }
+
+
         if (password.equals("") || confirmPassword.equals("")) {
 
             psDialogMsg.showWarningDialog(getString(R.string.error_message__blank_password), getString(R.string.app__ok));
@@ -137,6 +167,7 @@ public class PasswordChangeFragment extends PSFragment {
 
 
         userViewModel.isLoading = true;
+
 
         userViewModel.passwordUpdate(loginUserId, password).observe(this, listResource -> {
 
@@ -157,16 +188,16 @@ public class PasswordChangeFragment extends PSFragment {
                         // Success State
                         // Data are from Server
 
-                            if (listResource.data != null) {
+                        if (listResource.data != null) {
 
-                                psDialogMsg.showSuccessDialog(listResource.data.message, getString(R.string.app__ok));
-                                psDialogMsg.show();
-                                prgDialog.get().cancel();
+                            psDialogMsg.showSuccessDialog(listResource.data.message, getString(R.string.app__ok));
+                            psDialogMsg.show();
+                            prgDialog.get().cancel();
 
-                                userViewModel.isLoading = false;
+                            userViewModel.isLoading = false;
 
-                                updateForgotBtnStatus();
-                            }
+                            updateForgotBtnStatus();
+                        }
 
                         break;
                     case ERROR:
@@ -194,6 +225,8 @@ public class PasswordChangeFragment extends PSFragment {
             }
 
         });
+
+
     }
 
     //endregion

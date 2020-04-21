@@ -2,6 +2,7 @@ package com.panaceasoft.firoozboard.ui.user;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,22 +13,18 @@ import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
-import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentUserForgotPasswordBinding;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
-import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
+import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.PSDialogMsg;
 import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.security.SecureRandom;
 
 /**
  * UserForgotPasswordFragment
@@ -138,6 +135,8 @@ public class UserForgotPasswordFragment extends PSFragment {
         }
     }
 
+    private static SecureRandom random = new SecureRandom();
+
     private void forgotPassword() {
 
         Utils.hideKeyboard(getActivity());
@@ -160,27 +159,35 @@ public class UserForgotPasswordFragment extends PSFragment {
         prgDialog.get().show();
         updateForgotBtnStatus();
 
-        String token = "app:url";
-        PsApp.getApi().sendForgetPassword(phone, token, "forget", Config.API_KEY_KAVEH_NEGAR).enqueue(new Callback<KavehNegar>() {
+        String code = String.valueOf(Utils.randInt(111111, 999999));
+
+        Intent intent = new Intent(getActivity(), PasswordChangeActivity.class);
+        intent.putExtra(Constants.VALIDATION_CODE, code);
+        startActivity(intent);
+/*
+        PsApp.getApi().sendForgetPassword(phone, code, "forget", Config.API_KEY_KAVEH_NEGAR).enqueue(new Callback<KavehNegar>() {
             @Override
             public void onResponse(Call<KavehNegar> call, Response<KavehNegar> response) {
 
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
 
-
                         if (response.body().getReturn() != null) {
                             int status = response.body().getReturn().getStatus();
                             if (status == 200) {
                                 Utils.log(getClass(), response.body().toString());
 
-                                psDialogMsg.showSuccessDialog("کد بازیابی ارسال شد", getString(R.string.app__ok));
-                                psDialogMsg.show();
+                               // psDialogMsg.showSuccessDialog("کد بازیابی ارسال شد", getString(R.string.app__ok));
+                              //  psDialogMsg.show();
 
                                 userViewModel.isLoading = false;
                                 prgDialog.get().cancel();
 
                                 updateForgotBtnStatus();
+
+                                Intent intent = new Intent(getActivity() , PasswordChangeActivity.class);
+                                intent.putExtra(Constants.VALIDATION_CODE, code);
+                                startActivity(intent);
 
 
                             } else {
@@ -213,70 +220,9 @@ public class UserForgotPasswordFragment extends PSFragment {
                 showError(t.getMessage());
             }
         });
-
-
-        /*
-
-        userViewModel.forgotPassword(phone).observe(this, listResource -> {
-
-            if (listResource != null) {
-
-                Utils.psLog("Got Data" + listResource.message + listResource.toString());
-
-                switch (listResource.status) {
-                    case LOADING:
-                        // Loading State
-                        // Data are from Local DB
-
-                        prgDialog.get().show();
-                        updateForgotBtnStatus();
-
-                        break;
-                    case SUCCESS:
-                        // Success State
-                        // Data are from Server
-
-                        if (listResource.data != null) {
-
-                            psDialogMsg.showSuccessDialog(listResource.data.message, getString(R.string.app__ok));
-                            psDialogMsg.show();
-
-                            userViewModel.isLoading = false;
-                            prgDialog.get().cancel();
-
-                            updateForgotBtnStatus();
-                        }
-
-                        break;
-                    case ERROR:
-                        // Error State
-
-                        psDialogMsg.showErrorDialog(listResource.message, getString(R.string.app__ok));
-                        psDialogMsg.show();
-
-                        binding.get().forgotPasswordButton.setText(getResources().getString(R.string.forgot_password__title));
-                        userViewModel.isLoading = false;
-                        prgDialog.get().cancel();
-
-                        break;
-                    default:
-                        // Default
-                        userViewModel.isLoading = false;
-                        prgDialog.get().cancel();
-                        break;
-                }
-
-            } else {
-
-                // Init Object or Empty Data
-                Utils.psLog("Empty Data");
-
-            }
-
-
-        });
-        */
+*/
     }
+
 
     private void showError(String message) {
         psDialogMsg.showErrorDialog(message, getString(R.string.app__ok));
