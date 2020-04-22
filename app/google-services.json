@@ -158,7 +158,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:610907918844:android:942f45173ddb0435",
         "android_client_info": {
-          "package_name": "ir.studiosagold.divar"
+          "package_name": "com.panaceasoft.firoozboard"
         }
       },
       "oauth_client": [
@@ -166,7 +166,7 @@
           "client_id": "610907918844-ok9k59klasoet6bndu1bpcrlgone4b4n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "ir.studiosagold.divar",
+            "package_name": "com.panaceasoft.firoozboard",
             "certificate_hash": "5a7bf91888c1043ecc57783d2bd2297c1cd23192"
           }
         },
@@ -174,7 +174,7 @@
           "client_id": "610907918844-qa5drnhbk5g6tqs8jsenp8bvleli39k5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "ir.studiosagold.divar",
+            "package_name": "com.panaceasoft.firoozboard",
             "certificate_hash": "aad34813d11fa7ce29ee3be079601dc1bc426e61"
           }
         },
@@ -182,7 +182,7 @@
           "client_id": "610907918844-7m8j4oa3o18ejms6dal1kku4q4e05hnh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "ir.studiosagold.divar",
+            "package_name": "com.panaceasoft.firoozboard",
             "certificate_hash": "a37fb35478e5d2ab84dc9f01591e08467663c500"
           }
         },
