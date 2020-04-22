@@ -84,6 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/userCardView"
                 app:textSize='@{"button_text"}'
                 tools:layout_editor_absoluteY="640dp"
+                android:layout_marginTop="@dimen/space_20"
                 tools:text="Save" />
 
             <Button
@@ -204,6 +205,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/userPhoneEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -230,6 +232,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/phoneTextView" />
 
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/userAboutMeEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -257,6 +260,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/aboutMeTextView" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/phoneTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -276,6 +280,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/userEmailEditText" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/aboutMeTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

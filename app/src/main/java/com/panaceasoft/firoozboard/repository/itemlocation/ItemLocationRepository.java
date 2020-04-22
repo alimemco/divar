@@ -16,6 +16,7 @@ import com.panaceasoft.firoozboard.utils.Utils;
 import com.panaceasoft.firoozboard.viewobject.ItemLocation;
 import com.panaceasoft.firoozboard.viewobject.common.Resource;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;

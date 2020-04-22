@@ -41,6 +41,7 @@ import retrofit2.Response;
 
 @Singleton
 public class ItemRepository extends PSRepository {
+    private final ItemDao itemDao;
     /**
      * Constructor of PSRepository
      *
@@ -49,10 +50,9 @@ public class ItemRepository extends PSRepository {
      * @param db           Panacea-Soft DB
      */
     private String isSelected;
-    private final ItemDao itemDao;
 
     @Inject
-    protected ItemRepository(PSApiService psApiService, AppExecutors appExecutors, PSCoreDb db,ItemDao itemDao) {
+    protected ItemRepository(PSApiService psApiService, AppExecutors appExecutors, PSCoreDb db, ItemDao itemDao) {
         super(psApiService, appExecutors, db);
         this.itemDao = itemDao;
     }
@@ -178,16 +178,15 @@ public class ItemRepository extends PSRepository {
 
         Utils.psLog("Load getProductListByKey From Db");
 
-        if(!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()){
+        if (!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()) {
             itemParameterHolder.location_id = Constants.EMPTY_STRING;
         }
         itemDao.deleteAll();
         String mapKey = itemParameterHolder.getItemMapKey();
-        if(!limit.equals(Config.LIMIT_FROM_DB_COUNT)){
+        if (!limit.equals(Config.LIMIT_FROM_DB_COUNT)) {
             return itemDao.getItemByKey(mapKey);
-        }
-        else {
-            return itemDao.getItemByKeyByLimit(mapKey,limit);
+        } else {
+            return itemDao.getItemByKeyByLimit(mapKey, limit);
         }
 
     }
@@ -204,7 +203,7 @@ public class ItemRepository extends PSRepository {
 
                     db.beginTransaction();
 
-                    if(!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()){
+                    if (!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()) {
                         itemParameterHolder.location_id = Constants.EMPTY_STRING;
                     }
 
@@ -242,16 +241,15 @@ public class ItemRepository extends PSRepository {
             protected LiveData<List<Item>> loadFromDb() {
                 Utils.psLog("Load getProductListByKey From Db");
 
-                if(!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()){
+                if (!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()) {
                     itemParameterHolder.location_id = Constants.EMPTY_STRING;
                 }
 
                 String mapKey = itemParameterHolder.getItemMapKey();
-                if(!limit.equals(Config.LIMIT_FROM_DB_COUNT)){
+                if (!limit.equals(Config.LIMIT_FROM_DB_COUNT)) {
                     return itemDao.getItemByKey(mapKey);
-                }
-                else {
-                    return itemDao.getItemByKeyByLimit(mapKey,limit);
+                } else {
+                    return itemDao.getItemByKeyByLimit(mapKey, limit);
                 }
 
             }
@@ -263,9 +261,9 @@ public class ItemRepository extends PSRepository {
                 Utils.psLog("Call API Service to getProductListByKey.");
 
                 return psApiService.searchItem(Config.API_KEY, limit, offset, loginUserId, itemParameterHolder.keyword, itemParameterHolder.cat_id, itemParameterHolder.sub_cat_id,
-                        itemParameterHolder.order_by, itemParameterHolder.order_type, itemParameterHolder.type_id,itemParameterHolder.price_type_id,
-                        itemParameterHolder.location_id,itemParameterHolder.deal_option_id,itemParameterHolder.condition_id,itemParameterHolder.max_price,
-                        itemParameterHolder.min_price,"",itemParameterHolder.lat,itemParameterHolder.lng,itemParameterHolder.mapMiles,itemParameterHolder.userId);
+                        itemParameterHolder.order_by, itemParameterHolder.order_type, itemParameterHolder.type_id, itemParameterHolder.price_type_id,
+                        itemParameterHolder.location_id, itemParameterHolder.deal_option_id, itemParameterHolder.condition_id, itemParameterHolder.max_price,
+                        itemParameterHolder.min_price, "", itemParameterHolder.lat, itemParameterHolder.lng, itemParameterHolder.mapMiles, itemParameterHolder.userId);
 
 
             }
@@ -286,10 +284,9 @@ public class ItemRepository extends PSRepository {
 //        prepareRatingValueForServer(productParameterHolder);
 
         LiveData<ApiResponse<List<Item>>> apiResponse = psApiService.searchItem(Config.API_KEY, limit, offset, loginUserId, itemParameterHolder.keyword, itemParameterHolder.cat_id, itemParameterHolder.sub_cat_id,
-                itemParameterHolder.order_by, itemParameterHolder.order_type, itemParameterHolder.type_id,itemParameterHolder.price_type_id,
-                itemParameterHolder.location_id,itemParameterHolder.deal_option_id,itemParameterHolder.condition_id,itemParameterHolder.max_price,
-                itemParameterHolder.min_price,"",itemParameterHolder.lat,itemParameterHolder.lng,itemParameterHolder.mapMiles,itemParameterHolder.userId);
-
+                itemParameterHolder.order_by, itemParameterHolder.order_type, itemParameterHolder.type_id, itemParameterHolder.price_type_id,
+                itemParameterHolder.location_id, itemParameterHolder.deal_option_id, itemParameterHolder.condition_id, itemParameterHolder.max_price,
+                itemParameterHolder.min_price, "", itemParameterHolder.lat, itemParameterHolder.lng, itemParameterHolder.mapMiles, itemParameterHolder.userId);
 
 
         statusLiveData.addSource(apiResponse, response -> {
@@ -395,11 +392,11 @@ public class ItemRepository extends PSRepository {
 
                             if (isSelected.equals(Constants.ONE)) {
                                 db.itemDao().deleteFavouriteItemByItemId(apiResponse.body.id);
-                            }else {
+                            } else {
                                 int lastIndex = db.itemDao().getMaxSortingFavourite();
                                 lastIndex = lastIndex + 1;
 
-                                db.itemDao().insertFavourite(new ItemFavourite(apiResponse.body.id, lastIndex ));
+                                db.itemDao().insertFavourite(new ItemFavourite(apiResponse.body.id, lastIndex));
                             }
                         }
 
@@ -450,7 +447,7 @@ public class ItemRepository extends PSRepository {
 
     //item image upload
 
-    public LiveData<Resource<Image>> uploadItemImage(String filePath,String imageId, String itemId) {
+    public LiveData<Resource<Image>> uploadItemImage(String filePath, String imageId, String itemId) {
 
         //Init File
         MultipartBody.Part body = null;
@@ -518,7 +515,7 @@ public class ItemRepository extends PSRepository {
             protected LiveData<ApiResponse<Image>> createCall() {
                 Utils.psLog("Call API Service to upload image.");
 
-                return psApiService.itemImageUpload(Config.API_KEY,idRB,imgIdRB ,finalBody);
+                return psApiService.itemImageUpload(Config.API_KEY, idRB, imgIdRB, finalBody);
             }
 
             @Override
@@ -532,9 +529,9 @@ public class ItemRepository extends PSRepository {
 
     //item upload
 
-    public LiveData<Resource<Item>> uploadItem(String catId, String subCatId, String itemTypeId, String itemPriceTypeId, String conditionId,String locationId,String remark,
+    public LiveData<Resource<Item>> uploadItem(String catId, String subCatId, String itemTypeId, String itemPriceTypeId, String conditionId, String locationId, String remark,
                                                String description, String highlightInfo, String price, String dealOptionId, String brand, String businessMode,
-                                               String isSoldOut, String title, String address, String lat, String lng, String itemId,String userId) {
+                                               String isSoldOut, String title, String address, String lat, String lng, String itemId, String userId) {
 
         final MutableLiveData<Resource<Item>> statusLiveData = new MutableLiveData<>();
 
@@ -544,10 +541,28 @@ public class ItemRepository extends PSRepository {
                 // Call the API Service
                 Response<List<Item>> response;
 
-                response = psApiService.itemUpload(Config.API_KEY, catId, subCatId, itemTypeId, itemPriceTypeId, conditionId,locationId,remark,
-                        description, highlightInfo, price, dealOptionId, brand, businessMode,
-                        isSoldOut, title, address, lat, lng, itemId,userId).execute();
-
+                response = psApiService.itemUpload(Config.API_KEY,
+                        catId,
+                        subCatId,
+                        itemTypeId,
+                        itemPriceTypeId,
+                        conditionId,
+                        locationId,
+                        remark,
+                        description,
+                        highlightInfo,
+                        price,
+                        dealOptionId,
+                        brand,
+                        businessMode,
+                        isSoldOut,
+                        title,
+                        address,
+                        lat,
+                        lng,
+                        itemId,
+                        userId
+                ).execute();
                 // Wrap with APIResponse Class
                 ApiResponse<List<Item>> apiResponse = new ApiResponse<>(response);
 
@@ -577,7 +592,10 @@ public class ItemRepository extends PSRepository {
                     statusLiveData.postValue(Resource.error(apiResponse.errorMessage, null));
                 }
 
-            } catch (IOException e) {
+            } catch (Exception e) {
+                //  statusLiveData.postValue(Resource.error(e.getMessage(), null));
+                e.printStackTrace();
+                Utils.psLog("SPACE send : " + e.getMessage());
                 statusLiveData.postValue(Resource.error(e.getMessage(), null));
             }
         });
@@ -604,7 +622,7 @@ public class ItemRepository extends PSRepository {
                     db.itemDao().insertAll(itemList);
 
                     for (int i = 0; i < itemList.size(); i++) {
-                        db.itemDao().insertItemFromFollower(new ItemFromFollower(itemList.get(i).id, itemList.get(i).user.userId,i + 1));
+                        db.itemDao().insertItemFromFollower(new ItemFromFollower(itemList.get(i).id, itemList.get(i).user.userId, i + 1));
                     }
 
                     db.setTransactionSuccessful();
@@ -655,7 +673,7 @@ public class ItemRepository extends PSRepository {
 
         final MediatorLiveData<Resource<Boolean>> statusLiveData = new MediatorLiveData<>();
 
-        LiveData<ApiResponse<List<Item>>> apiResponse = psApiService.getItemListFromFollower(Config.API_KEY,loginUserId, limit, offset);
+        LiveData<ApiResponse<List<Item>>> apiResponse = psApiService.getItemListFromFollower(Config.API_KEY, loginUserId, limit, offset);
 
         statusLiveData.addSource(apiResponse, response -> {
 
@@ -928,8 +946,7 @@ public class ItemRepository extends PSRepository {
 
     //report item
 
-    public LiveData<Resource<Boolean>> reportItem(String itemId, String reportUserId)
-    {
+    public LiveData<Resource<Boolean>> reportItem(String itemId, String reportUserId) {
         final MutableLiveData<Resource<Boolean>> statusLiveData = new MutableLiveData<>();
 
         appExecutors.networkIO().execute(() -> {
@@ -978,7 +995,6 @@ public class ItemRepository extends PSRepository {
     }
 
     //endregion
-
 
 
 }

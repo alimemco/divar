@@ -112,7 +112,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/telegramTitleTextView"
                 app:textSize='@{"font_body_size"}'
-                tools:text="telegram" />
+                tools:text="t.me/fz_board" />
 
 
             <ImageView
@@ -160,10 +160,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/websiteTitleTextView"
                 app:textSize='@{"font_body_size"}'
-                tools:text="http://www.panacea-soft.com" />
+                tools:text="http://firoozboard.ir/" />
 
 
             <ImageView
+                
                 android:id="@+id/facebookImage"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
@@ -174,6 +175,7 @@
                 app:srcCompat="@drawable/facebook" />
 
             <TextView
+                
                 android:id="@+id/facebookTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -192,6 +194,7 @@
                 tools:text="Facebook" />
 
             <TextView
+                
                 android:id="@+id/facebookTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -237,6 +240,7 @@
                 tools:text="شماره تماس" />
 
             <TextView
+            
                 android:id="@+id/gplusTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -255,6 +259,7 @@
 
 
             <ImageView
+                
                 android:id="@+id/twitterImage"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
@@ -265,6 +270,7 @@
                 app:srcCompat="@drawable/twitter" />
 
             <TextView
+                
                 android:id="@+id/twitterTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -283,6 +289,7 @@
                 tools:text="Twitter" />
 
             <TextView
+                
                 android:id="@+id/twitterTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -325,7 +332,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/instagramImage"
-                app:layout_constraintTop_toBottomOf="@+id/twitterTextView"
+                app:layout_constraintTop_toBottomOf="@+id/phone2TextView"
                 app:textSize='@{"font_body_size"}'
                 tools:text="Instagram" />
 
@@ -345,9 +352,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/instaTitleTextView"
                 app:textSize='@{"font_body_size"}'
-                tools:text="Ins1" />
+                tools:text="instagram.com/fz.board" />
 
             <ImageView
+                
                 android:id="@+id/youtubeImage"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
@@ -358,6 +366,7 @@
                 app:srcCompat="@drawable/youtube" />
 
             <TextView
+                
                 android:id="@+id/youTubeTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -376,6 +385,7 @@
                 tools:text="YouTube" />
 
             <TextView
+                
                 android:id="@+id/youtubeTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -439,7 +449,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pinterestTitleTextView"
                 app:textSize='@{"font_body_size"}'
-                tools:text="P1" />
+                tools:text="firoozboard@gmail.com" />
 
             <!--imageUrl="@{aboutUs.defaultIcon.imgPath}"-->
 
@@ -455,9 +465,11 @@
                 app:font='@{"normal"}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gplusImage" />
+                app:layout_constraintTop_toBottomOf="@+id/gplusImage"
+    />
 
             <TextView
+                
                 android:id="@+id/phone3TextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

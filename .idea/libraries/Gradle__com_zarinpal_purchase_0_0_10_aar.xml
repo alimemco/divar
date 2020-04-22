@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.zarinpal:purchase:0.0.10@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2756690fecafd86d007d047cb7f8606e/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2756690fecafd86d007d047cb7f8606e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ead8747549e09c8e9984bc7841e2f89/jetified-purchase-0.0.10/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ead8747549e09c8e9984bc7841e2f89/jetified-purchase-0.0.10/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zarinpal/purchase/0.0.10/a3c878792b8cceff43c50379b8f5f29e8cdf5411/purchase-0.0.10-javadoc.jar!/" />

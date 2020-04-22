@@ -1,23 +1,7 @@
 package com.panaceasoft.firoozboard.edit.model;
 
 public class Detail {
-    /*
-        private String itemId ;
-        private String locationId ;
-        private String locationName ;
 
-        private String title ;
-        private String category ;
-        private String type ;
-        private String phone ;
-        private String price ;
-        private String description ;
-        private String city;
-        private String address;
-
-        private String lat;
-        private String lng;
-    */
     private String catId;
     private String subCatId;
     private String itemTypeId;
