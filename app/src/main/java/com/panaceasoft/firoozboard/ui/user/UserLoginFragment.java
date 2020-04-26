@@ -532,7 +532,7 @@ public class UserLoginFragment extends PSFragment {
                     case ERROR:
                         // Error State
 
-                        psDialogMsg.showErrorDialog(listResource.message, getString(R.string.app__ok));
+                        psDialogMsg.showErrorDialog("شماره تلفن یا پسورد اشتباه است", getString(R.string.app__ok));
                         psDialogMsg.show();
 
                         userViewModel.setLoadingState(false);

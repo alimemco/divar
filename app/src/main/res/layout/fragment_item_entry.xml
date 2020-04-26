@@ -347,21 +347,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categorySelectionView" />
 
-<!--
-            <TextView
-                android:id="@+id/starTextView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/item_entry_star"
-                android:textAlignment="viewStart"
-                android:textColor="@color/textview__star_point"
-                android:textSize="@dimen/font_title_size"
-                app:font='@{"normal"}'
-                app:layout_constraintBottom_toBottomOf="@+id/sub_product_type_text_view"
-                app:layout_constraintStart_toEndOf="@+id/sub_product_type_text_view"
-                app:layout_constraintTop_toTopOf="@+id/sub_product_type_text_view" />
--->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/subCategorySelectionView"
@@ -396,7 +381,7 @@
                         android:textSize="@dimen/font_body_size"
                         app:font='@{"normal"}'
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView7"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

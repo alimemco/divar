@@ -379,8 +379,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             bindingLatLng(itemViewModel.latValue, itemViewModel.lngValue);
         } else if (requestCode == Constants.REQUEST_CODE__PAYMENT) {
-            //TODO ali payment
-            //  Toast.makeText(mContext, "OnResultPay", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "onActivityResult: " + Constants.REQUEST_CODE__PAYMENT);
         }
 
@@ -705,6 +703,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
     }
 
+
     private void sendDetail() {
         if (SystemClock.elapsedRealtime() - mLastClickTime < 1500)
             return;
@@ -918,12 +917,15 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
 
                             } else {
-                                Toast.makeText(getActivity(), "آگهی با موفقیت ارسال شد", Toast.LENGTH_SHORT).show();
-                                progressDialog.cancel();
+                                psDialogMsg.showSuccessDialog(getString(R.string.success_message__sent_item), getString(R.string.app__ok));
+                                psDialogMsg.okButton.setOnClickListener(view -> {
 
-                                if (getActivity() != null) {
-                                    getActivity().finish();
-                                }
+                                    if (getActivity() != null) {
+                                        getActivity().finish();
+                                    }
+                                });
+                                psDialogMsg.show();
+
 
                             }
 
@@ -947,7 +949,15 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 switch (result.status) {
                     case SUCCESS:
                         progressDialog.cancel();
-                        Toast.makeText(ItemEntryFragment.this.getActivity(), "آگهی با موفقیت ارسال شد", Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(ItemEntryFragment.this.getActivity(), "آگهی با موفقیت ارسال شد", Toast.LENGTH_SHORT).show();
+                        psDialogMsg.showSuccessDialog(getString(R.string.success_message__sent_item), getString(R.string.app__ok));
+                        psDialogMsg.okButton.setOnClickListener(view -> {
+
+                            if (getActivity() != null) {
+                                getActivity().finish();
+                            }
+                        });
+                        psDialogMsg.show();
 
                         imageCount += 1;
 
@@ -955,15 +965,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                             ItemEntryFragment.this.callImageUpload(imageCount);//first is one
                         }
 
-                        if (getActivity() != null) {
-                            getActivity().finish();
-                        }
-
-//                        else {
-//                            if (ItemEntryFragment.this.getActivity() != null) {
-//                                ItemEntryFragment.this.getActivity().finish();
-//                            }
+//                        if (getActivity() != null) {
+//                            getActivity().finish();
 //                        }
+
 
                         break;
 

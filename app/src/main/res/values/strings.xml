@@ -224,12 +224,12 @@
     <string name="error_message__choose_category">لطفا اول دسته بندی را انتخاب نمایید</string>
     <string name="error_message__password_not_equal">رمز های عبور مطابقت ندارند!</string>
     <string name="error_message__no_internet">بدون اتصال به اینترنت.</string>
-    <!-- TODO changed-->
     <string name="error_message__email_exists">این شماره تلفن قبلا ثبت شده است!</string>
     <string name="error_message__image_cannot_upload">تصویر قابل آپلود نیست</string>
     <string name="error_message__item_cannot_upload">آگهی قابل ارسال نیست</string>
     <string name="error_message__code_not_verify">کد تایید شما معتبر نیست!</string>
     <string name="error_message__already_accept">کالای شما قبلاً فروخته شده است</string>
+    <string name="success_message__sent_item">آگهی ارسال شد و پس از تایید نمایش داده میشود</string>
 
     <!--FeatureUIButton-->
     <string name="Feature_UI_Type__Button">دسته بندی</string>
