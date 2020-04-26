@@ -263,16 +263,9 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/rounded_corner_shape_button_for_login"
+                            android:foreground="?attr/selectableItemBackground"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/joinedDateTitleTextView">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="?android:attr/selectableItemBackground"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/LogOut">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -301,7 +294,6 @@
                                     app:srcCompat="@drawable/ic_logout" />
 
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
