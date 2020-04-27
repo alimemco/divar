@@ -117,16 +117,18 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private AutoClearedValue<FragmentItemEntryBinding> binding;
     private AutoClearedValue<BottomSheetDialog> mBottomSheetDialog;
     private AutoClearedValue<ItemEntryBottomBoxBinding> bottomBoxLayoutBinding;
+
     private boolean mPaid;
     private Context mContext;
     private SharedPrefManager sharedPreferences;
-
     private int priceCategory;
+    private String categoryName;
     private boolean mNeedToPay = false;
+
     /**
      * test api purchase
      */
-    private boolean virtualPay = true;
+    private boolean virtualPay = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -225,7 +227,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         payment.setAmount(priceCategory);
         payment.isZarinGateEnable(true);  // If you actived `ZarinGate`, can handle payment by `ZarinGate`
-        payment.setDescription("پرداخت برای آگهی غیر رایگان");
+        payment.setDescription(String.format("%s %s", "پرداخت برای دسته بندی", categoryName));
         payment.setCallbackURL("divar://app");     /* Your App Scheme */
         //  payment.setMobile("09355106005");            /* Optional Parameters */
         // payment.setEmail("imannamix@gmail.com");     /* Optional Parameters */
@@ -313,7 +315,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
         if (requestCode == Constants.REQUEST_CODE__SEARCH_FRAGMENT && resultCode == Constants.RESULT_CODE__SEARCH_WITH_CATEGORY) {
 
-            String categoryName = data.getStringExtra(Constants.CATEGORY_NAME);
+            categoryName = data.getStringExtra(Constants.CATEGORY_NAME);
 
 
             this.catId = data.getStringExtra(Constants.CATEGORY_ID);
