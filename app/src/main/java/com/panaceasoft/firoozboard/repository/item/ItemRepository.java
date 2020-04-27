@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.developers.imagezipper.ImageZipper;
 import com.panaceasoft.firoozboard.AppExecutors;
 import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.api.ApiResponse;
@@ -452,14 +453,9 @@ public class ItemRepository extends PSRepository {
         //Init File
         MultipartBody.Part body = null;
         if (!filePath.equals("")) {
-            File file = new File(filePath);
 
-            Utils.log(getClass(), String.format("%s %s", "before image size : ", getImageSize(file)));
-
-            compressImage();
-
-            Utils.log(getClass(), String.format("%s %s", "after image size : ", getImageSize(file)));
-            
+            File originalFile = new File(filePath);
+            File file = compressImage(originalFile);
 
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -533,15 +529,22 @@ public class ItemRepository extends PSRepository {
         }.asLiveData();
     }
 
-    private void compressImage() {
+    private File compressImage(File actualFile) {
+        File imageZipperFile = null;
+        try {
+            imageZipperFile = new ImageZipper(connectivity.getContext()).compressToFile(actualFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageZipperFile;
+
     }
 
 
     //endregion
 /*
-    public String compressImage(String imageUri) {
+    public String compressImage(String filePath) {
 
-        String filePath = getRealPathFromURI(imageUri);
         Bitmap scaledBitmap = null;
 
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -556,8 +559,8 @@ public class ItemRepository extends PSRepository {
 
 //      max Height and width values of the compressed image is taken as 816x612
 
-        float maxHeight = 816.0f;
-        float maxWidth = 612.0f;
+        float maxHeight = 1000.0f;
+        float maxWidth = 1000.0f;
         float imgRatio = actualWidth / actualHeight;
         float maxRatio = maxWidth / maxHeight;
 
@@ -642,13 +645,13 @@ public class ItemRepository extends PSRepository {
             e.printStackTrace();
         }
 
-        FileOutputStream out = null;
+        FileOutputStream out ;
         String filename = getFilename();
         try {
             out = new FileOutputStream(filename);
 
 //          write the compressed bitmap at the destination specified by filename.
-            scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
+            scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -659,7 +662,7 @@ public class ItemRepository extends PSRepository {
     }
 
     public String getFilename() {
-        File file = new File(Environment.getExternalStorageDirectory().getPath(), "MyFolder/Images");
+        File file = new File(Environment.getExternalStorageDirectory().getPath(), "Firoozboard/Images");
         if (!file.exists()) {
             file.mkdirs();
         }
@@ -668,17 +671,7 @@ public class ItemRepository extends PSRepository {
 
     }
 
-    private String getRealPathFromURI(String contentURI) {
-        Uri contentUri = Uri.parse(contentURI);
-        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
-        if (cursor == null) {
-            return contentUri.getPath();
-        } else {
-            cursor.moveToFirst();
-            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            return cursor.getString(index);
-        }
-    }
+
 
     public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;
@@ -700,8 +693,8 @@ public class ItemRepository extends PSRepository {
     }
     //item upload
 
+*/
 
-    */
     public LiveData<Resource<Item>> uploadItem(String catId, String subCatId, String itemTypeId, String itemPriceTypeId, String conditionId, String locationId, String remark,
                                                String description, String highlightInfo, String price, String dealOptionId, String brand, String businessMode,
                                                String isSoldOut, String title, String address, String lat, String lng, String itemId, String userId) {

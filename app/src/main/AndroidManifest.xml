@@ -20,6 +20,8 @@
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
+    <uses-sdk tools:overrideLibrary="com.developers.imagezipper" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />

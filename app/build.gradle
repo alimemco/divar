@@ -145,5 +145,7 @@ dependencies {
 
     implementation 'com.zarinpal:purchase:0.0.10'
 
+    implementation 'com.github.amanjeetsingh150:ImageZipper:1.3'
+
 
 }
