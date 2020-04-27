@@ -1,7 +1,7 @@
 package com.panaceasoft.firoozboard.api;
 
 import com.panaceasoft.firoozboard.edit.model.AlertModel;
-import com.panaceasoft.firoozboard.edit.model.Forget;
+import com.panaceasoft.firoozboard.edit.model.QueryModel;
 import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 
 import retrofit2.Call;
@@ -36,8 +36,19 @@ public interface ApiService {
     Call<AlertModel> getAlert();
 
     @POST("ApiService//edit/update_password.php")
-    Call<Forget> updatePassword(@Query("token") String api_key,
-                                @Query("phone") String phone,
-                                @Query("password") String password
+    Call<QueryModel> updatePassword(@Query("token") String api_key,
+                                    @Query("phone") String phone,
+                                    @Query("password") String password
     );
+
+
+    @POST("ApiService//edit/pay_detail.php")
+    Call<QueryModel> sendPayDetail(@Query("token") String api_key,
+                                   @Query("userID") String userID,
+                                   @Query("refId") String refId,
+                                   @Query("catId") String catId,
+                                   @Query("price") String price
+
+    );
+
 }

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.panaceasoft.firoozboard.edit.model.Detail;
+import com.panaceasoft.firoozboard.utils.Constants;
 
 
 public class SharedPrefManager {
@@ -22,6 +23,17 @@ public class SharedPrefManager {
         String json = gson.toJson(detail);
         editor.putString("Detail", json);
         editor.apply();
+    }
+
+    public void saveCategoryPrice(String priceCategory) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(Constants.CATEGORY_PRICE, priceCategory);
+        editor.apply();
+    }
+
+    public String getCategoryPrice() {
+        return sharedPreferences.getString(Constants.CATEGORY_PRICE, "0");
     }
 
 

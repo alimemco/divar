@@ -19,7 +19,7 @@ import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentPasswordChangeBinding;
-import com.panaceasoft.firoozboard.edit.model.Forget;
+import com.panaceasoft.firoozboard.edit.model.QueryModel;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.utils.AutoClearedValue;
 import com.panaceasoft.firoozboard.utils.Constants;
@@ -185,9 +185,9 @@ public class PasswordChangeFragment extends PSFragment {
         prgDialog.get().show();
         updateForgotBtnStatus();
 
-        PsApp.getApi().updatePassword(Config.API_KEY, phone, password).enqueue(new Callback<Forget>() {
+        PsApp.getApi().updatePassword(Config.API_KEY, phone, password).enqueue(new Callback<QueryModel>() {
             @Override
-            public void onResponse(Call<Forget> call, Response<Forget> response) {
+            public void onResponse(Call<QueryModel> call, Response<QueryModel> response) {
 
                 if (response.isSuccessful()) {
 
@@ -220,7 +220,7 @@ public class PasswordChangeFragment extends PSFragment {
             }
 
             @Override
-            public void onFailure(Call<Forget> call, Throwable t) {
+            public void onFailure(Call<QueryModel> call, Throwable t) {
                 showError(t.getMessage());
             }
         });

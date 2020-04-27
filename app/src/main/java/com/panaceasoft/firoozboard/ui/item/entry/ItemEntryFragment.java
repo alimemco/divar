@@ -41,12 +41,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.SharedPrefManager;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentItemEntryBinding;
 import com.panaceasoft.firoozboard.databinding.ItemEntryBottomBoxBinding;
 import com.panaceasoft.firoozboard.edit.model.Detail;
+import com.panaceasoft.firoozboard.edit.model.QueryModel;
 import com.panaceasoft.firoozboard.ui.common.DataBoundListAdapter;
 import com.panaceasoft.firoozboard.ui.common.PSFragment;
 import com.panaceasoft.firoozboard.ui.payment.PaymentFragment;
@@ -65,6 +67,10 @@ import com.zarinpal.ewallets.purchase.ZarinPal;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,7 +126,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     /**
      * test api purchase
      */
-    private boolean virtualPay = false;
+    private boolean virtualPay = true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -160,6 +166,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 // String message = "Your Payment is Success :) " + refID;
                 // Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
+                sendPaymentResult(loginUserId, refID, sharedPreferences.get().getCatId(), sharedPreferences.getCategoryPrice());
+
                 sendDetail();
 
             } else {
@@ -175,6 +183,22 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         return binding.get().getRoot();
     }
 
+    private void sendPaymentResult(String userID, String refId, String catId, String price) {
+
+        PsApp.getApi().sendPayDetail(Config.API_KEY, userID, refId, catId, price).enqueue(new Callback<QueryModel>() {
+            @Override
+            public void onResponse(Call<QueryModel> call, Response<QueryModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<QueryModel> call, Throwable t) {
+
+            }
+        });
+
+    }
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -187,7 +211,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private void pay() {
 
         ZarinPal purchase = ZarinPal.getPurchase(mContext);
-        //TODO pay SandBox
 
         PaymentRequest payment;
 
@@ -218,7 +241,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 PaymentFragment paymentFragment = new PaymentFragment(intent, itemId, locationId, locationName);
                 paymentFragment.show(getFragmentManager(), "PaymentFragment");
 
-                //  navigationController.navigateToPaymentActivity(getActivity(), intent, itemId, locationId, locationName);
             } else {
                 Toast.makeText(mContext, "!! Your Payment Failure :(", Toast.LENGTH_LONG).show();
             }
@@ -316,6 +338,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             } catch (Exception e) {
                 priceCategory = 0;
             }
+            sharedPreferences.saveCategoryPrice(data.getStringExtra(Constants.CATEGORY_PRICE));
 
             if (priceCategory > 0) {
                 Log.i(TAG, "onActivityResult: PRICE");

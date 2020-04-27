@@ -3,7 +3,7 @@ package com.panaceasoft.firoozboard.edit.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Forget {
+public class QueryModel {
 
     @SerializedName("success")
     @Expose
