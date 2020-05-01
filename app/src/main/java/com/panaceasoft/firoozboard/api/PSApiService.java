@@ -33,6 +33,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -73,7 +74,7 @@ public interface PSApiService {
     //region Get Product Detail
 
     @GET("rest/items/get/api_key/{API_KEY}/id/{id}/login_user_id/{login_user_id}")
-    LiveData<ApiResponse<Item>> getItemDetail(@Path("API_KEY") String apiKey, @Path("id") String Id, @Path("login_user_id") String login_user_id);
+    LiveData<ApiResponse<Item>> getItemDetail(@Path("API_KEY") String apiKey, @Path("id") String Id, @Path("login_user_id") String login_user_id, @Header("Cache-Control") String cacheControl);
 
     //endregion
 

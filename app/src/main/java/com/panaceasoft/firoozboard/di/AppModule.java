@@ -74,6 +74,7 @@ class AppModule {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .writeTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(1, TimeUnit.MINUTES)
+                .cache(null)
                 .build();
 
         return new Retrofit.Builder()

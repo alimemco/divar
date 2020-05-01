@@ -945,7 +945,7 @@ public class ItemRepository extends PSRepository {
             protected LiveData<ApiResponse<Item>> createCall() {
                 Utils.psLog("Call API Service to get discount.");
 
-                return psApiService.getItemDetail(apiKey, itemId, Utils.checkUserId(userId));
+                return psApiService.getItemDetail(apiKey, itemId, Utils.checkUserId(userId), "no-cache");
 
             }
 
