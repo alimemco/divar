@@ -907,7 +907,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         getImageList();
 
         itemViewModel.getUploadItemData().observe(this, result -> {
-
+// todo picture | image send
             if (result != null) {
 
                 switch (result.status) {
@@ -960,7 +960,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                     case ERROR:
                         progressDialog.cancel();
-                        psDialogMsg.showErrorDialog(getString(R.string.error_message__item_cannot_upload), getString(R.string.app__ok));
+                        psDialogMsg.showErrorDialog(getString(R.string.error_message__item_cannot_upload) + "\n" + result.message, getString(R.string.app__ok));
                         psDialogMsg.show();
                         break;
                 }
@@ -969,7 +969,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         });
 
         itemViewModel.getUploadItemImageData().observe(this, result -> {
-
+// todo picture | detail send
             if (result != null) {
                 switch (result.status) {
                     case SUCCESS:

@@ -50,7 +50,7 @@ public class FragmentBindingAdapters {
             if(Config.PRE_LOAD_FULL_IMAGE) {
                 Glide.with(fragment).load(fullUrl).thumbnail(Glide.with(fragment).load(imageUrl)).into(imageView);
             }else {
-                Glide.with(fragment).load(imageUrl).thumbnail(0.08f).into(imageView);
+                Glide.with(fragment).load(fullUrl).thumbnail(0.08f).into(imageView);
             }
 
         } else {
