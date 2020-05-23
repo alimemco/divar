@@ -74,7 +74,7 @@ public class Config {
 
     //Image Cache and Loading
     public static int IMAGE_CACHE_LIMIT = 250; // Mb
-    public static boolean PRE_LOAD_FULL_IMAGE = false;
+    public static boolean PRE_LOAD_FULL_IMAGE = true;
 
 
     /* Admob Setting */

@@ -1,5 +1,8 @@
 package com.panaceasoft.firoozboard.edit.model;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class Detail {
 
     private String catId;
@@ -22,12 +25,13 @@ public class Detail {
     private String lng;
     private String itemId;
     private String userId;
+    private HashMap<Integer , String> images;
 
     public Detail() {
 
     }
 
-    public Detail(String catId, String subCatId, String itemTypeId, String itemPriceTypeId, String conditionId, String locationId, String remark, String description, String highlightInfo, String price, String dealOptionId, String brand, String businessMode, String isSoldOut, String title, String address, String lat, String lng, String itemId, String userId) {
+    public Detail(String catId, String subCatId, String itemTypeId, String itemPriceTypeId, String conditionId, String locationId, String remark, String description, String highlightInfo, String price, String dealOptionId, String brand, String businessMode, String isSoldOut, String title, String address, String lat, String lng, String itemId, String userId ,HashMap<Integer , String> images ) {
         this.catId = catId;
         this.subCatId = subCatId;
         this.itemTypeId = itemTypeId;
@@ -48,6 +52,7 @@ public class Detail {
         this.lng = lng;
         this.itemId = itemId;
         this.userId = userId;
+        this.images = images;
     }
 
 
@@ -129,5 +134,13 @@ public class Detail {
 
     public String getUserId() {
         return userId;
+    }
+
+    public HashMap<Integer , String> getImages() {
+        return images;
+    }
+
+    public void setImages(HashMap<Integer , String> images) {
+        this.images = images;
     }
 }

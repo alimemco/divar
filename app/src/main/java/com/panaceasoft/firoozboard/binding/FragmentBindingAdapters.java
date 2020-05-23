@@ -76,6 +76,7 @@ public class FragmentBindingAdapters {
 
             if(imageView != null) {
                 imageView.setImageResource(R.drawable.placeholder_image);
+                Utils.psLog("Image is not valid : " + imageUrl);
             }
 
         }
