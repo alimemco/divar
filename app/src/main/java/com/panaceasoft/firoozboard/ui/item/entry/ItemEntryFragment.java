@@ -113,7 +113,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     private int imageCount = 0;
     private ProgressDialog progressDialog;
     private long mLastClickTime = 0;
-    private HashMap<Integer , String> images = new HashMap<>();
+    private HashMap<Integer, String> images = new HashMap<>();
 
 
     @VisibleForTesting
@@ -260,7 +260,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     binding.get().remarkEditText.getText().toString(), binding.get().descEditText.getText().toString(),
                     binding.get().highlightInfoEditText.getText().toString(), binding.get().priceEditText.getText().toString(), this.dealOptionId,
                     binding.get().brandEditText.getText().toString(), businessMode, itemViewModel.is_sold_out, binding.get().titleEditText.getText().toString(), binding.get().addressEditText.getText().toString(),
-                    itemViewModel.latValue, itemViewModel.lngValue, itemViewModel.itemId, loginUserId,images));
+                    itemViewModel.latValue, itemViewModel.lngValue, itemViewModel.itemId, loginUserId, images));
 
         } else {//add new item
 
@@ -268,7 +268,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     binding.get().remarkEditText.getText().toString(), binding.get().descEditText.getText().toString(),
                     binding.get().highlightInfoEditText.getText().toString(), binding.get().priceEditText.getText().toString(), this.dealOptionId,
                     binding.get().brandEditText.getText().toString(), businessMode, "", binding.get().titleEditText.getText().toString(), binding.get().addressEditText.getText().toString(),
-                    itemViewModel.latValue, itemViewModel.lngValue, "", loginUserId , images));
+                    itemViewModel.latValue, itemViewModel.lngValue, "", loginUserId, images));
         }
 
     }
@@ -416,32 +416,32 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 dataBindingComponent.getFragmentBindingAdapters().bindFullImageUri(binding.get().firstImageView, selectedImage);
                 itemViewModel.firstImagePath = convertToImagePath(selectedImage, filePathColumn);
                 isFirstImageSelected = true;
-                images.put(0,convertToImagePath(selectedImage, filePathColumn));
+                images.put(0, convertToImagePath(selectedImage, filePathColumn));
 
             }
             if (requestCode == Constants.REQUEST_CODE__SEC_GALLERY) {
                 dataBindingComponent.getFragmentBindingAdapters().bindFullImageUri(binding.get().secImageView, selectedImage);
                 itemViewModel.secImagePath = convertToImagePath(selectedImage, filePathColumn);
                 isSecImageSelected = true;
-                images.put(1,convertToImagePath(selectedImage, filePathColumn));
+                images.put(1, convertToImagePath(selectedImage, filePathColumn));
             }
             if (requestCode == Constants.REQUEST_CODE__THIRD_GALLERY) {
                 dataBindingComponent.getFragmentBindingAdapters().bindFullImageUri(binding.get().thirdImageView, selectedImage);
                 itemViewModel.thirdImagePath = convertToImagePath(selectedImage, filePathColumn);
                 isThirdImageSelected = true;
-                images.put(2,convertToImagePath(selectedImage, filePathColumn));
+                images.put(2, convertToImagePath(selectedImage, filePathColumn));
             }
             if (requestCode == Constants.REQUEST_CODE__FOURTH_GALLERY) {
                 dataBindingComponent.getFragmentBindingAdapters().bindFullImageUri(binding.get().fouthImageView, selectedImage);
                 itemViewModel.fouthImagePath = convertToImagePath(selectedImage, filePathColumn);
                 isFouthImageSelected = true;
-                images.put(3,convertToImagePath(selectedImage, filePathColumn));
+                images.put(3, convertToImagePath(selectedImage, filePathColumn));
             }
             if (requestCode == Constants.REQUEST_CODE__FIFTH_GALLERY) {
                 dataBindingComponent.getFragmentBindingAdapters().bindFullImageUri(binding.get().fifthImageView, selectedImage);
                 itemViewModel.fifthImagePath = convertToImagePath(selectedImage, filePathColumn);
                 isFifthImageSelected = true;
-                images.put(4,convertToImagePath(selectedImage, filePathColumn));
+                images.put(4, convertToImagePath(selectedImage, filePathColumn));
             }
             Detail detail = sharedPreferences.get();
             detail.setImages(images);
@@ -463,27 +463,27 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     if (requestCode == Constants.REQUEST_CODE__FIRST_CAMERA) {
                         dataBindingComponent.getFragmentBindingAdapters().bindFullImageBitMap(binding.get().firstImageView, imageBitmap);
                         itemViewModel.firstImagePath = convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn);
-                        images.put(0,convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
+                        images.put(0, convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
                     }
                     if (requestCode == Constants.REQUEST_CODE__SEC_CAMERA) {
                         dataBindingComponent.getFragmentBindingAdapters().bindFullImageBitMap(binding.get().secImageView, imageBitmap);
                         itemViewModel.secImagePath = convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn);
-                        images.put(1,convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
+                        images.put(1, convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
                     }
                     if (requestCode == Constants.REQUEST_CODE__THIRD_CAMERA) {
                         dataBindingComponent.getFragmentBindingAdapters().bindFullImageBitMap(binding.get().thirdImageView, imageBitmap);
                         itemViewModel.thirdImagePath = convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn);
-                        images.put(2,convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
+                        images.put(2, convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
                     }
                     if (requestCode == Constants.REQUEST_CODE__FOURTH_CAMERA) {
                         dataBindingComponent.getFragmentBindingAdapters().bindFullImageBitMap(binding.get().fouthImageView, imageBitmap);
                         itemViewModel.fouthImagePath = convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn);
-                        images.put(3,convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
+                        images.put(3, convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
                     }
                     if (requestCode == Constants.REQUEST_CODE__FIFTH_CAMERA) {
                         dataBindingComponent.getFragmentBindingAdapters().bindFullImageBitMap(binding.get().fifthImageView, imageBitmap);
                         itemViewModel.fifthImagePath = convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn);
-                        images.put(4,convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
+                        images.put(4, convertToImagePath(convertBitmapToUri(imageBitmap), filePathColumn));
                     }
                     Detail detail = sharedPreferences.get();
                     detail.setImages(images);
@@ -504,27 +504,27 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             if (requestCode == Constants.REQUEST_CODE__FIRST_CUSTOM_CAMERA) {
                 dataBindingComponent.getFragmentBindingAdapters().bindStorageImageUri(binding.get().firstImageView, itemViewModel.customImageUri);
                 itemViewModel.firstImagePath = itemViewModel.customImageUri;
-                images.put(0,itemViewModel.customImageUri);
+                images.put(0, itemViewModel.customImageUri);
             }
             if (requestCode == Constants.REQUEST_CODE__SEC_CUSTOM_CAMERA) {
                 dataBindingComponent.getFragmentBindingAdapters().bindStorageImageUri(binding.get().secImageView, itemViewModel.customImageUri);
                 itemViewModel.secImagePath = itemViewModel.customImageUri;
-                images.put(1,itemViewModel.customImageUri);
+                images.put(1, itemViewModel.customImageUri);
             }
             if (requestCode == Constants.REQUEST_CODE__THIRD_CUSTOM_CAMERA) {
                 dataBindingComponent.getFragmentBindingAdapters().bindStorageImageUri(binding.get().thirdImageView, itemViewModel.customImageUri);
                 itemViewModel.thirdImagePath = itemViewModel.customImageUri;
-                images.put(2,itemViewModel.customImageUri);
+                images.put(2, itemViewModel.customImageUri);
             }
             if (requestCode == Constants.REQUEST_CODE__FOURTH_CUSTOM_CAMERA) {
                 dataBindingComponent.getFragmentBindingAdapters().bindStorageImageUri(binding.get().fouthImageView, itemViewModel.customImageUri);
                 itemViewModel.fouthImagePath = itemViewModel.customImageUri;
-                images.put(3,itemViewModel.customImageUri);
+                images.put(3, itemViewModel.customImageUri);
             }
             if (requestCode == Constants.REQUEST_CODE__FIFTH_CUSTOM_CAMERA) {
                 dataBindingComponent.getFragmentBindingAdapters().bindStorageImageUri(binding.get().fifthImageView, itemViewModel.customImageUri);
                 itemViewModel.fifthImagePath = itemViewModel.customImageUri;
-                images.put(4,itemViewModel.customImageUri);
+                images.put(4, itemViewModel.customImageUri);
             }
 
             Detail detail = sharedPreferences.get();
@@ -788,7 +788,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     detail.getUserId()
             );
 
-           // sharedPreferences.empty();
+            // sharedPreferences.empty();
 
         }
 
@@ -933,43 +933,44 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                 switch (result.status) {
                     case SUCCESS:
-                        if (result.data != null) {
-                            if (selected) {
+                        images = sharedPreferences.get().getImages();
 
-                                Detail detail = sharedPreferences.get();
+                        if (result.data != null) {
+                            if (images.size() > 0) {
+
+
                                 progressDialog.cancel();
                                 itemViewModel.itemId = result.data.id;
 
-                                if (detail.getImages().get(1) != null) {//reload
-                                    itemViewModel.setUploadItemImageObj(detail.getImages().get(1), result.data.id, firstImageId);
+                                if (images.get(0) != null) {//reload
+                                    itemViewModel.setUploadItemImageObj(images.get(0), result.data.id, firstImageId);
                                     progressDialog.show();
                                     isFirstImageSelected = false;
-                                    detail.getImages().put(1 , null);
+                                    images.put(0, null);
 
 
-                                } else if (detail.getImages().get(2) != null) {
-                                    itemViewModel.setUploadItemImageObj(detail.getImages().get(2), itemViewModel.itemId, secImageId);
+                                } else if (images.get(1) != null) {
+                                    itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, secImageId);
                                     progressDialog.show();
                                     isSecImageSelected = false;
-                                    detail.getImages().put(2 , null);
-                                } else if (detail.getImages().get(3) != null) {
-                                    itemViewModel.setUploadItemImageObj(detail.getImages().get(3), itemViewModel.itemId, thirdImageId);
+                                    images.put(1, null);
+                                } else if (images.get(2) != null) {
+                                    itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, thirdImageId);
                                     progressDialog.show();
                                     isThirdImageSelected = false;
-                                    detail.getImages().put(3 , null);
-                                } else if (detail.getImages().get(4) != null) {
-                                    itemViewModel.setUploadItemImageObj(detail.getImages().get(4), itemViewModel.itemId, fouthImageId);
+                                    images.put(2, null);
+                                } else if (images.get(3) != null) {
+                                    itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, fouthImageId);
                                     progressDialog.show();
                                     isFouthImageSelected = false;
-                                    detail.getImages().put(4 , null);
-                                } else if (detail.getImages().get(5) != null) {
-                                    itemViewModel.setUploadItemImageObj(detail.getImages().get(5), itemViewModel.itemId, fifthImageId);
+                                    images.put(3, null);
+                                } else if (images.get(4) != null) {
+                                    itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fifthImageId);
                                     progressDialog.show();
                                     isFifthImageSelected = false;
-                                    detail.getImages().put(5 , null);
+                                    images.put(4, null);
                                 }
-
-                                sharedPreferences.save(detail);
+                                sharedPreferences.get().setImages(images);
 
                             } else {
                                 sharedPreferences.empty();
@@ -1018,7 +1019,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                         imageCount += 1;
 
                         if (imagePathList.size() > imageCount) {
-                            ItemEntryFragment.this.callImageUpload(imageCount);//first is one
+                           callImageUpload(imageCount);//first is one
                         }
 
 //                        if (getActivity() != null) {
@@ -1032,7 +1033,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                         Toast.makeText(ItemEntryFragment.this.getActivity(), "خطا!", Toast.LENGTH_SHORT).show();
                         progressDialog.cancel();
-                        psDialogMsg.showErrorDialog(ItemEntryFragment.this.getString(R.string.error_message__image_cannot_upload) + "\n"+result.message, ItemEntryFragment.this.getString(R.string.app__ok));
+                        psDialogMsg.showErrorDialog(ItemEntryFragment.this.getString(R.string.error_message__image_cannot_upload) + "\n" + result.message, ItemEntryFragment.this.getString(R.string.app__ok));
                         psDialogMsg.show();
                         break;
                 }
@@ -1229,25 +1230,25 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
     private void callImageUpload(int imageCount) {
 
-        Detail detail  = sharedPreferences.get();
+        Detail detail = sharedPreferences.get();
         if (images == null) return;
 
-        if (images.get(2) != null) {
+        if (images.get(1) != null) {
+            itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, fifthImageId);
+            isFifthImageSelected = false;
+            images.put(1, null);
+        } else if (images.get(2) != null) {
             itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, secImageId);
             isSecImageSelected = false;
-            images.put(2,null);
+            images.put(2, null);
         } else if (images.get(3) != null) {
             itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, thirdImageId);
             isThirdImageSelected = false;
-            images.put(3,null);
+            images.put(3, null);
         } else if (images.get(4) != null) {
             itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fouthImageId);
             isFouthImageSelected = false;
-            images.put(4,null);
-        } else if (images.get(5) != null) {
-            itemViewModel.setUploadItemImageObj(images.get(5), itemViewModel.itemId, fifthImageId);
-            isFifthImageSelected = false;
-            images.put(5,null);
+            images.put(4, null);
         }
 
         detail.setImages(images);
