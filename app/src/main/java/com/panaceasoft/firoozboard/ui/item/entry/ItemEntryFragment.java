@@ -928,7 +928,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         getImageList();
 
         itemViewModel.getUploadItemData().observe(this, result -> {
-// todo picture | image send
+// todo when ITEM sent
             if (result != null) {
 
                 switch (result.status) {
@@ -938,7 +938,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                         if (result.data != null) {
                             if (images.size() > 0) {
 
-
                                 progressDialog.cancel();
                                 itemViewModel.itemId = result.data.id;
 
@@ -946,29 +945,30 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                                     itemViewModel.setUploadItemImageObj(images.get(0), result.data.id, firstImageId);
                                     progressDialog.show();
                                     isFirstImageSelected = false;
-                                    images.put(0, null);
+                                    images.remove(0);
 
 
                                 } else if (images.get(1) != null) {
                                     itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, secImageId);
                                     progressDialog.show();
                                     isSecImageSelected = false;
-                                    images.put(1, null);
+                                    images.remove(1);
+
                                 } else if (images.get(2) != null) {
                                     itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, thirdImageId);
                                     progressDialog.show();
                                     isThirdImageSelected = false;
-                                    images.put(2, null);
+                                    images.remove(2);
                                 } else if (images.get(3) != null) {
                                     itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, fouthImageId);
                                     progressDialog.show();
                                     isFouthImageSelected = false;
-                                    images.put(3, null);
+                                    images.remove(3);
                                 } else if (images.get(4) != null) {
                                     itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fifthImageId);
                                     progressDialog.show();
                                     isFifthImageSelected = false;
-                                    images.put(4, null);
+                                    images.remove(4);
                                 }
                                 sharedPreferences.get().setImages(images);
 
@@ -1001,7 +1001,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         });
 
         itemViewModel.getUploadItemImageData().observe(this, result -> {
-// todo picture | detail send
+// todo when IMAGE sent
             if (result != null) {
                 switch (result.status) {
                     case SUCCESS:
@@ -1017,14 +1017,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                         psDialogMsg.show();
 
                         imageCount += 1;
+                        if (sharedPreferences.get().getImages().size() > imageCount) {
+                            callImageUpload(imageCount);//first is one
 
-                        if (imagePathList.size() > imageCount) {
-                           callImageUpload(imageCount);//first is one
                         }
-
-//                        if (getActivity() != null) {
-//                            getActivity().finish();
-//                        }
 
 
                         break;
@@ -1228,29 +1224,39 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         }
     }
 
-    private void callImageUpload(int imageCount) {
-
+    private void callImageUpload(int image) {
+// todo when CALL IMAGE sent
         Detail detail = sharedPreferences.get();
         if (images == null) return;
 
-        if (images.get(1) != null) {
+        if (images.get(image) != null) {
+            itemViewModel.setUploadItemImageObj(images.get(image), itemViewModel.itemId, fifthImageId);
+            isFifthImageSelected = false;
+            images.remove(image);
+        }
+/*
+        if (images.get(0) != null) {
             itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, fifthImageId);
             isFifthImageSelected = false;
-            images.put(1, null);
+            images.remove(0);
+        }if (images.get(1) != null) {
+            itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, fifthImageId);
+            isFifthImageSelected = false;
+            images.remove(1);
         } else if (images.get(2) != null) {
             itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, secImageId);
             isSecImageSelected = false;
-            images.put(2, null);
+            images.remove(2);
         } else if (images.get(3) != null) {
             itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, thirdImageId);
             isThirdImageSelected = false;
-            images.put(3, null);
+            images.remove(3);
         } else if (images.get(4) != null) {
             itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fouthImageId);
             isFouthImageSelected = false;
-            images.put(4, null);
+            images.remove(4);
         }
-
+*/
         detail.setImages(images);
         sharedPreferences.save(detail);
 
