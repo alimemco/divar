@@ -450,12 +450,22 @@ public class ItemRepository extends PSRepository {
 
     public LiveData<Resource<Image>> uploadItemImage(String filePath, String imageId, String itemId) {
 
+        String path = filePath;
+        File file;
+
         //Init File
         MultipartBody.Part body = null;
         if (!filePath.equals("")) {
 
             File originalFile = new File(filePath);
-            File file = compressImage(originalFile);
+            if (filePath.endsWith("png")) {
+                file = originalFile;
+            } else {
+                file = compressImage(originalFile);
+            }
+
+
+            // File file = compressImage(originalFile);
 
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -534,7 +544,7 @@ public class ItemRepository extends PSRepository {
         try {
             imageZipperFile = new ImageZipper(connectivity.getContext()).compressToFile(actualFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            return imageZipperFile;
         }
         return imageZipperFile;
 
