@@ -530,7 +530,7 @@ public class ItemRepository extends PSRepository {
     }
 
     private File compressImage(File actualFile) {
-        File imageZipperFile = null;
+        File imageZipperFile = actualFile;
         try {
             imageZipperFile = new ImageZipper(connectivity.getContext()).compressToFile(actualFile);
         } catch (IOException e) {

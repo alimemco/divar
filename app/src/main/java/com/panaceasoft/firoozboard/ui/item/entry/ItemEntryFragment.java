@@ -131,7 +131,13 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     /**
      * test api purchase
      */
-    private boolean virtualPay = false;
+    private boolean virtualPay = true;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sharedPreferences = new SharedPrefManager(mContext);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -214,6 +220,10 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
 
     private void pay() {
+
+        Detail detail = sharedPreferences.get();
+        detail.setImages(images);
+        sharedPreferences.save(detail);
 
         ZarinPal purchase = ZarinPal.getPurchase(mContext);
 
@@ -751,6 +761,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
 
     private void sendDetail() {
+        // TODO: 12/06/2020 send detail
         if (SystemClock.elapsedRealtime() - mLastClickTime < 1500)
             return;
 
@@ -933,11 +944,18 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
                 switch (result.status) {
                     case SUCCESS:
-                        images = sharedPreferences.get().getImages();
+
 
                         if (result.data != null) {
-                            if (images.size() > 0) {
 
+                            Detail detail = sharedPreferences.get();
+                            images = detail.getImages();
+
+                            if (images != null) {
+                                if (images.size() == 0) {
+                                    successfullyDialog();
+                                    return;
+                                }
                                 progressDialog.cancel();
                                 itemViewModel.itemId = result.data.id;
 
@@ -973,16 +991,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                                 sharedPreferences.get().setImages(images);
 
                             } else {
-                                sharedPreferences.empty();
-                                psDialogMsg.showSuccessDialog(getString(R.string.success_message__sent_item), getString(R.string.app__ok));
-                                psDialogMsg.okButton.setOnClickListener(view -> {
-
-                                    if (getActivity() != null) {
-                                        getActivity().finish();
-                                    }
-                                });
-                                psDialogMsg.show();
-
+                                successfullyDialog();
 
                             }
 
@@ -1036,6 +1045,18 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
 
             }
         });
+    }
+
+    private void successfullyDialog() {
+        sharedPreferences.empty();
+        psDialogMsg.showSuccessDialog(getString(R.string.success_message__sent_item), getString(R.string.app__ok));
+        psDialogMsg.okButton.setOnClickListener(view -> {
+
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
+        });
+        psDialogMsg.show();
     }
 
     private void getImageList() {
@@ -1313,6 +1334,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sharedPreferences.empty();
+
     }
 }
