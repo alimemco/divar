@@ -1251,9 +1251,12 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         if (images == null) return;
 
         if (images.get(image) != null) {
+            int index = image;
+            String imga = images.get(image);
+
             itemViewModel.setUploadItemImageObj(images.get(image), itemViewModel.itemId, fifthImageId);
             isFifthImageSelected = false;
-            images.remove(image);
+            // images.remove(image);
         }
 /*
         if (images.get(0) != null) {
