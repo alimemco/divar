@@ -47,7 +47,8 @@ public class SharedPrefManager {
 
     public Detail get() {
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Detail", "EMP");
+        String json = sharedPreferences.getString("Detail", null);
+        if (json == null) return new Detail();
         return gson.fromJson(json, Detail.class);
     }
 
