@@ -1013,11 +1013,16 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             if (result != null) {
                 switch (result.status) {
                     case SUCCESS:
-                        progressDialog.cancel();
                         //  Toast.makeText(ItemEntryFragment.this.getActivity(), "آگهی با موفقیت ارسال شد", Toast.LENGTH_SHORT).show();
 
 
                         imageCount += 1;
+                        if (sharedPreferences.get().getImages() == null) {
+
+                            successfullyDialog();
+
+                            return;
+                        }
                         if (sharedPreferences.get().getImages().size() > imageCount) {
                             callImageUpload(imageCount);//first is one
 
@@ -1051,6 +1056,8 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             }
         });
         psDialogMsg.show();
+
+        progressDialog.cancel();
     }
 
     private void getImageList() {
@@ -1245,39 +1252,40 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
         if (images == null) return;
 
         if (images.get(image) != null) {
-            int index = image;
-            String imga = images.get(image);
 
-            itemViewModel.setUploadItemImageObj(images.get(image), itemViewModel.itemId, fifthImageId);
-            isFifthImageSelected = false;
+           // itemViewModel.setUploadItemImageObj(images.get(image), itemViewModel.itemId, fifthImageId);
+            // isFifthImageSelected = false;
             // images.remove(image);
-        }
-/*
-        if (images.get(0) != null) {
-            itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, fifthImageId);
-            isFifthImageSelected = false;
-            images.remove(0);
-        }if (images.get(1) != null) {
-            itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, fifthImageId);
-            isFifthImageSelected = false;
-            images.remove(1);
-        } else if (images.get(2) != null) {
-            itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, secImageId);
-            isSecImageSelected = false;
-            images.remove(2);
-        } else if (images.get(3) != null) {
-            itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, thirdImageId);
-            isThirdImageSelected = false;
-            images.remove(3);
-        } else if (images.get(4) != null) {
-            itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fouthImageId);
-            isFouthImageSelected = false;
-            images.remove(4);
-        }
-*/
-        detail.setImages(images);
-        sharedPreferences.save(detail);
+            // }
 
+            if (isFirstImageSelected) {
+                itemViewModel.setUploadItemImageObj(images.get(0), itemViewModel.itemId, firstImageId);
+                isFirstImageSelected= false;
+                //  images.remove(0);
+            }
+            if (isSecImageSelected) {
+                itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, secImageId);
+                isSecImageSelected = false;
+                //  images.remove(1);
+            } else if (isThirdImageSelected) {
+                itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, thirdImageId);
+                isThirdImageSelected = false;
+                //  images.remove(2);
+            } else if (isFouthImageSelected) {
+                itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, fouthImageId);
+                isFouthImageSelected = false;
+                // images.remove(3);
+            } else if (isFifthImageSelected) {
+                itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fifthImageId);
+                isFifthImageSelected = false;
+                // images.remove(4);
+            }
+
+
+
+            detail.setImages(images);
+            sharedPreferences.save(detail);
+        }
     }
 
     private void bindingLatLng(String latValue, String lngValue) {
