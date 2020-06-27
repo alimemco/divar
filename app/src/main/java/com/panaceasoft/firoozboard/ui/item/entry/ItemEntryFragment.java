@@ -945,48 +945,47 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                 switch (result.status) {
                     case SUCCESS:
 
-
                         if (result.data != null) {
+                            itemViewModel.itemId = result.data.id;
 
                             Detail detail = sharedPreferences.get();
                             images = detail.getImages();
 
                             if (images != null) {
                                 if (images.size() == 0) {
+                                    progressDialog.cancel();
                                     successfullyDialog();
                                     return;
                                 }
-                                progressDialog.cancel();
-                                itemViewModel.itemId = result.data.id;
 
-                                if (images.get(0) != null) {//reload
+                                if (images.get(0) != null && isFirstImageSelected) {//reload
                                     itemViewModel.setUploadItemImageObj(images.get(0), result.data.id, firstImageId);
                                     progressDialog.show();
                                     isFirstImageSelected = false;
-                                    images.remove(0);
+                                 //   images.remove(0);
 
 
-                                } else if (images.get(1) != null) {
+                                } else if (images.get(1) != null && isSecImageSelected) {
                                     itemViewModel.setUploadItemImageObj(images.get(1), itemViewModel.itemId, secImageId);
                                     progressDialog.show();
                                     isSecImageSelected = false;
-                                    images.remove(1);
+                                  //  images.remove(1);
 
-                                } else if (images.get(2) != null) {
+                                } else if (images.get(2) != null && isThirdImageSelected) {
                                     itemViewModel.setUploadItemImageObj(images.get(2), itemViewModel.itemId, thirdImageId);
                                     progressDialog.show();
                                     isThirdImageSelected = false;
-                                    images.remove(2);
-                                } else if (images.get(3) != null) {
+                                  //  images.remove(2);
+                                } else if (images.get(3) != null && isFouthImageSelected) {
                                     itemViewModel.setUploadItemImageObj(images.get(3), itemViewModel.itemId, fouthImageId);
                                     progressDialog.show();
                                     isFouthImageSelected = false;
-                                    images.remove(3);
-                                } else if (images.get(4) != null) {
+                                   // images.remove(3);
+                                } else if (images.get(4) != null && isFifthImageSelected) {
                                     itemViewModel.setUploadItemImageObj(images.get(4), itemViewModel.itemId, fifthImageId);
                                     progressDialog.show();
                                     isFifthImageSelected = false;
-                                    images.remove(4);
+                                  //  images.remove(4);
                                 }
                                 sharedPreferences.get().setImages(images);
 
@@ -1016,19 +1015,14 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
                     case SUCCESS:
                         progressDialog.cancel();
                         //  Toast.makeText(ItemEntryFragment.this.getActivity(), "آگهی با موفقیت ارسال شد", Toast.LENGTH_SHORT).show();
-                        psDialogMsg.showSuccessDialog(getString(R.string.success_message__sent_item), getString(R.string.app__ok));
-                        psDialogMsg.okButton.setOnClickListener(view -> {
 
-                            if (getActivity() != null) {
-                                getActivity().finish();
-                            }
-                        });
-                        psDialogMsg.show();
 
                         imageCount += 1;
                         if (sharedPreferences.get().getImages().size() > imageCount) {
                             callImageUpload(imageCount);//first is one
 
+                        }else {
+                            successfullyDialog();
                         }
 
 
