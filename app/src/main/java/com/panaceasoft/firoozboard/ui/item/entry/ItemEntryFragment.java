@@ -135,7 +135,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
    /**
     * test api purchase
     */
-   private boolean virtualPay = true;
+   private boolean virtualPay = false;
 
    @Override
    public void onResume() {
@@ -268,7 +268,7 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
             if (getFragmentManager() == null) return;
 
             intent.putExtra(Constants.ITEM_LOCATION_TYPE_NAME, locationName);
-            PaymentFragment paymentFragment = new PaymentFragment(intent, itemId, locationId, locationName);
+            PaymentFragment paymentFragment = new PaymentFragment(intent, itemId, locationId, locationName ,priceCategory);
             paymentFragment.show(getFragmentManager(), "PaymentFragment");
 
          } else {
