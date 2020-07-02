@@ -604,11 +604,13 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- TODO ali changed -->
+    <!-- TODO changed -->
     <string name="verify_phone_code">کد تایید برای شما ارسال شد</string>
     <string name="need_payment">برای قرار دادن آگهی در این دسته بندی نیاز به پرداخت دارید</string>
     <string name="pay">پرداخت</string>
-    <string name="suggest">همشهریان گرامی ! با توجه به تعطیلی بازار و فشار اقتصادی کسبه ، میتوانید از بخش زیر به صورت آنلاین با مشتریان خود در تماس باشید</string>
+    <string name="suggest">در خانه بمانید و با معرفی کسب و کار خود به ۳۰۰هزار مشتری،درآمد خود را افزایش دهید!</string>
+    <string name="sub_message">فیروزبورد حافظ سلامت شما</string>
+    <string name="item_gold">آگهی های ویژه</string>
 
 
 </resources>

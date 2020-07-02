@@ -145,5 +145,12 @@
     <!--<inews_titlename="colorControlNormal">@color/colorAccent</item>-->
     <!--</style>-->
 
+    <style name="dialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">95%</item>
+        <item name="android:windowMinWidthMinor">95%</item>
+        <item name="windowFixedHeightMajor">95%</item>
+        <item name="windowFixedHeightMinor">95%</item>
+    </style>
+
 
 </resources>

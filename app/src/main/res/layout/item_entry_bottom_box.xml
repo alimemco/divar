@@ -2,13 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="loadingMore"
-            type="boolean" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomboxlayout"
         android:layout_width="match_parent"
@@ -69,24 +62,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleButton" />
 
+        <!-- TODO GONE this-->
         <Button
-            android:id="@+id/cameraButton"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:drawableStart="@drawable/ic_select_camera"
-            android:layout_marginTop="0dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:drawablePadding="10dp"
-            android:gravity="start|center_vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/camera__select_title"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineButton"  />
+        android:visibility="gone"
+        android:id="@+id/cameraButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:drawableStart="@drawable/ic_select_camera"
+        android:layout_marginTop="0dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:drawablePadding="10dp"
+        android:gravity="start|center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/camera__select_title"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineButton"  />
 
         <Button
             android:id="@+id/galleryButton"
@@ -137,4 +132,11 @@
         <!--app:layout_constraintTop_toBottomOf="@+id/lowestButton" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="loadingMore"
+            type="boolean" />
+    </data>
 </layout>
