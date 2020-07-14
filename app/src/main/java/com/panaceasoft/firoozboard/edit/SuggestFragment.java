@@ -105,7 +105,7 @@ public class SuggestFragment extends DialogFragment {
 
 
         mButtonSpecial.setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://instagram.com/fz.board");
+            Uri uri = Uri.parse("https://instagram.com/_u/fz.board");
             Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
             likeIng.setPackage("com.instagram.android");
@@ -114,7 +114,7 @@ public class SuggestFragment extends DialogFragment {
                 startActivity(likeIng);
             } catch (ActivityNotFoundException e) {
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://instagram.com/xxx")));
+                        Uri.parse("https://instagram.com/fz.board")));
             }
         });
     }
