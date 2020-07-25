@@ -12,13 +12,13 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.databinding.ActivityItemEntryBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class ItemEntryActivity extends PSAppCompactActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
     //region Override Methods
     @Override

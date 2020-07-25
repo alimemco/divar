@@ -12,7 +12,7 @@ import com.panaceasoft.firoozboard.databinding.ActivityCommentListBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 import com.panaceasoft.firoozboard.utils.Utils;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
  * Created by Panacea-Soft
@@ -22,7 +22,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class CommentListActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     //region Override Methods

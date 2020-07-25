@@ -11,13 +11,14 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.databinding.ActivityNotificationListBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class NotificationListActivity extends PSAppCompactActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
     //region Override Methods
 

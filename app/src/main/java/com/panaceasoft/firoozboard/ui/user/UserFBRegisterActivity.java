@@ -12,14 +12,14 @@ import com.panaceasoft.firoozboard.databinding.ActivityUserFbRegisterBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 import com.panaceasoft.firoozboard.utils.Utils;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class UserFBRegisterActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
-
     //region Override Methods
 
     @Override

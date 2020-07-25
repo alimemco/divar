@@ -20,12 +20,12 @@ import com.panaceasoft.firoozboard.viewobject.holder.ItemParameterHolder;
 
 import javax.inject.Inject;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class SelectedCityActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
     ActivitySelectedCityBinding binding;
     PSDialogMsg psDialogMsg;

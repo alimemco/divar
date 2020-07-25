@@ -133,6 +133,8 @@ dependencies {
     implementation 'com.google.android.ads.consent:consent-library:1.0.7'
 
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
     //Stripe Payment
 //    implementation 'com.stripe:stripe-android:8.3.0'
 

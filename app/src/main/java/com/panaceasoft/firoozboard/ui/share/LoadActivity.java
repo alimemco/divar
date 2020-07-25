@@ -13,7 +13,7 @@ import com.panaceasoft.firoozboard.utils.Constants;
 
 import java.util.Objects;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class LoadActivity extends AppCompatActivity {
 
@@ -39,7 +39,7 @@ public class LoadActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     public void getItem() {

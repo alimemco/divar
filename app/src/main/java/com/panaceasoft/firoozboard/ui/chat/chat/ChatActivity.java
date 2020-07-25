@@ -12,12 +12,12 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.databinding.ActivityChatBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class ChatActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
     @VisibleForTesting
     ActivityChatBinding binding;

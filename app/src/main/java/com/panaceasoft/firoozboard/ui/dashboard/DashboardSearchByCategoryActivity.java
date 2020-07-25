@@ -11,12 +11,12 @@ import com.panaceasoft.firoozboard.databinding.ActivitySearchByCategoryBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 import com.panaceasoft.firoozboard.utils.Constants;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class DashboardSearchByCategoryActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

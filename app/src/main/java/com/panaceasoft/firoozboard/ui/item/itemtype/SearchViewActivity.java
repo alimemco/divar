@@ -15,12 +15,12 @@ import com.panaceasoft.firoozboard.ui.item.itemlocation.ItemLocationFragment;
 import com.panaceasoft.firoozboard.ui.item.itempricetype.ItemPriceTypeFragment;
 import com.panaceasoft.firoozboard.utils.Constants;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class SearchViewActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

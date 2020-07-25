@@ -9,7 +9,7 @@ import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.databinding.ActivityCommentDetailBinding;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
  * Created by Panacea-Soft
@@ -19,7 +19,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class CommentDetailActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+       super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -37,9 +37,9 @@ import com.google.ads.consent.DebugGeography;
 import com.google.android.material.internal.BaselineLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.panaceasoft.firoozboard.databinding.ActivityMainBinding;
+import com.panaceasoft.firoozboard.edit.SuggestFragment;
 import com.panaceasoft.firoozboard.edit.SuggestItemFragment;
 import com.panaceasoft.firoozboard.edit.model.AlertModel;
-import com.panaceasoft.firoozboard.edit.SuggestFragment;
 import com.panaceasoft.firoozboard.ui.common.NavigationController;
 import com.panaceasoft.firoozboard.ui.common.PSAppCompactActivity;
 import com.panaceasoft.firoozboard.utils.AppLanguage;
@@ -56,10 +56,10 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * MainActivity of Panacea-Soft
@@ -73,7 +73,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends PSAppCompactActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     //region Variables

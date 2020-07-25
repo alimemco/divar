@@ -14,10 +14,12 @@ import javax.inject.Inject;
 
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 /**
@@ -28,37 +30,36 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class PsApp extends MultiDexApplication implements HasActivityInjector {
 
-    @Inject
-    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+   private static ApiService api;
+   @Inject
+   DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
-    private static ApiService api;
+   public static ApiService getApi() {
+      return api;
+   }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        AppInjector.init(this);
-    }
+   @Override
+   protected void attachBaseContext(Context base) {
+      super.attachBaseContext(base);
+      AppInjector.init(this);
+   }
 
-    public static ApiService getApi() {
-        return api;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.APP_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(new OkHttpClient.Builder().build())
-                .build();
+   @Override
+   public void onCreate() {
+      super.onCreate();
+      Gson gson = new GsonBuilder()
+              .setLenient()
+              .create();
 
 
-        api = retrofit.create(ApiService.class);
+      Retrofit retrofit = new Retrofit.Builder()
+              .baseUrl(Config.APP_BASE_URL)
+              .addConverterFactory(GsonConverterFactory.create(gson))
+              .client(new OkHttpClient.Builder().build())
+              .build();
+
+
+      api = retrofit.create(ApiService.class);
 
 
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
@@ -66,27 +67,30 @@ public class PsApp extends MultiDexApplication implements HasActivityInjector {
 //            // You should not init your app in this process.
 //            return;
 //        }
-        //LeakCanary.install(this);
+      //LeakCanary.install(this);
 
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/IRANSansMobile_Medium.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
+      ViewPump.init(ViewPump.builder()
+              .addInterceptor(new CalligraphyInterceptor(
+                      new CalligraphyConfig.Builder()
+                              .setDefaultFontPath("fonts/IRANSansMobile_Medium.ttf")
+                              .setFontAttrId(R.attr.fontPath)
+                              .build()))
+              .build());
+
 
 //        setupLeakCanary();
 
-        //new ContextModule(getApplicationContext());
+      //new ContextModule(getApplicationContext());
 
-        //MultiDex.install(this);
+      //MultiDex.install(this);
 
-    }
+   }
 
-    @Override
-    public DispatchingAndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
-    }
+   @Override
+   public DispatchingAndroidInjector<Activity> activityInjector() {
+      return dispatchingAndroidInjector;
+   }
 
 //    protected RefWatcher setupLeakCanary() {
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
