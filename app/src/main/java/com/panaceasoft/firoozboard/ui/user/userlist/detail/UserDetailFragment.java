@@ -245,7 +245,8 @@ public class UserDetailFragment extends PSFragment implements DataBoundListAdapt
                         break;
 
                     case ERROR:
-                        break;
+
+                       break;
                 }
             }
         });

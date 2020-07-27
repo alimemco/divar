@@ -353,6 +353,7 @@ public class SelectedCityFragment extends PSFragment implements DataBoundListAda
                                 }
                             }
 
+
                             break;
 
                         default:

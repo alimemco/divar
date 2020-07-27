@@ -177,7 +177,7 @@ public class ItemRepository extends PSRepository {
 
     public LiveData<List<Item>> getItemListFromDbByKey(String loginUserId, String limit, String offset, ItemParameterHolder itemParameterHolder) {
 
-        Utils.psLog("Load getProductListByKey From Db");
+        Utils.psLog("Load getProductListByKey From Db LIST <ITEM> FROM DB");
 
         if (!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()) {
             itemParameterHolder.location_id = Constants.EMPTY_STRING;
@@ -198,7 +198,7 @@ public class ItemRepository extends PSRepository {
 
             @Override
             protected void saveCallResult(@NonNull List<Item> itemList) {
-                Utils.psLog("SaveCallResult of getProductListByKey.");
+                Utils.psLog("SaveCallResult of getProductListByKey. LIST<ITEM> " + itemList.size());
 
                 try {
 
@@ -240,7 +240,7 @@ public class ItemRepository extends PSRepository {
             @NonNull
             @Override
             protected LiveData<List<Item>> loadFromDb() {
-                Utils.psLog("Load getProductListByKey From Db");
+                Utils.psLog("Load getProductListByKey From Db LIST<ITEM> RETURN");
 
                 if (!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()) {
                     itemParameterHolder.location_id = Constants.EMPTY_STRING;
@@ -259,7 +259,7 @@ public class ItemRepository extends PSRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<List<Item>>> createCall() {
-                Utils.psLog("Call API Service to getProductListByKey.");
+                Utils.psLog("Call API Service to getProductListByKey. LIST<ITEM> RETURN");
 
                 return psApiService.searchItem(Config.API_KEY, limit, offset, loginUserId, itemParameterHolder.keyword, itemParameterHolder.cat_id, itemParameterHolder.sub_cat_id,
                         itemParameterHolder.order_by, itemParameterHolder.order_type, itemParameterHolder.type_id, itemParameterHolder.price_type_id,
@@ -271,7 +271,35 @@ public class ItemRepository extends PSRepository {
 
             @Override
             protected void onFetchFailed(String message) {
-                Utils.psLog("Fetch Failed (getProductListByKey) : " + message);
+
+                new Thread(() -> {
+                    if (message.equals("ردیف بیشتری موجود نیست")) {
+                        try {
+                            Utils.psLog("Fetch Failed (getProductListByKey) : " + message + " db size=" + db.itemMapDao().getAll().size());
+
+                            if (!itemParameterHolder.lat.isEmpty() && !itemParameterHolder.lng.isEmpty() && !itemParameterHolder.mapMiles.isEmpty()) {
+                                itemParameterHolder.location_id = Constants.EMPTY_STRING;
+                            }
+                            String mapKey = itemParameterHolder.getItemMapKey();
+                            db.itemMapDao().deleteByMapKey(mapKey);
+
+
+                            //   db.setTransactionSuccessful();
+
+                        } catch (Exception e) {
+                            Utils.psErrorLog("Error in doing transaction of getProductListByKey.", e);
+                        } finally {
+                            //  db.endTransaction();
+                            Utils.psLog("CLEAN data base SIZE=" + db.itemMapDao().getAll().size());
+                            // TODO: 7/27/2020 REFRESH LIST AFTER DELETE
+
+                        }
+                    }
+
+                }).start();
+
+
+
             }
 
         }.asLiveData();

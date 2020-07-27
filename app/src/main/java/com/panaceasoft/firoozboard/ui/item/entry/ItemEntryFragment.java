@@ -1299,7 +1299,6 @@ public class ItemEntryFragment extends PSFragment implements DataBoundListAdapte
    }
 
    private void callImageUpload(int image) {
-// todo when CALL IMAGE sent
       Detail detail = sharedPreferences.get();
       if (images == null) return;
 

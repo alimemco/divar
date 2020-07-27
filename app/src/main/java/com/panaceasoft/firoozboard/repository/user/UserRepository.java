@@ -908,7 +908,7 @@ public class UserRepository extends PSRepository {
 
             @Override
             protected void saveCallResult(@NonNull List<User> userList) {
-                Utils.psLog("SaveCallResult of getProductListByKey.");
+                Utils.psLog("SaveCallResult of getProductListByKey. List<User>");
 
                 try {
 
@@ -946,7 +946,7 @@ public class UserRepository extends PSRepository {
             @NonNull
             @Override
             protected LiveData<List<User>> loadFromDb() {
-                Utils.psLog("Load getProductListByKey From Db");
+                Utils.psLog("Load getProductListByKey From Db USER");
                 String mapKey = userParameterHolder.getUserMapKey();
 
                 return userDao.getUserByKey(mapKey);
@@ -957,7 +957,7 @@ public class UserRepository extends PSRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<List<User>>> createCall() {
-                Utils.psLog("Call API Service to getProductListByKey.");
+                Utils.psLog("Call API Service to getProductListByKey. USER");
 
                 return psApiService.searchUser(Config.API_KEY,limit,offset,userParameterHolder.user_name,userParameterHolder.overall_rating,
                         userParameterHolder.return_types,loginUserId, userParameterHolder.otherUserId);
