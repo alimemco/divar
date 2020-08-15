@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -279,73 +277,6 @@ public class ChatFragment extends PSFragment implements DataBoundListAdapter.Dif
 
     }
 
-    private void callOfferDialog() {
-        if (getContext() != null) {
-            dialog = new Dialog(getContext());
-            dialog.setContentView(R.layout.custom_dialog_offer);
-
-            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            if (dialog.getWindow() != null) {
-
-                lp.copyFrom(dialog.getWindow().getAttributes());
-                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-
-                ImageView itemImagePath = dialog.findViewById(R.id.itemImageView);
-                TextView itemName = dialog.findViewById(R.id.itemNameTextView);
-                TextView itemPriceTextView = dialog.findViewById(R.id.priceTextView);
-                TextView itemCurrencyTextView = dialog.findViewById(R.id.currencyTextView);
-                itemOfferPriceEditText = dialog.findViewById(R.id.offerPriceEditText);
-               // TextView makeOfferButton = dialog.findViewById(R.id.offerButton);
-
-                itemName.setText(chatViewModel.itemName);
-                String priceString = chatViewModel.itemPrice + " " + getString(R.string.item_entry_detail__price_symbol);
-                itemPriceTextView.setText(priceString);
-                itemOfferPriceEditText.setText(chatViewModel.itemPrice);
-
-                dataBindingComponent.getFragmentBindingAdapters().bindFullImage(itemImagePath, chatViewModel.itemImagePath);
-
-              /*  makeOfferButton.setOnClickListener(v -> {
-
-                    if(itemOfferPriceEditText.getText().toString().trim().equals(Constants.ZERO)) {
-
-                        psDialogMsg.showWarningDialog(getString(R.string.item_entry_offer_not_zero),getString(R.string.app__ok));
-                        psDialogMsg.show();
-
-                    }else if(itemOfferPriceEditText.getText().toString().trim().isEmpty()) {
-
-                        psDialogMsg.showWarningDialog(getString(R.string.chat__item_space_error),getString(R.string.app__ok));
-                        psDialogMsg.show();
-
-                    }
-                    else {
-
-                        dialog.dismiss();
-                        //call api
-                        chatViewModel.offerItemPrice = itemOfferPriceEditText.getText().toString().trim();
-
-                        if (chatViewModel.chatFlag.equals(Constants.CHAT_FROM_BUYER)) {
-
-                            chatViewModel.setUpdateOfferPriceObj(chatViewModel.itemId, chatViewModel.receiverId, loginUserId, chatViewModel.offerItemPrice, Constants.CHAT_TO_BUYER);
-
-                        } else {
-
-                            chatViewModel.setUpdateOfferPriceObj(chatViewModel.itemId, loginUserId, chatViewModel.receiverId, chatViewModel.offerItemPrice, Constants.CHAT_TO_SELLER);
-
-                        }
-                    }
-
-
-                });*/
-                dialog.show();
-
-                dialog.getWindow().setAttributes(lp);
-            }
-
-
-        }
-
-    }
 
     @Override
     protected void initViewModels() {

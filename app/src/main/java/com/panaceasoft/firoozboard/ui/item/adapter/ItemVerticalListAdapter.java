@@ -14,6 +14,8 @@ import com.panaceasoft.firoozboard.utils.Constants;
 import com.panaceasoft.firoozboard.utils.Objects;
 import com.panaceasoft.firoozboard.viewobject.Item;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Panacea-Soft on 9/18/18.
  * Contact Email : teamps.is.cool@gmail.com
@@ -69,13 +71,13 @@ public class ItemVerticalListAdapter extends DataBoundListAdapter<Item, ItemItem
     @Override
     protected void bind(ItemItemVerticalWithUserBinding binding, Item item) {
         binding.setItem(item);
-        if (!item.price.toString().equals("0")) {
-                String price = item.price;
+        if (!item.price.equals("0")) {
+            String price = new DecimalFormat("###,###,###,###").format(Integer.parseInt(item.price));
                 String currencyPrice = price + " " + binding.getRoot().getResources().getString(R.string.item_entry_detail__price_symbol);
                 binding.priceTextView.setText(currencyPrice);
 
         } else {
-            binding.priceTextView.setText(item.itemPriceType.name.toString());
+            binding.priceTextView.setText(item.itemPriceType.name);
         }
 
        // binding.priceTextView.setText(item.price.toString() + " " + binding.getRoot().getResources().getString(R.string.item_entry_detail__price_symbol));

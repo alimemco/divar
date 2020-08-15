@@ -58,6 +58,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -925,18 +926,18 @@ public class ItemFragment extends PSFragment {
     }
 
     private void bindingPriceWithCurrencySymbol(Item item) {
-        if (!item.price.toString().equals("0")) {
-            if (item.itemPriceTypeId.toString().equals("7") || item.itemPriceTypeId.toString().equals("1") || item.itemPriceTypeId.toString().equals("8")) {
-                String price = item.price;
+        if (!item.price.equals("0")) {
+            if (item.itemPriceTypeId.equals("7") || item.itemPriceTypeId.equals("1") || item.itemPriceTypeId.equals("8")) {
+                String price = new DecimalFormat("###,###,###,###").format(Integer.parseInt(item.price));
                 String currencyPrice = price + " " + getString(R.string.item_entry_detail__price_symbol) + " " + item.itemPriceType.name;
                 binding.get().priceTextView.setText(currencyPrice);
             } else {
-                String price = item.price;
+                String price = new DecimalFormat("###,###,###,###").format(Integer.parseInt(item.price));
                 String currencyPrice = price + " " + getString(R.string.item_entry_detail__price_symbol);
                 binding.get().priceTextView.setText(currencyPrice);
             }
         } else {
-            binding.get().priceTextView.setText(item.itemPriceType.name.toString());
+            binding.get().priceTextView.setText(item.itemPriceType.name);
         }
     }
 
