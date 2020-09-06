@@ -15,7 +15,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.gson.JsonObject;
 import com.panaceasoft.firoozboard.MainActivity;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentVerifyEmailBinding;
@@ -29,6 +31,10 @@ import com.panaceasoft.firoozboard.viewmodel.user.UserViewModel;
 import com.panaceasoft.firoozboard.viewobject.User;
 import com.panaceasoft.firoozboard.viewobject.UserLogin;
 import com.panaceasoft.firoozboard.viewobject.common.Resource;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VerifyEmailFragment extends PSFragment implements DataBoundListAdapter.DiffUtilDispatchedInterface {
 
@@ -157,6 +163,11 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
 
                         if (listResource.data != null) {
 
+                            // TODO: 9/6/2020 IMPORTANT
+                            Utils.psLog("SUCCESS REGISTER USER");
+                            Toast.makeText(getContext(), "SUCCESS REGISTER USER", Toast.LENGTH_SHORT).show();
+                            // sendInviteCodeToServer(,);
+
                             if (getActivity() != null) {
                                 pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
                                 pref.edit().putString(Constants.USER_NAME, listResource.data.userName).apply();
@@ -235,6 +246,24 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
                 // Init Object or Empty Data
                 Utils.psLog("Empty Data");
 
+            }
+        });
+    }
+
+    private void sendInviteCodeToServer(String inviteCode, String invitedUser) {
+        PsApp.getApi().sendInviteCode(inviteCode, invitedUser).enqueue(new Callback<Response<JsonObject>>() {
+            @Override
+            public void onResponse(Call<Response<JsonObject>> call, Response<Response<JsonObject>> response) {
+                if (response.body() == null) {
+                    Utils.psLog("response.body() is null");
+                } else {
+                    Utils.psLog(response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response<JsonObject>> call, Throwable t) {
+                Utils.psLog(t.toString());
             }
         });
     }

@@ -1,10 +1,12 @@
 package com.panaceasoft.firoozboard.api;
 
+import com.google.gson.JsonObject;
 import com.panaceasoft.firoozboard.edit.model.AlertModel;
 import com.panaceasoft.firoozboard.edit.model.QueryModel;
 import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -48,6 +50,13 @@ public interface ApiService {
                                    @Query("refId") String refId,
                                    @Query("catId") String catId,
                                    @Query("price") String price
+
+    );
+
+
+    @POST("ApiService/edit/invite.php")
+    Call<Response<JsonObject>> sendInviteCode(@Query("invite_code") String inviteCode,
+                                              @Query("invited_user") String invitedUser
 
     );
 
