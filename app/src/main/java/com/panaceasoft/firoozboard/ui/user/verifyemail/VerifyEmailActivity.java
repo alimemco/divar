@@ -18,6 +18,7 @@ public class VerifyEmailActivity extends PSAppCompactActivity {
     private String userName;
     private String userEmail;
     private String userPass;
+    private String inviteCode;
 
 
     @Override
@@ -36,6 +37,7 @@ public class VerifyEmailActivity extends PSAppCompactActivity {
             userName = getIntent().getStringExtra(Constants.USER_NAME);
             userEmail = getIntent().getStringExtra(Constants.USER_EMAIL);
             userPass = getIntent().getStringExtra(Constants.USER_PASSWORD);
+            inviteCode = getIntent().getStringExtra(Constants.USER_INVITE_CODE);
         }
         ActivityVerifyEmailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_verify_email);
         // Init all UI
@@ -55,7 +57,7 @@ public class VerifyEmailActivity extends PSAppCompactActivity {
         initToolbar(binding.toolbar, getString(R.string.verify_phone));
 
         // setup Fragment
-        setupFragment(VerifyEmailFragment.newInstance(userName, userEmail, userPass, code));
+        setupFragment(VerifyEmailFragment.newInstance(userName, userEmail, userPass, code, inviteCode));
 
     }
 

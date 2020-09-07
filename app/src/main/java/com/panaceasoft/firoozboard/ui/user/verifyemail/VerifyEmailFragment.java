@@ -15,7 +15,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.gson.JsonObject;
 import com.panaceasoft.firoozboard.MainActivity;
 import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
@@ -32,6 +31,7 @@ import com.panaceasoft.firoozboard.viewobject.User;
 import com.panaceasoft.firoozboard.viewobject.UserLogin;
 import com.panaceasoft.firoozboard.viewobject.common.Resource;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,16 +51,18 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
     private String userName;
     private String userEmail;
     private String userPass;
+    private String inviteCode;
 
     private AutoClearedValue<ProgressDialog> prgDialog;
 
-    public static VerifyEmailFragment newInstance(String userName, String userEmail, String userPassword, String code) {
+    public static VerifyEmailFragment newInstance(String userName, String userEmail, String userPassword, String code, String inviteCode) {
 
         Bundle args = new Bundle();
         args.putString(Constants.VALIDATION_CODE, code);
         args.putString(Constants.USER_NAME, userName);
         args.putString(Constants.USER_EMAIL, userEmail);
         args.putString(Constants.USER_PASSWORD, userPassword);
+        args.putString(Constants.USER_INVITE_CODE, inviteCode);
 
         VerifyEmailFragment fragment = new VerifyEmailFragment();
         fragment.setArguments(args);
@@ -75,6 +77,7 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
             userName = getArguments().getString(Constants.USER_NAME);
             userEmail = getArguments().getString(Constants.USER_EMAIL);
             userPass = getArguments().getString(Constants.USER_PASSWORD);
+            inviteCode = getArguments().getString(Constants.USER_INVITE_CODE);
         }
 
     }
@@ -165,8 +168,8 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
 
                             // TODO: 9/6/2020 IMPORTANT
                             Utils.psLog("SUCCESS REGISTER USER");
-                            Toast.makeText(getContext(), "SUCCESS REGISTER USER", Toast.LENGTH_SHORT).show();
-                            // sendInviteCodeToServer(,);
+
+                            sendInviteCodeToServer(inviteCode, userEmail);
 
                             if (getActivity() != null) {
                                 pref.edit().putString(Constants.USER_ID, listResource.data.userId).apply();
@@ -251,18 +254,14 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
     }
 
     private void sendInviteCodeToServer(String inviteCode, String invitedUser) {
-        PsApp.getApi().sendInviteCode(inviteCode, invitedUser).enqueue(new Callback<Response<JsonObject>>() {
+        PsApp.getApi().sendInviteCode(inviteCode, invitedUser).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Response<JsonObject>> call, Response<Response<JsonObject>> response) {
-                if (response.body() == null) {
-                    Utils.psLog("response.body() is null");
-                } else {
-                    Utils.psLog(response.body().toString());
-                }
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Utils.psLog("INVITE" + response.toString());
             }
 
             @Override
-            public void onFailure(Call<Response<JsonObject>> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Utils.psLog(t.toString());
             }
         });

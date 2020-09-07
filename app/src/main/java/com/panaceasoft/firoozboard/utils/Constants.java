@@ -199,6 +199,7 @@ public interface Constants {
     String USER_OLD_PASSWORD = "USER_OLD_PASSWORD";
     String USER_OLD_NAME = "USER_OLD_NAME";
     String USER_OLD_ID = "USER_OLD_ID";
+    String USER_INVITE_CODE = "INVITE_CODE";
 
     //TODO ali add
     String VALIDATION_CODE = "VAL_CODE";

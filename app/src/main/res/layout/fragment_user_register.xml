@@ -221,6 +221,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view10"
                     app:textSize='@{"edit_text"}' />
+
                 <View
                     android:id="@+id/view10"
                     android:layout_width="0dp"
@@ -229,6 +230,40 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+
+                <EditText
+                    android:id="@+id/inviteEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/baseline_reply_grey_24"
+                    android:drawablePadding="@dimen/space_16"
+                    android:hint="کد دعوت"
+                    android:inputType="textPassword"
+                    android:isScrollContainer="true"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/space_16"
+                    android:paddingEnd="@dimen/space_16"
+                    android:singleLine="true"
+                    android:textColor="@color/text__primary"
+                    app:font='@{"normal"}'
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordagainEditText"
+                    app:textSize='@{"edit_text"}' />
+
+                <View
+                    android:id="@+id/view11"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/md_grey_300"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordagainEditText" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

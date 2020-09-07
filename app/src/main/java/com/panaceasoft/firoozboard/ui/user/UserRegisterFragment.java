@@ -295,6 +295,7 @@ public class UserRegisterFragment extends PSFragment {
         }
 
         String userPassword = binding.get().passwordEditText.getText().toString().trim();
+
         if (userPassword.equals("")) {
 
             psDialogMsg.showWarningDialog(getString(R.string.error_message__blank_password), getString(R.string.app__ok));
@@ -311,6 +312,7 @@ public class UserRegisterFragment extends PSFragment {
             return;
         }
 
+        String inviteCode = binding.get().inviteEditText.getText().toString().trim();
 
         userViewModel.isLoading = true;
         updateRegisterBtnStatus();
@@ -343,6 +345,7 @@ public class UserRegisterFragment extends PSFragment {
                                 intent.putExtra(Constants.USER_NAME, userName);
                                 intent.putExtra(Constants.USER_EMAIL, userEmail);
                                 intent.putExtra(Constants.USER_PASSWORD, userPassword);
+                                intent.putExtra(Constants.USER_INVITE_CODE, inviteCode);
 
                                 startActivity(intent);
                             } else {
