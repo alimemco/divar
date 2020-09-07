@@ -130,6 +130,8 @@ public class ProfileFragment extends PSFragment implements DataBoundListAdapter.
 
             }
         });
+
+
     }
 
     @Override
@@ -387,6 +389,12 @@ public class ProfileFragment extends PSFragment implements DataBoundListAdapter.
         binding.get().followUserTextView.setText(String.format("%s%s%s", user.followerCount, " ", getString(R.string.profile__followers)));
         binding.get().followingUserTextView.setText(String.format("%s%s%s", user.followingCount, " ", getString(R.string.profile__following)));
 
+        if (user.userEmail != null) {
+            String inviteCode = user.userEmail.substring(user.userEmail.length() - 6);
+
+            binding.get().inviteCodeTextView.setText(String.format("کد دعوت شما : %s", inviteCode));
+        }
+        
         if (user.verifyTypes.equals("1")) {
             binding.get().facebookImage.setVisibility(View.GONE);
             binding.get().emailImage.setVisibility(View.VISIBLE);

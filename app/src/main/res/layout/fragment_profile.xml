@@ -310,6 +310,20 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
+                        <TextView
+                            android:id="@+id/inviteCodeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/space_2"
+                            android:textColor="@color/textview__primary_red"
+                            android:textSize="17sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/profileImageView"
+                            tools:text="کد دعوت" />
+
 
                         <TextView
                             android:id="@+id/overAllRatingTextView"

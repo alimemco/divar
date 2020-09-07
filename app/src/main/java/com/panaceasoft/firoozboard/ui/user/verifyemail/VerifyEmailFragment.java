@@ -254,6 +254,9 @@ public class VerifyEmailFragment extends PSFragment implements DataBoundListAdap
     }
 
     private void sendInviteCodeToServer(String inviteCode, String invitedUser) {
+       if (inviteCode == null) return;
+       if (inviteCode.equals("")) return;
+
         PsApp.getApi().sendInviteCode(inviteCode, invitedUser).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
