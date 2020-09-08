@@ -1,8 +1,11 @@
 package com.panaceasoft.firoozboard.api;
 
 import com.panaceasoft.firoozboard.edit.model.AlertModel;
+import com.panaceasoft.firoozboard.edit.model.InviteModel;
 import com.panaceasoft.firoozboard.edit.model.QueryModel;
 import com.panaceasoft.firoozboard.ui.user.sms.KavehNegar;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -58,5 +61,8 @@ public interface ApiService {
                                       @Query("invited_user") String invitedUser
 
     );
+
+    @GET("ApiService/edit/invitersCount.php")
+    Call<List<InviteModel>> getAllInviter();
 
 }

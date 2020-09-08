@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.panaceasoft.firoozboard">
 
+    <uses-sdk tools:overrideLibrary="com.developers.imagezipper" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,8 +21,6 @@
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-
-    <uses-sdk tools:overrideLibrary="com.developers.imagezipper" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -41,8 +41,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label,android:allowBackup">
-
-
+        <activity android:name=".edit.InvitedActivity"></activity>
         <activity android:name=".ui.item.itemfromfollower.ItemFromFollowerListActivity" />
         <activity android:name=".ui.location.LocationActivity" />
         <activity android:name=".ui.customcamera.setting.CameraSettingActivity" />
@@ -193,9 +192,7 @@
         <activity
             android:name=".ui.user.PasswordChangeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Base.PSTheme">
-
-        </activity>
+            android:theme="@style/Base.PSTheme"></activity>
         <activity
             android:name=".ui.contactus.ContactUsActivity"
             android:screenOrientation="portrait"

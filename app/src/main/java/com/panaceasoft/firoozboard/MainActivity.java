@@ -37,6 +37,7 @@ import com.google.ads.consent.DebugGeography;
 import com.google.android.material.internal.BaselineLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.panaceasoft.firoozboard.databinding.ActivityMainBinding;
+import com.panaceasoft.firoozboard.edit.InvitedActivity;
 import com.panaceasoft.firoozboard.edit.SuggestFragment;
 import com.panaceasoft.firoozboard.edit.SuggestItemFragment;
 import com.panaceasoft.firoozboard.edit.model.AlertModel;
@@ -339,6 +340,10 @@ public class MainActivity extends PSAppCompactActivity {
 
         initToolbar(binding.toolbar, getString(R.string.app__app_name));
 
+        binding.toolbar.setOnLongClickListener(v -> {
+            startActivity(new Intent(this, InvitedActivity.class));
+            return false;
+        });
 
         navigationController.navigateToCityList(this);
         showBottomNavigation();
