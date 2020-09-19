@@ -73,8 +73,12 @@ public class AppInfoFragment extends PSFragment {
                     }, REQUEST_CALL);
                 }
             } else {
-                String dial = "tel:" + number2;
-                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+                Intent callIntent = new Intent(Intent.ACTION_VIEW);
+                callIntent.setData(Uri.parse("tel:"+number2));
+                startActivity(callIntent);
+
+/*                String dial = "tel:" + number2;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));*/
             }
         });
         binding.get().titleTextView.setText(getString(R.string.app__app_name));

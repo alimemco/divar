@@ -1,5 +1,7 @@
 package com.panaceasoft.firoozboard.viewmodel.item;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -92,7 +94,9 @@ public class ItemViewModel extends PSViewModel {
                 return AbsentLiveData.create();
             }
 
+            Utils.log(getClass() , "ALI | obj.loginUserId " + obj.loginUserId);
             return repository.getItemListByKey(obj.loginUserId, obj.limit, obj.offset, obj.itemParameterHolder);
+            // TODO: 24/07/2020 GET ALL ITEMS FROM HERE
 
         });
 

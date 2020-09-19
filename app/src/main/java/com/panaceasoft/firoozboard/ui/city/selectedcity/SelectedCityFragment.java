@@ -3,6 +3,7 @@ package com.panaceasoft.firoozboard.ui.city.selectedcity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.panaceasoft.firoozboard.Config;
 import com.panaceasoft.firoozboard.MainActivity;
+import com.panaceasoft.firoozboard.PsApp;
 import com.panaceasoft.firoozboard.R;
 import com.panaceasoft.firoozboard.binding.FragmentDataBindingComponent;
 import com.panaceasoft.firoozboard.databinding.FragmentSelectedCityBinding;
@@ -161,6 +163,7 @@ public class SelectedCityFragment extends PSFragment implements DataBoundListAda
         binding.get().swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.view__primary_line));
         binding.get().swipeRefresh.setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.global__primary));
         binding.get().swipeRefresh.setOnRefreshListener(() -> {
+
 
             itemViewModel.forceEndLoading = false;
 

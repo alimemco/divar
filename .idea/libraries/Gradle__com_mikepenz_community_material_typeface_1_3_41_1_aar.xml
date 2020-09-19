@@ -1,12 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.mikepenz:community-material-typeface:1.3.41.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95cc4d6a562d3f299da6a6438b0dba7e/community-material-typeface-1.3.41.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95cc4d6a562d3f299da6a6438b0dba7e/community-material-typeface-1.3.41.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/594a1796bb63ec5163c56fd70c12e39b/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/594a1796bb63ec5163c56fd70c12e39b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/594a1796bb63ec5163c56fd70c12e39b/res" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/community-material-typeface/1.3.41.1/f67faa606d9eb3a829505e19de0c7ffd153eb52b/community-material-typeface-1.3.41.1-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/community-material-typeface/1.3.41.1/50db06e62302205d635a1e49a77712dbce354600/community-material-typeface-1.3.41.1-sources.jar!/" />
     </SOURCES>

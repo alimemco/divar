@@ -1,8 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: io.github.inflationx:viewpump:2.0.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7887646fc87eae8882174084d6d1cd5f/viewpump-2.0.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7887646fc87eae8882174084d6d1cd5f/viewpump-2.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/664cc9f25ab68efbfd58ff23335a2db3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/664cc9f25ab68efbfd58ff23335a2db3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/664cc9f25ab68efbfd58ff23335a2db3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

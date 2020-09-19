@@ -4,8 +4,10 @@ buildscript {
     apply from: 'versions.gradle'
     addRepos(repositories)
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "com.google.gms:google-services:4.3.0"
+/*        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "com.google.gms:google-services:4.3.0"*/
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.google.gms:google-services:4.2.0'
 //        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.3'
         classpath 'io.fabric.tools:gradle:1.29.0'
     }
@@ -13,8 +15,8 @@ buildscript {
         google()
         maven {
             url 'https://maven.fabric.io/public'
-
         }
+
         mavenCentral()
     }
 }

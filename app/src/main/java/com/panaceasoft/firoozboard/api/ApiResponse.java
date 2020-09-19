@@ -50,6 +50,7 @@ public class ApiResponse<T> {
         code = response.code();
         Utils.psLog("URL : " + response.raw().request().url());
         if(response.isSuccessful()) {
+            // TODO: 25/07/2020 ALI
             Utils.psLog("ApiResponse Successful.");
             body = response.body();
             errorMessage = null;
